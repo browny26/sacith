@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^test$ test.php [L]
+
+RewriteCond %{REQUEST_URI} ^/public/ [NC]
+RewriteRule ^ - [L]
+
+# Regole specifiche per product (con più segmenti)
+
+RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/?$ product-router.php?lang=$1&category=$2&subcat=$3&slug=$4 [L,QSA,NC]
+RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([a-z0-9_-]+)/?$ products-page.php?lang=$1&parent=$2&name=$3 [L,QSA,NC]
+RewriteRule ^([a-z]{2})/product/?$ product.php?lang=$1 [L,QSA]
+
+# Regola generica per pagine singole (es. /en/about)
+
+RewriteRule ^([a-z]{2})/([^/]+)/?$ $2.php?lang=$1 [QSA,L]

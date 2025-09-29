@@ -1,0 +1,129 @@
+{
+  "navbar": {
+    "product": "Prodotti",
+    "about": "Chi siamo"
+  },
+  "footer": {
+    "product_title": "PRODOTTI",
+    "whirlpool": "Idromassaggio",
+    "shower": "Docce",
+    "forniture": "Arredamento",
+    "about": "SU DI NOI",
+    "who_we_are": "Chi siamo"
+  },
+  "index": {
+    "whirlpool_1": "SISTEMA",
+    "whirlpool_2": "IDROMASSAGGIO",
+    "shower_1": "SISTEMA",
+    "shower_2": "DOCCE",
+    "hero_btn": "I Nostri Prodotti",
+    "new_product_title": "I nuovi prodotti",
+    "new_product_description_1": "Scopri la nostra più recente",
+    "new_product_description_2": "tecnologia idromassaggio",
+    "product_btn": "Scopri di più",
+    "version_st": "Versione St",
+    "version_bi": "Versione Bi",
+    "kit_description_1": "Tutto ciò di cui hai bisogno per",
+    "kit_description_2": "il tuo idromassaggio in un unico posto.",
+    "coming_soon": "In Arrivo",
+    "lab_title": "Sempre innovativi",
+    "lab_description": "Scopri la nostra nuova linea di arredamento.",
+    "lab_btn": "Vai a Sacith Lab",
+    "about_title_1": "Un business Italiano che",
+    "about_title_2": "crede nella qualità.",
+    "about_btn": "Scopri di più su di noi",
+    "values_title": "I nostri valori",
+    "values_1": "Flessibilità",
+    "values_2": "Made in Italy",
+    "values_3": "Qualità eccellente",
+    "values_4": "Affidabilità",
+    "values_5": "Innovazione",
+    "maps_title": "Dove ci puoi trovare"
+  },
+  "about": {
+    "hero_title": "Eccellenza <span class='font-bold'>made in Italy</span>",
+    "first_section_1": "Sacith ha iniziato la sua attività nel <span class='text-primary'>2004</span>, concentrandosi sulla produzione di componenti ad alta tecnologia per sistemi di idromassaggio ad aria. In pochissimo tempo, Sacith è diventata il primo fornitore di componenti per sistemi ad aria per i più importanti marchi italiani di vasche idromassaggio.",
+    "first_section_2": "Nel 2006 abbiamo realizzato il <span class='text-primary'>SACITRONIC</span>, vincendo la sfida di sviluppare un sistema di controllo elettromeccanico per pompe, conforme alle normative di sicurezza, senza l’utilizzo di dispositivi elettronici. SACITRONIC è coperto da brevetto internazionale.",
+    "img_title_1": "Innovazione Tecnologica",
+    "second_section": "Nel 2009, subito dopo la chiusura dell’azienda italiana produttrice di componenti per idromassaggio Aquajet, Sacith ha acquisito una parte significativa dei suoi stampi e brevetti, ampliando così la propria gamma di prodotti con un’intera serie di componenti per idromassaggio e garantendo la continuità di vendite e assistenza ai clienti che in precedenza si affidavano ad Aquajet. La passione per le soluzioni tecniche è lo spirito che guida la nostra azienda, e la soddisfazione delle esigenze specifiche dei clienti è la nostra missione.",
+    "img_title_2": "Qualità eccellente",
+    "third_section_1": "Siamo fermamente convinti che buone relazioni commerciali si basino su quattro punti fondamentali:",
+    "third_section_2": "- <span class='text-primary'>Prezzo</span>, che offre la possibilità di presentare un'azienda e un prodotto;",
+    "third_section_3": "- <span class='text-primary'>Qualità</span> dei componenti, che convince il cliente a continuare a testarli;",
+    "third_section_4": "- <span class='text-primary'>Servizio</span> che un fornitore deve garantire per soddisfare richieste speciali o rispondere a domande comuni;",
+    "third_section_5": "- <span class='text-primary'>Perseveranza</span> e <span class='text-primary'>fiducia reciproca</span>, che sono gli ingredienti per una relazione duratura.",
+    "third_section_6": "Se condividi le nostre opinioni e sei curioso di provare ciò che offriamo, contattaci pure!"
+  },
+  "contact": {
+    "title": "Contattaci!",
+    "sales": "Vendite",
+    "r&d": "R&D",
+    "generic": "Generale"
+  },
+  "product": {
+    "whirlpool": "SISTEMA IDROMASSAGGIO",
+    "air_system": "Sistema Aria",
+    "manifolds": "Collettori",
+    "pipes_fiting": "Tubi e Raccordi",
+    "controls": "Comandi",
+    "water_system": "Sistema Acqua",
+    "pumps": "Pompe",
+    "jets": "Bocchette",
+    "suctions": "Aspirazioni",
+    "pipes_fittings_disifections": "Tubi, Raccordi & Disinfezione",
+    "shower": "SISTEMA DOCCE",
+    "drains": "Scarichi Doccia",
+    "fittings": "Raccordi Doccia",
+    "shower_jets": "Bocchette Doccia",
+    "steams_accessories_fittings": "Vapori, Tubi e Accessori"
+  },
+  "products-page": {
+    "back": "torna alla lista dei prodotti"
+  },
+  "single-product": {
+    "product": "Prodotti",
+    "dimensions": "Dimensioni:",
+    "finishes": "Finiture:",
+    "materials": "Materiali:"
+  },
+  "configurable-product": {
+    "product": "Prodotti",
+    "dimensions": "Dimensioni:",
+    "finishes": "Finiture:",
+    "materials": "Materiali:",
+    "configurations": "Configurazioni",
+    "code_btn": "Scopri i codici",
+    "code_title": "Codici componenti",
+    "optional": "Opzionali"
+  },
+  "kit": {
+    "product": "Prodotti",
+    "dimensions": "Dimensioni:",
+    "finishes": "Finiture:",
+    "materials": "Materiali:",
+    "code_quantity_btn": "Codici e Quantità",
+    "components_list": "LISTA COMPONENTI",
+    "non_configurable": "Componenti non configurabili",
+    "configurable": "Componenti configurabili",
+    "optional": "Opzionali"
+  },
+  "product-router": {
+    "product": "Prodotti",
+    "dimensions": "Dimensioni:",
+    "finishes": "Finiture:",
+    "materials": "Materiali:",
+    "configurations": "Configurazioni",
+    "code_btn": "Scopri i codici",
+    "code_title": "Codici componenti",
+    "optional": "Opzionali",
+    "code_quantity_btn": "Codici e Quantità",
+    "components_list": "LISTA COMPONENTI",
+    "non_configurable": "Componenti non configurabili",
+    "configurable": "Componenti configurabili"
+  },
+  "404": {
+    "title": "Pagina non trovata",
+    "description": "La pagina che stai cercando non esiste.",
+    "back_home": "Torna alla home"
+  }
+}
