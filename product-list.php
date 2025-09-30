@@ -3,7 +3,8 @@
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     /* foreach ($_GET as $key => $value) {
         echo "Parametro: $key - Valore: $value<br>";
-    } */
+        } */
+    $lang = $_GET['lang'] ?? ($_COOKIE['lang'] ?? 'it');
     function formatName($str)
     {
         $str = rawurldecode($str);             // decode %20
@@ -22,67 +23,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         return rawurlencode($str);                // encode caratteri speciali
     }
 
+    function translateFamily($str, $lang)
+    {
+        $translations = [
+            'it' => [
+                'Hydromassage' => 'Idromassaggio',
+                'Shower Drains' => 'Scarichi Doccia'
+            ],
+            'en' => [
+                'Idromassaggio' => 'Hydromassage',
+                'Scarichi Doccia' => 'Shower Drains'
+            ]
+        ];
+
+        // Se la lingua non esiste, fallback su italiano
+        if (!isset($translations[$lang])) {
+            $lang = 'it';
+        }
+
+        return $translations[$lang][$str] ?? $str; // ritorna la traduzione oppure la stringa originale
+    }
+
+
     $parent = isset($_GET['family']) ? formatName($_GET['family']) : '';
     $name = isset($_GET['category']) ? formatName($_GET['category']) : '';
-    if (isset($_GET['category'])) {
-        // Decodifica e pulizia
-        $parent = isset($_GET['type']) ? formatName($_GET['type']) : formatName($_GET['subfamily']);
-        $name = isset($_GET['category']) ? formatName($_GET['category']) : '';
+    require("config.php");
+    //$conn = new mysqli($host, $username, $password, (isset($_COOKIE['lang']) && $_COOKIE['lang'] == 'en' ? $db_name : $db_name_it));
+    /* $db_to_use = ($lang === 'en') ? $db_name : $db_name_it; */
+    $host = "localhost";
+    $user = "root";       // utente di XAMPP
+    $password = "";       // di default la password è vuota
+    $dbname = "sacith_it";   // il nome del database che hai creato
+    $conn = new mysqli($host, $user, $password, $dbname);
+    //$conn = new mysqli($host, $username, $password, $db_to_use);
+    if ($conn->connect_error) {
+        die("Connessione fallita: " . $conn->connect_error);
+    }
+    // Inizializza gli array
+    function processResult($result, &$array, $parent, $name)
+    {
+        $addedIds = [];  // Tiene traccia degli ID già aggiunti
 
-        require("config.php");
-        //$conn = new mysqli($host, $username, $password, (isset($_COOKIE['lang']) && $_COOKIE['lang'] == 'en' ? $db_name : $db_name_it));
-        $lang = $_GET['lang'] ?? ($_COOKIE['lang'] ?? 'it');
-        /* $db_to_use = ($lang === 'en') ? $db_name : $db_name_it; */
-        $host = "localhost";
-        $user = "root";       // utente di XAMPP
-        $password = "";       // di default la password è vuota
-        $dbname = "sacith_it";   // il nome del database che hai creato
-        $conn = new mysqli($host, $user, $password, $dbname);
-        //$conn = new mysqli($host, $username, $password, $db_to_use);
-        if ($conn->connect_error) {
-            die("Connessione fallita: " . $conn->connect_error);
-        }
-        // Inizializza gli array
-        $data = [];
-        $kit = [];
-        $pc = [];
-        function processResult($result, &$array, $parent, $name)
-        {
-            $addedIds = [];  // Tiene traccia degli ID già aggiunti
+        while ($row = $result->fetch_assoc()) {
+            $immagine = $row["immagine"] ?: "https://placehold.co/300x200";
+            $descrizione = $row["descrizione"] ?: "";
+            $navigazione = $row["navigazione"];
+            $navArray = [];
 
-            while ($row = $result->fetch_assoc()) {
-                $immagine = $row["immagine"] ?: "https://placehold.co/300x200";
-                $descrizione = $row["descrizione"] ?: "";
-                $navigazione = $row["navigazione"];
-                $navArray = [];
-
-                if ($navigazione) {
-                    $splitBySlash = explode("/", $navigazione);
-                    // Itera su ciascuna parte separata da "/"
-                    foreach ($splitBySlash as $part) {
-                        $explodedPart = explode("-", $part);
-                        $containsParent = false;
-                        $containsName = false;
-                        foreach ($explodedPart as $segment) {
-                            if ($segment == $parent) {
-                                $containsParent = true;
-                            }
-                            if ($segment == $name) {
-                                $containsName = true;
-                            }
-                        }
-                        if ($containsParent && $containsName) {
-                            $navArray[] = $explodedPart;
-                        }
-                    }
-                }
-
-                // Se la navigazione non contiene "/", gestisci normalmente
-                if (empty($navArray) && isset($navigazione)) {
-                    $explodedNavigation = explode("-", $navigazione);
+            if ($navigazione) {
+                $splitBySlash = explode("/", $navigazione);
+                // Itera su ciascuna parte separata da "/"
+                foreach ($splitBySlash as $part) {
+                    $explodedPart = explode("-", $part);
                     $containsParent = false;
                     $containsName = false;
-                    foreach ($explodedNavigation as $segment) {
+                    foreach ($explodedPart as $segment) {
                         if ($segment == $parent) {
                             $containsParent = true;
                         }
@@ -91,58 +86,132 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         }
                     }
                     if ($containsParent && $containsName) {
-                        $navArray[] = $explodedNavigation;
+                        $navArray[] = $explodedPart;
                     }
                 }
+            }
 
-                // Funzione per aggiungere prodotto se non duplicato
-                $addProduct = function () use (&$array, $row, $descrizione, $immagine, $navArray, &$addedIds) {
-                    if (!in_array($row["id"], $addedIds)) {
-                        $array[] = [
-                            "id" => $row["id"],
-                            "nome" => $row["nome"],
-                            "codice_univoco" => isset($row["codice_univoco"]) ? $row["codice_univoco"] : null,
-                            "descrizione" => $descrizione,
-                            "immagine" => $immagine,
-                            "dimensioni" => isset($row["dimensioni"]) ? $row["dimensioni"] : null,
-                            "finiture" => isset($row["finiture"]) ? $row["finiture"] : null,
-                            "materiali" => isset($row["materiali"]) ? $row["materiali"] : null,
-                            "navigazione" => $navArray
-                        ];
-                        $addedIds[] = $row["id"];
+            // Se la navigazione non contiene "/", gestisci normalmente
+            if (empty($navArray) && isset($navigazione)) {
+                $explodedNavigation = explode("-", $navigazione);
+                $containsParent = false;
+                $containsName = false;
+                foreach ($explodedNavigation as $segment) {
+                    if ($segment == $parent) {
+                        $containsParent = true;
                     }
-                };
+                    if ($segment == $name) {
+                        $containsName = true;
+                    }
+                }
+                if ($containsParent && $containsName) {
+                    $navArray[] = $explodedNavigation;
+                }
+            }
 
-                // Se il parent contiene "Shower" usa questa logica speciale
-                if (strpos($parent, "Shower") !== false) {
-                    $splitBySlash = explode("/", $navigazione);
-                    foreach ($splitBySlash as $part) {
-                        $explodedPart = explode("-", $part);
-                        $containsName = false;
-                        foreach ($explodedPart as $segment) {
-                            if ($segment == $name) {
-                                $containsName = true;
-                            }
+            // Funzione per aggiungere prodotto se non duplicato
+            $addProduct = function () use (&$array, $row, $descrizione, $immagine, $navArray, &$addedIds) {
+                if (!in_array($row["id"], $addedIds)) {
+                    $array[] = [
+                        "id" => $row["id"],
+                        "nome" => $row["nome"],
+                        "codice_univoco" => isset($row["codice_univoco"]) ? $row["codice_univoco"] : null,
+                        "descrizione" => $descrizione,
+                        "immagine" => $immagine,
+                        "dimensioni" => isset($row["dimensioni"]) ? $row["dimensioni"] : null,
+                        "finiture" => isset($row["finiture"]) ? $row["finiture"] : null,
+                        "materiali" => isset($row["materiali"]) ? $row["materiali"] : null,
+                        "navigazione" => $navArray
+                    ];
+                    $addedIds[] = $row["id"];
+                }
+            };
+
+            // Se il parent contiene "Shower" usa questa logica speciale
+            if (strpos($parent, "Shower") !== false) {
+                $splitBySlash = explode("/", $navigazione);
+                foreach ($splitBySlash as $part) {
+                    $explodedPart = explode("-", $part);
+                    $containsName = false;
+                    foreach ($explodedPart as $segment) {
+                        if ($segment == $name) {
+                            $containsName = true;
                         }
-                        if ($containsName) {
-                            // aggiungi prodotto solo se non duplicato
+                    }
+                    if ($containsName) {
+                        // aggiungi prodotto solo se non duplicato
+                        $addProduct();
+                        break; // basta una volta
+                    }
+                }
+            } else {
+                // Logica standard per aggiungere prodotto
+                if (!empty($navArray)) {
+                    foreach ($navArray as $navPart) {
+                        if ((isset($navPart[1]) && $navPart[1] == $parent) || (isset($navPart[0]) && $navPart[0] == $parent)) {
                             $addProduct();
                             break; // basta una volta
-                        }
-                    }
-                } else {
-                    // Logica standard per aggiungere prodotto
-                    if (!empty($navArray)) {
-                        foreach ($navArray as $navPart) {
-                            if ((isset($navPart[1]) && $navPart[1] == $parent) || (isset($navPart[0]) && $navPart[0] == $parent)) {
-                                $addProduct();
-                                break; // basta una volta
-                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    function processResultShowerDrains($result, &$array, $parent, $name)
+    {
+        $addedIds = [];  // Tiene traccia degli ID già aggiunti
+
+        while ($row = $result->fetch_assoc()) {
+            $immagine = $row["immagine"] ?: "https://placehold.co/300x200";
+            $descrizione = $row["descrizione"] ?: "";
+            $navigazione = $row["navigazione"] ?? "";
+
+            // Trasforma la stringa in array di segmenti (split su "/" e poi su "-")
+            $navSegments = [];
+            if (!empty($navigazione)) {
+                $parts = explode("/", $navigazione);
+                foreach ($parts as $part) {
+                    $navSegments[] = explode("-", $part);
+                }
+            }
+
+            // Funzione per aggiungere prodotto se non duplicato
+            $addProduct = function () use (&$array, $row, $descrizione, $immagine, $navSegments, &$addedIds) {
+                if (!in_array($row["id"], $addedIds)) {
+                    $array[] = [
+                        "id" => $row["id"],
+                        "nome" => $row["nome"],
+                        "codice_univoco" => $row["codice_univoco"] ?? null,
+                        "descrizione" => $descrizione,
+                        "immagine" => $immagine,
+                        "dimensioni" => $row["dimensioni"] ?? null,
+                        "finiture" => $row["finiture"] ?? null,
+                        "materiali" => $row["materiali"] ?? null,
+                        "navigazione" => $navSegments // ✅ qui hai un array di segmenti
+                    ];
+                    $addedIds[] = $row["id"];
+                }
+            };
+
+            // Controllo se $parent è dentro i segmenti
+            foreach ($navSegments as $path) {
+                if (in_array($parent, $path, true)) {
+                    $addProduct();
+                    break;
+                }
+            }
+        }
+    }
+
+    if (isset($_GET['category'])) {
+        // Decodifica e pulizia
+        $data = [];
+        $kit = [];
+        $pc = [];
+        $parent = isset($_GET['type']) ? formatName($_GET['type']) : formatName($_GET['subfamily']);
+        $name = isset($_GET['category']) ? formatName($_GET['category']) : '';
+
 
         $queries = [
             ["SELECT * FROM ProdottoConfigurabile WHERE navigazione LIKE  '%$name%'", &$pc],
@@ -155,6 +224,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($result && $result->num_rows > 0) {
                 //print_r($query);
                 processResult($result, $array, $parent, $name);
+            }
+        }
+        $conn->close();
+        // Se almeno un array contiene dati, restituisci il JSON
+        if (!empty($data)) {
+            $json_data = json_encode($data);
+            //print_r($data);
+        }
+        if (!empty($kit)) {
+            $json_kit = json_encode($kit);
+            //print_r($kit);
+        }
+        if (!empty($pc)) {
+            $json_pc = json_encode($pc);
+            //print_r($pc);
+        }
+    }
+
+    if ($_GET['family'] == "shower-drains") {
+        $data = [];
+        $kit = [];
+        $pc = [];
+        $queries = [
+            ["SELECT * FROM ProdottoConfigurabile WHERE navigazione LIKE  '%Shower Drains%'", &$pc],
+            ["SELECT * FROM Kit WHERE navigazione LIKE  '%Shower Drains%'", &$kit],
+            ["SELECT * FROM ProdottoSingolo WHERE navigazione LIKE  '%Shower Drains%'", &$data]
+        ];
+        foreach ($queries as [$query, &$array]) {
+            $result = $conn->query($query);
+            if ($result && $result->num_rows > 0) {
+                /* print_r($row = $result->fetch_assoc());
+                echo "<br>";
+                echo "<br>"; */
+                processResultShowerDrains($result, $array, "Shower System", $name);
             }
         }
         $conn->close();
@@ -192,22 +295,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             <div class="flex flex-col gap-[4px]">
                 <p class="uppercase text-[12px] text-primary/50 font-semibold"><?= $page_translations['title'] ?></p>
-                <h1 class="capitalize font-semibold text-[36px] text-primary"><?= isset($_GET['family']) ? $_GET['family'] : "famiglia"  ?></h1>
+                <h1 class="capitalize font-semibold text-[36px] text-primary"><?= isset($_GET['family']) ? translateFamily(formatName($_GET['family']), $lang) : "famiglia"  ?></h1>
             </div>
 
             <p class="mt-[32px] mb-[64px]"><?= $page_translations['description'] ?></p>
 
-            <div class="flex flex-col lg:flex-row gap-[20px] w-full h-full mb-[80px]">
-                <div class="h-full w-full">
-                    <div class="relative overflow-hidden h-[120px] border border-black/10 <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "whirlpool-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer" onclick="window.location.href = '/sacith/<?= $_COOKIE['lang'] ?>/product/hydromassage/whirlpool-system/air-system'"><span class="z-10"><?= $page_translations['whirlpool'] ?></span><img src="image/h-full.svg" alt="" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-30"></div>
-                    <div class="flex flex-col lg:flex-row gap-[20px] w-full h-[70px] mt-[20px]">
-                        <div class="border <?= isset($_GET['type']) && $_GET['type'] == "air-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-center h-full w-full text-[20px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer" onclick="window.location.href = '/sacith/<?= $_COOKIE['lang'] ?>/product/hydromassage/whirlpool-system/air-system'"><?= $page_translations['air_system'] ?></div>
-                        <div class="border <?= isset($_GET['type']) && $_GET['type'] == "water-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-center h-full w-full text-[20px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer" onclick="window.location.href = '/sacith/<?= $_COOKIE['lang'] ?>/product/hydromassage/whirlpool-system/water-system'"><?= $page_translations['water_system'] ?></div>
+            <?php if ($_GET['family'] == "hydromassage") {  ?>
+                <div class="flex flex-col lg:flex-row gap-[20px] w-full h-full mb-[80px]">
+                    <div class="h-full w-full">
+                        <div class="relative overflow-hidden h-[120px] border border-black/10 <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "whirlpool-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer" onclick="window.location.href = '/sacith/<?= $_COOKIE['lang'] ?>/product/hydromassage/whirlpool-system/air-system'"><span class="z-10"><?= $page_translations['whirlpool'] ?></span><img src="image/h-full.svg" alt="" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-30"></div>
+                        <div class="flex flex-col lg:flex-row gap-[20px] w-full h-[70px] mt-[20px]">
+                            <div class="border <?= isset($_GET['type']) && $_GET['type'] == "air-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-center h-full w-full text-[20px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer" onclick="window.location.href = '/sacith/<?= $_COOKIE['lang'] ?>/product/hydromassage/whirlpool-system/air-system'"><?= $page_translations['air_system'] ?></div>
+                            <div class="border <?= isset($_GET['type']) && $_GET['type'] == "water-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-center h-full w-full text-[20px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer" onclick="window.location.href = '/sacith/<?= $_COOKIE['lang'] ?>/product/hydromassage/whirlpool-system/water-system'"><?= $page_translations['water_system'] ?></div>
+                        </div>
                     </div>
+                    <div class="relative overflow-hidden h-[120px] border <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "shower-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer" onclick="window.location.href = '/sacith/<?= $_COOKIE['lang'] ?>/product/hydromassage/shower-system'"><span class="z-10"><?= $page_translations['shower'] ?></span><img src="image/s-full.svg" alt="" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-30"></div>
                 </div>
-                <div class="relative overflow-hidden h-[120px] border <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "shower-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer" onclick="window.location.href = '/sacith/<?= $_COOKIE['lang'] ?>/product/hydromassage/shower-system'"><span class="z-10"><?= $page_translations['shower'] ?></span><img src="image/s-full.svg" alt="" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-30"></div>
-            </div>
-            <?php if (!isset($_GET['category']) && isset($_GET['type']) && $_GET['type'] == "air-system") {  ?>
+            <?php  }  ?>
+            <?php if (!isset($_GET['category']) && isset($_GET['type']) && $_GET['type'] == "air-system" && $_GET['family'] == "hydromassage") {  ?>
                 <div class="flex flex-col gap-[10px] w-full h-full mx-auto">
                     <div class="flex flex-col lg:flex-row gap-[10px]">
                         <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category" data-category="basic-air-kit">Basic Air Kit</div>
@@ -221,7 +326,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     </div>
                 </div>
             <?php  }  ?>
-            <?php if (!isset($_GET['category']) && isset($_GET['type']) && $_GET['type'] == "water-system") {  ?>
+            <?php if (!isset($_GET['category']) && isset($_GET['type']) && $_GET['type'] == "water-system" && $_GET['family'] == "hydromassage") {  ?>
                 <div class="flex flex-col gap-[10px] w-full h-full mx-auto">
                     <div class="flex flex-col lg:flex-row gap-[10px]">
                         <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category" data-category="basic-hydro-kit">Basic Hydro Kit</div>
@@ -235,7 +340,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     </div>
                 </div>
             <?php  }  ?>
-            <?php if (!isset($_GET['category']) && isset($_GET['subfamily']) && $_GET['subfamily'] == "shower-system") {  ?>
+            <?php if (!isset($_GET['category']) && isset($_GET['subfamily']) && $_GET['subfamily'] == "shower-system" && $_GET['family'] == "hydromassage") {  ?>
                 <div class="flex flex-col gap-[10px] w-full h-full mx-auto">
                     <div class="flex flex-col lg:flex-row gap-[10px]">
                         <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category" data-category="shower-fittings">Shower Fittings</div>
@@ -245,7 +350,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 </div>
             <?php  }  ?>
 
-            <?php if (isset($_GET['category'])) { ?>
+            <?php if (isset($_GET['category']) && $_GET['family'] == "hydromassage") { ?>
 
                 <div class="flex flex-col md:flex-row gap-10 w-screen mt-6">
                     <div class="flex flex-col gap-[20px] items-start w-fit">
@@ -339,6 +444,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         </div>
                     </div>
                 </div>
+            <?php } ?>
+
+            <?php if ($_GET['family'] == "shower-drains") { ?>
+
+                <div class="col-span-8 sm:col-span-7 flex-1 flex flex-col gap-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 w-fit justify-center md:justify-start items-center md:items-start gap-4" id="no_category">
+                    </div>
+                    <div class="flex flex-col items-start gap-4" id="product_container">
+                    </div>
+                </div>
+
             <?php } ?>
 
 
@@ -495,57 +611,99 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     const readableType = slugToName(type);
     const readableCategory = slugToName(category);
+    const readablefamily = slugToName(family);
 
     console.log(readableType); // "Water System"
+    console.log(readablefamily); // "Water System"
 
     items = []
     subcategory = []
 
-    if (pc && pc.length > 0) {
-        pc.forEach(p => {
-            if (type) {
-                if (p.navigazione[0][1] == readableType) {
-                    items.push(p)
+    if (readablefamily !== "Shower Drains") {
+        if (pc && pc.length > 0) {
+            pc.forEach(p => {
+                if (type) {
+                    if (p.navigazione[0][1] == readableType) {
+                        items.push(p)
+                    }
+                } else {
+                    if (p.navigazione[0][1] == readableCategory) {
+                        items.push(p)
+                    }
                 }
-            } else {
-                if (p.navigazione[0][1] == readableCategory) {
-                    items.push(p)
+                if (p.navigazione[0][3] && !subcategory.includes(p.navigazione[0][3])) {
+                    subcategory.push(p.navigazione[0][3])
                 }
-            }
-            if (p.navigazione[0][3] && !subcategory.includes(p.navigazione[0][3])) {
-                subcategory.push(p.navigazione[0][3])
-            }
-        });
-    }
+            });
+        }
 
-    if (products && products.length > 0) {
-        products.forEach(prodotto => {
-            if (prodotto.navigazione[0][1] == readableType) {
-                items.push(prodotto)
-            } else {
-                if (prodotto.navigazione[0][1] == readableCategory) {
+        if (products && products.length > 0) {
+            products.forEach(prodotto => {
+                if (prodotto.navigazione[0][1] == readableType) {
+                    items.push(prodotto)
+                } else {
+                    if (prodotto.navigazione[0][1] == readableCategory) {
+                        items.push(prodotto)
+                    }
+                }
+                if (prodotto.navigazione[0][3] && !subcategory.includes(prodotto.navigazione[0][3])) {
+                    subcategory.push(prodotto.navigazione[0][3])
+                }
+            });
+        }
+
+        if (kits && kits.length > 0) {
+            kits.forEach(kit => {
+                if (kit.navigazione[0][1] == readableType) {
+                    items.push(kit)
+                } else {
+                    if (kit.navigazione[0][1] == readableCategory) {
+                        items.push(kit)
+                    }
+                }
+                if (kit.navigazione[0][3] && !subcategory.includes(kit.navigazione[0][3])) {
+                    subcategory.push(kit.navigazione[0][3])
+                }
+            });
+        }
+    } else {
+        if (pc && pc.length > 0) {
+            pc.forEach(p => {
+
+                if (p.navigazione[0][1] == readablefamily) {
+                    items.push(p)
+                }
+                if (p.navigazione[0][2] && !subcategory.includes(p.navigazione[0][2])) {
+                    subcategory.push(p.navigazione[0][2])
+                }
+            });
+        }
+
+        if (products && products.length > 0) {
+            products.forEach(prodotto => {
+
+                if (prodotto.navigazione[0][1] == readablefamily) {
                     items.push(prodotto)
                 }
-            }
-            if (prodotto.navigazione[0][3] && !subcategory.includes(prodotto.navigazione[0][3])) {
-                subcategory.push(prodotto.navigazione[0][3])
-            }
-        });
-    }
 
-    if (kits && kits.length > 0) {
-        kits.forEach(kit => {
-            if (kit.navigazione[0][1] == readableType) {
-                items.push(kit)
-            } else {
-                if (kit.navigazione[0][1] == readableCategory) {
+                if (prodotto.navigazione[0][2] && !subcategory.includes(prodotto.navigazione[0][2])) {
+                    subcategory.push(prodotto.navigazione[0][2])
+                }
+            });
+        }
+
+        if (kits && kits.length > 0) {
+            kits.forEach(kit => {
+
+                if (kit.navigazione[0][1] == readablefamily) {
                     items.push(kit)
                 }
-            }
-            if (kit.navigazione[0][3] && !subcategory.includes(kit.navigazione[0][3])) {
-                subcategory.push(kit.navigazione[0][3])
-            }
-        });
+
+                if (kit.navigazione[0][2] && !subcategory.includes(kit.navigazione[0][2])) {
+                    subcategory.push(kit.navigazione[0][2])
+                }
+            });
+        }
     }
 
     console.log(items)
@@ -651,9 +809,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             let url = "";
 
             if (<?= isset($_GET["type"]) ? 1 : 0 ?> == 1) {
-                url = `/sacith/${lang}/product/<?= $_GET["family"] ?>/<?= $_GET["subfamily"] ?>/<?= isset($_GET["type"]) ? $_GET["type"] : "" ?>/<?= $_GET["category"] ?>/${id}/${slug}?c=${type}`;
+                url = `/sacith/${lang}/product/<?= $_GET["family"] ?><?= isset($_GET["subfamily"]) ? "/" . $_GET["subfamily"] : "" ?><?= isset($_GET["type"]) ? "/" . $_GET["type"] : "" ?><?= isset($_GET["category"]) ? "/" . $_GET["category"] : "" ?>/${id}/${slug}?c=${type}`;
             } else {
-                url = `/sacith/${lang}/product/<?= $_GET["family"] ?>/<?= $_GET["subfamily"] ?>/<?= $_GET["category"] ?>/${id}/${slug}?c=${type}`;
+                url = `/sacith/${lang}/product/<?= $_GET["family"] ?><?= isset($_GET["subfamily"]) ? "/" . $_GET["subfamily"] : "" ?><?= isset($_GET["category"]) ? "/" . $_GET["category"] : "" ?>/${id}/${slug}?c=${type}`;
             }
 
             window.location.href = url;

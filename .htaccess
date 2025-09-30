@@ -28,6 +28,10 @@ RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([a-z0-9_-]+)/?$ product-list.php?
 
 RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/?$ product-list.php?family=$2&lang=$1 [L,QSA]
 
+# 🔹 Caso speciale: family/id/slug (es. shower-drains)
+
+RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([0-9]+)/([^/]+)/?$ product-router.php?lang=$1&family=$2&id=$3&slug=$4 [L,QSA,NC]
+
 # 🔹 URL con type + ID + slug: family/subfamily/type/category/id/slug
 
 RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/([0-9]+)/([^/]+)/?$ product-router.php?lang=$1&family=$2&subfamily=$3&type=$4&category=$5&id=$6&slug=$7 [L,QSA,NC]

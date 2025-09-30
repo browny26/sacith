@@ -196,11 +196,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <div class="h-screen flex flex-col justify-between">
         <?php require("navbar.php"); ?>
         <!-- Breadcrumb -->
+        <?php
+        $family   = $_GET["family"] ?? "";
+        $subfamily = $_GET["subfamily"] ?? "";
+        $type      = $_GET["type"] ?? "";
+        $category  = $_GET["category"] ?? "";
+
+        $url = "/sacith/$lang/product/$family";
+        if ($subfamily) $url .= "/$subfamily";
+        if ($type) $url .= "/$type";
+        if ($category) $url .= "/$category";
+        ?>
         <div class="container mx-auto mt-6 px-4">
             <nav class="text-gray-500 text-sm">
                 <a href="/sacith/<?= $lang ?>/product" class="text-blue-500"><?= $page_translations['product'] ?></a> &gt;
-                <a href="/sacith/<?= $lang ?>/product/<?= $_GET["family"] ?>/<?= $_GET["subfamily"] ?>/<?= isset($_GET["type"]) ? $_GET["type"] . "/" . $_GET["category"] : $_GET["category"] ?>" class="text-blue-500">
-                    <?= formatName($_GET["category"])  ?>
+                <a href="<?= $url ?>" class="text-blue-500">
+                    <?= isset($_GET["category"]) ? formatName($_GET["category"]) : formatName($_GET["family"])  ?>
                 </a> &gt;
                 <span><?php echo htmlspecialchars($nome); ?></span>
             </nav>
