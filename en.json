@@ -58,7 +58,18 @@
     "title": "Contact Us!",
     "sales": "Sales",
     "r&d": "R&D",
-    "generic": "Generic"
+    "generic": "Generic",
+    "phone": "Phone",
+    "hours": "Opening Hours",
+    "hours_content": "From Monday to Friday, from 08:30 to 12:00 and from 14:00 to 18:00",
+    "site": "Location",
+    "form_title": "Write to us for more information",
+    "form_name": "First Name",
+    "form_surname": "Last Name",
+    "form_phone": "Phone",
+    "form_company": "Company",
+    "form_email": "Email",
+    "form_message": "Message"
   },
   "product": {
     "whirlpool": "WHIRPOOL SYSTEMS",
