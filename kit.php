@@ -3,6 +3,14 @@
 // Gestione della richiesta GET
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Verifica che l'ID e il tipo siano stati inviati tramite GET
+    function formatName($str)
+    {
+        $str = rawurldecode($str);             // decode %20
+        $str = str_replace("-", " ", $str);    // trattini -> spazi
+        $str = str_replace(" and ", " & ", $str);    // trattini -> spazi
+        $str = str_replace("_", ", ", $str);    // trattini -> spazi
+        return ucwords(strtolower($str));      // Air System
+    }
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
@@ -10,9 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         require("config.php");
         // Connessione al database
         $lang = $_GET['lang'] ?? ($_COOKIE['lang'] ?? 'it');
-        $db_to_use = ($lang === 'en') ? $db_name : $db_name_it;
+        /* $db_to_use = ($lang === 'en') ? $db_name : $db_name_it;
 
-        $conn = new mysqli($host, $username, $password, $db_to_use);
+        $conn = new mysqli($host, $username, $password, $db_to_use); */
+        $host = "localhost";
+        $user = "root";       // utente di XAMPP
+        $password = "";       // di default la password è vuota
+        $dbname = "sacith_it";   // il nome del database che hai creato
+        $conn = new mysqli($host, $user, $password, $dbname);
         // Controllo della connessione
         if ($conn->connect_error) {
             die("Connessione fallita: " . $conn->connect_error);
@@ -308,20 +321,34 @@ $conn->close();
 
 <head>
     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WR87MMR4');</script>
-<!-- End Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WR87MMR4');
+    </script>
+    <!-- End Google Tag Manager -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9NN1EHK3RT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-9NN1EHK3RT');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-9NN1EHK3RT');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google" content="notranslate">
@@ -394,17 +421,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <body class="font-default">
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WR87MMR4"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WR87MMR4"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div class="bg-white">
         <?php require("navbar.php"); ?>
         <!-- contenuto kit -->
         <!-- Breadcrumb -->
         <div class="container mx-auto mt-6 px-4">
             <nav class="text-gray-500 text-sm">
-                <a href="../../../product" class="text-blue-500"><?= $page_translations['product'] ?></a> &gt;
-                <a href="javascript:void(0);" onclick="window.history.back()" class="text-blue-500"><?php echo $navigazione[2]; ?></a> &gt;
+                <a href="/sacith/<?= $lang ?>/product" class="text-blue-500"><?= $page_translations['product'] ?></a> &gt;
+                <a href="/sacith/<?= $lang ?>/product/<?= $_GET["family"] ?>/<?= $_GET["subfamily"] ?>/<?= isset($_GET["type"]) ? $_GET["type"] . "/" . $_GET["category"] : $_GET["category"] ?>" class="text-blue-500">
+                    <?= formatName($_GET["category"])  ?>
+                </a> &gt;
                 <span><?php echo htmlspecialchars($nome); ?></span>
             </nav>
         </div>

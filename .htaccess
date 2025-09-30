@@ -1,17 +1,49 @@
 RewriteEngine On
-RewriteBase /
+RewriteBase /sacith/
 
-RewriteRule ^test$ test.php [L]
+# RewriteBase /
 
-RewriteCond %{REQUEST_URI} ^/public/ [NC]
-RewriteRule ^ - [L]
+# 1️⃣ Redirect da .php a URL pulito (opzionale)
 
-# Regole specifiche per product (con più segmenti)
+RewriteCond %{THE_REQUEST} \s([a-z]{2}/product(-list)?)\.php [NC]
+RewriteRule ^([a-z]{2}/product(-list)?)\.php$ /sacith/$1 [R=301,L]
 
-RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/?$ product-router.php?lang=$1&category=$2&subcat=$3&slug=$4 [L,QSA,NC]
-RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([a-z0-9_-]+)/?$ products-page.php?lang=$1&parent=$2&name=$3 [L,QSA,NC]
-RewriteRule ^([a-z]{2})/product/?$ product.php?lang=$1 [L,QSA]
+# 2️⃣ family + subfamily + type + category (5 segmenti)
 
-# Regola generica per pagine singole (es. /en/about)
+RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/?$ product-list.php?family=$2&subfamily=$3&type=$4&category=$5&lang=$1 [L,QSA]
 
-RewriteRule ^([a-z]{2})/([^/]+)/?$ $2.php?lang=$1 [QSA,L]
+# 3️⃣ whirlpool-system: family/subfamily/type (4 segmenti)
+
+RewriteRule ^([a-z]{2})/product/hydromassage/whirlpool-system/([a-z0-9_-]+)/?$ product-list.php?family=hydromassage&subfamily=whirlpool-system&type=$2&lang=$1 [L,QSA]
+
+# 4️⃣ shower-system: family/subfamily/category (4 segmenti)
+
+RewriteRule ^([a-z]{2})/product/hydromassage/shower-system/([a-z0-9_-]+)/?$ product-list.php?family=hydromassage&subfamily=shower-system&category=$2&lang=$1 [L,QSA]
+
+# 5️⃣ Altri subfamily generici → family/subfamily (3 segmenti)
+
+RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([a-z0-9_-]+)/?$ product-list.php?family=$2&subfamily=$3&lang=$1 [L,QSA]
+
+# 6️⃣ Solo family (2 segmenti)
+
+RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/?$ product-list.php?family=$2&lang=$1 [L,QSA]
+
+# 🔹 URL con type + ID + slug: family/subfamily/type/category/id/slug
+
+RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/([0-9]+)/([^/]+)/?$ product-router.php?lang=$1&family=$2&subfamily=$3&type=$4&category=$5&id=$6&slug=$7 [L,QSA,NC]
+
+# 🔹 URL senza type: family/subfamily/category/id/slug
+
+RewriteRule ^([a-z]{2})/product/([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/([0-9]+)/([^/]+)/?$ product-router.php?lang=$1&family=$2&subfamily=$3&category=$4&id=$5&slug=$6 [L,QSA,NC]
+
+# 7️⃣ /it/product → product.php
+
+RewriteRule ^([a-z]{2})/product/?$ product.php [L,QSA]
+
+# 1️⃣ Home → index.php
+
+RewriteRule ^([a-z]{2})/$ index.php [L,QSA]
+
+# 2️⃣ Pagine SEO-friendly → /pagina
+
+RewriteRule ^([a-z]{2})/([a-z0-9_-]+)/?$ $2.php?lang=$1 [QSA,L]

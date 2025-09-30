@@ -80,14 +80,47 @@
   "products-page": {
     "back": "back to product list"
   },
+  "product-list": {
+    "title": "DISCOVER ALL PRODUCT CATEGORIES",
+    "description": "On this page, you can find all the categories of our hydromassage systems. The catalog offers a complete overview: single products, professional kits, and customized solutions. Each category is organized to help you quickly find what you’re looking for, with the quality and reliability of Made in Italy.",
+    "new": "New",
+    "whirlpool": "Whirpool System",
+    "air_system": "Air System",
+    "manifolds": "Manifolds",
+    "pipes_fittings": "Pipes & Fittings",
+    "controls": "Controls",
+    "water_system": "Water System",
+    "pumps": "Pumps",
+    "jets": "Jets",
+    "suctions": "Suctions",
+    "pipes_fittings_disinfections": "Pipes, Fitting & Disinfections",
+    "shower": "Shower System",
+    "drains": "Shower Drains",
+    "fittings": "Shower Fittings",
+    "shower_jets": "Shower Jets",
+    "steams_accessories_fittings": "Steams, Accessories & Fittings",
+    "contact_title": "CONTACT US",
+    "contact_subtitle": "Not sure which category is right for you?",
+    "contact_description": "Contact us for a free consultation or download our complete catalog in PDF.",
+    "contact_btn_info": "More Information",
+    "contact_btn_catalogues": "Download Catalogs",
+    "about_title": "Our daily work is to offer you only the best.",
+    "about_subtitle": "SINCE 2004",
+    "about_excelence_title": "Made in Italy Excellence",
+    "about_excelence_description": "Every product is conceived and fully manufactured in Italy. The selection of high-quality and durable materials ensures long-lasting reliability and certified quality.",
+    "about_research_title": "Research and Innovation",
+    "about_research_description": "We constantly invest in new technologies to provide modern, sustainable, and aesthetically refined solutions, enhancing every user experience.",
+    "about_passion_title": "Expertise and Passion",
+    "about_passion_description": "With over 50 years of history, we provide professionalism and specialization at every stage of the process: from idea to design, up to final production."
+  },
   "single-product": {
-    "product": "Product",
+    "product": "Products",
     "dimensions": "Dimensions:",
     "finishes": "Finishes:",
     "materials": "Materials:"
   },
   "configurable-product": {
-    "product": "Product",
+    "product": "Products",
     "dimensions": "Dimensions:",
     "finishes": "Finishes:",
     "materials": "Materials:",
@@ -97,7 +130,7 @@
     "optional": "Optional"
   },
   "kit": {
-    "product": "Product",
+    "product": "Products",
     "dimensions": "Dimensions:",
     "finishes": "Finishes:",
     "materials": "Materials:",
@@ -108,7 +141,7 @@
     "optional": "Optional"
   },
   "product-router": {
-    "product": "Product",
+    "product": "Products",
     "dimensions": "Dimensions:",
     "finishes": "Finishes:",
     "materials": "Materials:",
