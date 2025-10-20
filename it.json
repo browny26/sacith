@@ -93,7 +93,8 @@
   },
   "product-list": {
     "title": "SCOPRI TUTTE LE CATEGORIE DEI PRODOTTI",
-    "description": "In questa pagina trovi tutte le categorie dei nostri sistemi idromassaggio. Il catalogo offre una panoramica completa: prodotti singoli, kit professionali e soluzioni personalizzate. Ogni categoria è organizzata per aiutarti a individuare rapidamente ciò che cerchi, con la qualità e l’affidabilità del Made in Italy.",
+    "description_1": "Componentistica per idromassaggio e wellness, progettata con materiali di altissima qualità, 100% Made in Italy. Ogni nostro componente è stato progettato in modo da durare nel tempo, senza compromessi di prestazioni ed affidabilità. La nostra offerta si compone di bocchette, getti aria, microgetti, soffiatori/blower, raccorderia e molto altro. Il nostro catalogo offre tutto il necessario per la composizione di un kit per le vostre vasche idromassaggio.",
+    "description_2": "L’ultimo grande progetto di SACITH nel mondo idromassaggio e wellness si compone di bocchetta, getti aria e microgetti completamente rivisitati e in linea con le necessità estetiche del mercato, inoltre tutta la gamma offre illuminazione a LED.",
     "new": "Novità",
     "whirlpool": "Sistema Idromassaggio",
     "air_system": "Sistema Aria",
@@ -120,9 +121,45 @@
     "about_excelence_title": "Eccellenza Made in Italy",
     "about_excelence_description": "Ogni prodotto nasce e viene realizzato interamente in Italia. La scelta di materiali selezionati e resistenti assicura lunga durata, affidabilità e qualità certificata.",
     "about_research_title": "Ricerca e Innovazione",
-    "about_research_description": "Investiamo costantemente in nuove tecnologie per proporre soluzioni moderne, sostenibili ed esteticamente raffinate, in grado di migliorare l’esperienza di ogni utilizzo.",
+    "about_research_description": "Investiamo costantemente in nuove tecnologie per proporre soluzioni moderne, sostenibili ed esteticamente raffinate, in grado di migliorare l'esperienza di ogni utilizzo.",
     "about_passion_title": "Competenza e Passione",
-    "about_passion_description": "Con più di 50 anni di storia, mettiamo a disposizione professionalità e specializzazione in ogni fase del processo: dall’idea al design, fino alla realizzazione finale."
+    "about_passion_description": "Con più di 50 anni di storia, mettiamo a disposizione professionalità e specializzazione in ogni fase del processo: dall'idea al design, fino alla realizzazione finale.",
+    "faq_whirlpool": [
+      {
+        "question": "Quali finiture sono disponibili per le versioni a vista?",
+        "answer": "Tutto il nostro catalogo offre versioni cromo e bianco. Le nuove forniture di bianco presentano un bianco ASA quindi che non ingiallisce e non invecchia nel tempo."
+      },
+      {
+        "question": "Come faccio ad ordinare i prodotti essendo certo che siano in linea con le mie esigenze?",
+        "answer": "Per la configurazione di kit ad hoc o la necessità di modifiche ed aggiornamenti sulla parte idromassaggio e wellness, scrivere a info@sacith.com o presso l'R&D alessandro.stocchero@sacith.com per ricevere quanto prima possibile le informazioni necessarie."
+      },
+      {
+        "question": "Qualcosa di nuovo?",
+        "answer": "Sempre presso SACITH! Cliccate nel banner “NOVITA'!” in alto alla pagina o esplorate il catalogo nella sezione “Prodotti”."
+      }
+    ],
+    "faq_drains": [
+      {
+        "question": "Le pilette doccia sono conformi alla normativa EN 274?",
+        "answer": "La maggioranza delle pilette da noi offerte presenta la conformità alla normativa vigente EN 274."
+      },
+      {
+        "question": "Quanti litri per minuto (l/min) scaricano i prodotti nel catalogo?",
+        "answer": "Partendo dalla versione tonda standard fino ad arrivare alle versioni rettangolari di scarichi/pilette doccia, il nostro catalogo offre un range tra i 24 e 38 l/min"
+      },
+      {
+        "question": "Sono affidabili e durano nel tempo?",
+        "answer": "Tantissimi clienti, con nomi importanti nel mondo dell’idrosanitaria, si affidano alle pilette doccia di SACITH poiché sanno di trovare un prodotto impeccabile dal punto di vista tecnico, di performance e di durata."
+      },
+      {
+        "question": "E se dovessi aver bisogno di aiuto?",
+        "answer": "Nessun problema! Per qualsiasi questione è possibile contattarci presso il nostro R&D alla mail alessandro.stocchero@sacith.com per ricevere una risposta nel minor tempo possibile! I clienti ne sono sempre stati soddisfatti :)"
+      },
+      {
+        "question": "Qualcosa di nuovo?",
+        "answer": "Sempre presso SACITH! Cliccate nel banner “NOVITA'!” in alto alla pagina o esplorate il catalogo nella sezione “Prodotti”."
+      }
+    ]
   },
   "single-product": {
     "product": "Prodotti",

@@ -392,17 +392,20 @@ function nameToSlug($name)
     <!-- End Google Tag Manager (noscript) -->
     <div class="bg-white">
         <?php require("navbar.php"); ?>
-        <div class="relative h-[264px] bg-primary/10 overflow-hidden">
-            <div class="h-full h-full bg-[url(image/new.svg)] bg-center bg-cover bg-no-repeat opacity-50 lg:opacity-100"></div><span class="absolute left-1/2 lg:left-auto lg:right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 lg:translate-x-0 text-primary text-[36px] lg:text-[50px] font-bold me-20"><?= $page_translations['new'] ?></span>
+        <div class="relative h-[113px] bg-primary/10 overflow-hidden">
+            <div class="h-full h-full bg-[url(/sacith/image/new.svg)] bg-center bg-cover bg-no-repeat opacity-50 lg:opacity-100"></div><span class="absolute left-1/2 lg:left-auto lg:right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 lg:translate-x-0 text-primary text-[36px] lg:text-[44px] font-bold me-20"><?= $page_translations['new'] ?></span>
         </div>
         <div class="mx-[10px] lg:mx-[115px] mt-[26px] h-fit">
 
-            <div class="flex flex-col gap-[4px]">
+            <div class="flex flex-col">
                 <p class="uppercase text-[12px] text-primary/50 font-semibold"><?= $page_translations['title'] ?></p>
                 <h1 class="capitalize font-semibold text-[36px] text-primary"><?= isset($_GET['family']) ? translateFamily(formatName($_GET['family']), $lang) : "famiglia"  ?></h1>
             </div>
 
-            <p class="mt-[32px] mb-[64px]"><?= $page_translations['description'] ?></p>
+            <div class="mt-[32px] mb-[64px] flex flex-col gap-5">
+                <p><?= $page_translations['description_1'] ?></p>
+                <p><?= $page_translations['description_2'] ?></p>
+            </div>
             <div id="product_container">
                 <?php if ($_GET['family'] == "hydromassage") {  ?>
                     <div class="flex flex-col lg:flex-row gap-[20px] w-full h-full mb-[80px]">
@@ -504,9 +507,18 @@ function nameToSlug($name)
                 <?php if (!isset($_GET['category']) && isset($_GET['subfamily']) && $_GET['subfamily'] == "shower-system" && $_GET['family'] == "hydromassage") {  ?>
                     <div class="flex flex-col gap-[10px] w-full h-full mx-auto">
                         <div class="flex flex-col lg:flex-row gap-[10px]">
-                            <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category" data-category="shower-fittings">Shower Fittings</div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category" data-category="shower-jets">Shower Jets</div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category" data-category="steam_accessories-and-fittings">Steam, Accessories & Fittings</div>
+                            <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                                data-family="hydromassage"
+                                data-subfamily="shower-system"
+                                data-category="shower-fittings">Shower Fittings</div>
+                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                                data-family="hydromassage"
+                                data-subfamily="shower-system"
+                                data-category="shower-jets">Shower Jets</div>
+                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                                data-family="hydromassage"
+                                data-subfamily="shower-system"
+                                data-category="steam_accessories-and-fittings">Steam, Accessories & Fittings</div>
                         </div>
                     </div>
                 <?php  }  ?>
@@ -514,7 +526,7 @@ function nameToSlug($name)
 
                 <?php if (isset($_GET['category']) && $_GET['family'] == "hydromassage") { ?>
 
-                    <div class="flex flex-col md:flex-row gap-10 w-screen mt-6">
+                    <div class="flex flex-col md:flex-row gap-20 w-screen mt-6">
                         <div class="flex flex-col gap-[20px] items-start w-fit">
 
                             <?php
@@ -611,7 +623,7 @@ function nameToSlug($name)
 
                 <?php if ($_GET['family'] == "shower-drains") { ?>
 
-                    <div class="col-span-8 sm:col-span-7 flex-1 flex flex-col gap-4">
+                    <div class="col-span-8 sm:col-span-7 flex-1 flex flex-col items-center gap-4">
                         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 w-fit justify-center md:justify-start items-center md:items-start gap-4" id="no_category">
                             <?php
                             if (isset($data) && !empty($data)) {
@@ -638,62 +650,37 @@ function nameToSlug($name)
 
 
             <div id="accordion-flush" class="max-w-[700px] mx-auto mt-[116px]" data-accordion="collapse" data-active-classes="text-[#009FE3]" data-inactive-classes="text-black">
-                <h2 id="accordion-flush-heading-1">
-                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-1" aria-expanded="true" aria-controls="accordion-flush-body-1">
-                        <span class="flex gap-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                <?php
+                $faqs = $_GET['family'] == "shower-drains" ? $page_translations['faq_drains'] : $page_translations['faq_whirlpool'];
+                $faqCount = count($faqs);
+
+                for ($i = 0; $i < $faqCount; $i++) {
+                    $faq = $faqs[$i];
+                    $headingId = "accordion-flush-heading-" . ($i + 1);
+                    $bodyId = "accordion-flush-body-" . ($i + 1);
+                    $isFirst = $i === 0;
+                    $expanded = $isFirst ? 'true' : 'false';
+                    $iconClass = $isFirst ? 'w-3 h-3 shrink-0' : 'w-3 h-3 rotate-180 shrink-0';
+                ?>
+                    <h2 id="<?= $headingId ?>">
+                        <button type="button" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#<?= $bodyId ?>" aria-expanded="<?= $expanded ?>" aria-controls="<?= $bodyId ?>">
+                            <span class="flex gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                </svg>
+                                <?= htmlspecialchars($faq['question']) ?>
+                            </span>
+                            <svg data-accordion-icon class="<?= $iconClass ?>" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
                             </svg>
-                            What is Flowbite?</span>
-                        <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
-                        </svg>
-                    </button>
-                </h2>
-                <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
-                    <div class="py-5 border-b border-gray-200">
-                        <p class="mb-2 text-gray-500">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-                        <p class="text-gray-500">Check out this guide to learn how to <a href="/docs/getting-started/introduction/" class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
+                        </button>
+                    </h2>
+                    <div id="<?= $bodyId ?>" class="<?= $isFirst ? '' : 'hidden' ?>" aria-labelledby="<?= $headingId ?>">
+                        <div class="py-5 border-b border-gray-200">
+                            <p class="text-gray-500"><?= nl2br(htmlspecialchars($faq['answer'])) ?></p>
+                        </div>
                     </div>
-                </div>
-                <h2 id="accordion-flush-heading-2">
-                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-2" aria-expanded="false" aria-controls="accordion-flush-body-2">
-                        <span class="flex gap-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                            </svg>
-                            Is there a Figma file available?</span>
-                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
-                        </svg>
-                    </button>
-                </h2>
-                <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
-                    <div class="py-5 border-b border-gray-200">
-                        <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.</p>
-                        <p class="text-gray-500 dark:text-gray-400">Check out the <a href="https://flowbite.com/figma/" class="text-blue-600 dark:text-blue-500 hover:underline">Figma design system</a> based on the utility classes from Tailwind CSS and components from Flowbite.</p>
-                    </div>
-                </div>
-                <h2 id="accordion-flush-heading-3">
-                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-3" aria-expanded="false" aria-controls="accordion-flush-body-3">
-                        <span class="flex gap-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                            </svg>
-                            What are the differences between Flowbite and Tailwind UI?</span>
-                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
-                        </svg>
-                    </button>
-                </h2>
-                <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
-                    <div class="py-5 border-b border-gray-200">
-                        <p class="mb-2 text-gray-500">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
-                        <p class="mb-2 text-gray-500">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
-                        <p class="mb-2 text-gray-500">Learn more about these technologies:</p>
-                        <ul class="ps-5 text-gray-500 list-disc">
-                            <li><a href="https://flowbite.com/pro/" class="text-blue-600 hover:underline">Flowbite Pro</a></li>
-                            <li><a href="https://tailwindui.com/" rel="nofollow" class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
 
 

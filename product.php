@@ -48,7 +48,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -62,7 +62,7 @@
                         hover: "#0C699E"
                     },
                     fontFamily: {
-                        default: ["Quicksand", "sans-serif"],
+                        default: ["Raleway", "sans-serif"],
                     },
                 },
             },
@@ -114,7 +114,10 @@
             <h1 class="text-[50px] font-medium text-primary">Scegli una <span class="font-semibold">categoria</span></h1>
 
             <div class="flex flex-col md:flex-row gap-[20px] w-full h-[373px]">
-                <div class="relative border border-black/10 rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[60px] transition-all duration-500 hover:scale-105 hover:shadow-lg">
+                <div class="relative overflow-hidden border border-black/10 rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[60px] transition-all duration-500 hover:scale-105 hover:shadow-lg">
+                    <div class="absolute -right-52 top-1/2 -translate-y-1/2 h-full w-full flex items-center justify-end">
+                        <img src="/sacith/image/whirlpool.png" alt="Shower Drains" class="object-contain">
+                    </div>
                     <div class="z-10">
                         <h2 class="uppercase text-[36px] font-bold text-primary">HYDROMASSAGE</h2>
                         <p class="text-black/50">vasche & docce</p>
@@ -122,7 +125,10 @@
                     <button type="button" data-category="hydromassage" class="category px-[16px] py-[4px] bg-primary text-white w-fit rounded-full">Scopri</button>
                     <img src="image/h-img.svg" alt="" class="absolute right-0 top-1/2 -translate-y-1/2 opacity-30">
                 </div>
-                <div class="relative border border-black/10 rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[90px] transition-all duration-500 hover:scale-105 hover:shadow-lg">
+                <div class="relative overflow-hidden border border-black/10 rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[90px] transition-all duration-500 hover:scale-105 hover:shadow-lg">
+                    <div class="absolute -right-64 top-1/2 -translate-y-1/2 h-full w-full flex items-center justify-end">
+                        <img src="/sacith/image/shower_drains.png" alt="Shower Drains" class="object-contain">
+                    </div>
                     <h2 class="uppercase text-[36px] font-bold text-primary z-10">SHOWER DRAINS</h2>
                     <button type="button" data-category="shower-drains" class="category px-[16px] py-[4px] bg-primary text-white w-fit rounded-full">Scopri</button>
                     <img src="image/s-img.svg" alt="" class="absolute right-0 top-1/2 -translate-y-1/2 opacity-20">

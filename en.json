@@ -93,7 +93,8 @@
   },
   "product-list": {
     "title": "DISCOVER ALL PRODUCT CATEGORIES",
-    "description": "On this page, you can find all the categories of our hydromassage systems. The catalog offers a complete overview: single products, professional kits, and customized solutions. Each category is organized to help you quickly find what you’re looking for, with the quality and reliability of Made in Italy.",
+    "description_1": "Whirlpool and wellness components, designed with the highest quality materials, 100% Made in Italy. Each of our components is engineered to last, without compromising performance and reliability. Our offering includes nozzles, air jets, microjets, blowers, fittings, and much more. Our catalog offers everything you need to create a kit for your bath tubs.",
+    "description_2": "SACITH's latest major project in the world of hydromassage and wellness features a completely redesigned nozzle, air jets, and microjets that meet the aesthetic needs of the market. The entire range also features LED lighting.",
     "new": "New",
     "whirlpool": "Whirpool System",
     "air_system": "Air System",
@@ -122,7 +123,43 @@
     "about_research_title": "Research and Innovation",
     "about_research_description": "We constantly invest in new technologies to provide modern, sustainable, and aesthetically refined solutions, enhancing every user experience.",
     "about_passion_title": "Expertise and Passion",
-    "about_passion_description": "With over 50 years of history, we provide professionalism and specialization at every stage of the process: from idea to design, up to final production."
+    "about_passion_description": "With over 50 years of history, we provide professionalism and specialization at every stage of the process: from idea to design, up to final production.",
+    "faq_whirlpool": [
+      {
+        "question": "What finishes are available for exposed versions?",
+        "answer": "Our entire catalog offers chrome and white versions. The new white versions feature an ASA white finish, which prevents yellowing and aging over time."
+      },
+      {
+        "question": "How can I order products to ensure they meet my needs?",
+        "answer": "To configure custom kits or request modifications and updates to the hydromassage and wellness features, please contact info@sacith.com or the R&D department at alessandro.stocchero@sacith.com to receive the necessary information as soon as possible."
+      },
+      {
+        "question": "Something new?",
+        "answer": "Always at SACITH! Click on the \"NEW!\" banner at the top of the page or explore the catalog in the \"Products\" section."
+      }
+    ],
+    "faq_drains": [
+      {
+        "question": "Do shower drains comply with the EN 274 standard?",
+        "answer": "The majority of our shower drains comply with the current EN 274 standard."
+      },
+      {
+        "question": "How many liters per minute (l/min) do the products in the catalog drain?",
+        "answer": "From the standard round version to the rectangular shower drains, our catalog offers a range between 24 and 38 l/min."
+      },
+      {
+        "question": "Are they reliable and long-lasting?",
+        "answer": "Many customers, including leading names in the plumbing and sanitary ware world, rely on SACITH shower drains because they know they're getting impeccable products in terms of technology, performance, and durability."
+      },
+      {
+        "question": "What if I need help?",
+        "answer": "No problem! For any questions, please contact our R&D team at alessandro.stocchero@sacith.com and we'll get back to you as quickly as possible! Our customers have always been satisfied."
+      },
+      {
+        "question": "Something new?",
+        "answer": "Always at SACITH! Click on the \"NEW!\" banner at the top of the page or explore the catalog in the \"Products\" section."
+      }
+    ]
   },
   "single-product": {
     "product": "Products",
