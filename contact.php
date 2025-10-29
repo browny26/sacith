@@ -53,7 +53,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -67,8 +67,23 @@
                         hover: "#0C699E"
                     },
                     fontFamily: {
-                        default: ["Quicksand", "sans-serif"],
+                        default: ["Raleway", "sans-serif"],
                     },
+                    animation: {
+                        'slide-up': 'slideUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': {
+                                transform: 'translateY(100%)',
+                                opacity: '0'
+                            },
+                            '100%': {
+                                transform: 'translateY(0)',
+                                opacity: '1'
+                            },
+                        }
+                    }
                 },
             },
         };
@@ -190,7 +205,7 @@
                 </div>
                 <div>
                     <article class="flex flex-col gap-[10px]">
-                        <h2 class="text-[30px] font-medium text-primary">Social</h2>
+                        <h2 class="text-[24px] font-medium text-primary">Social</h2>
                         <div class="flex gap-[24px]">
                             <a href="https://www.linkedin.com/company/sacith-srl">
                                 <img src="image/linkedin-svgrepo-com.svg" alt="" class="h-[24px] w-[24px]">

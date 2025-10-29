@@ -393,7 +393,7 @@ function nameToSlug($name)
     <div class="bg-white">
         <?php require("navbar.php"); ?>
         <div class="relative h-[113px] bg-primary/10 overflow-hidden">
-            <div class="h-full h-full bg-[url(/sacith/image/new.svg)] bg-center bg-cover bg-no-repeat opacity-50 lg:opacity-100"></div><span class="absolute left-1/2 lg:left-auto lg:right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 lg:translate-x-0 text-primary text-[36px] lg:text-[44px] font-bold me-20"><?= $page_translations['new'] ?></span>
+            <div class="h-full h-full bg-[url(/sacith/image/new.svg)] bg-center bg-cover bg-no-repeat opacity-50 lg:opacity-100"></div><span class="absolute left-1/2 lg:left-auto lg:right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 lg:translate-x-0 text-primary text-[36px] lg:text-[44px] font-medium me-20"><?= $page_translations['new'] ?></span>
         </div>
         <div class="mx-[10px] lg:mx-[115px] mt-[26px] h-fit">
             <div>
