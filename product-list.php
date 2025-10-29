@@ -350,7 +350,7 @@ function renderProductsFromPhp($products, $type)
                 <img src="' . $imageSrc . '" alt="' . htmlspecialchars($item['nome']) . '" loading="lazy"
                     class="cursor-pointer w-[250px] h-[150px] lg:w-[300px] lg:h-[200px] rounded-lg object-cover" />
                 <div class="p-4">
-                    <h3 class="font-bold text-lg w-[250px] lg:w-[300px] text-center">' . htmlspecialchars($item['nome']) . '</h3>
+                    <h3 class="font-medium text-lg w-[250px] lg:w-[300px] text-center">' . htmlspecialchars($item['nome']) . '</h3>
                 </div>
             </div>
         </div>';
@@ -396,35 +396,36 @@ function nameToSlug($name)
             <div class="h-full h-full bg-[url(/sacith/image/new.svg)] bg-center bg-cover bg-no-repeat opacity-50 lg:opacity-100"></div><span class="absolute left-1/2 lg:left-auto lg:right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 lg:translate-x-0 text-primary text-[36px] lg:text-[44px] font-bold me-20"><?= $page_translations['new'] ?></span>
         </div>
         <div class="mx-[10px] lg:mx-[115px] mt-[26px] h-fit">
+            <div>
+                <div>
+                    <p class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['title'] ?></p>
+                    <h1 class="text-black font-medium text-[36px]"><?= isset($_GET['family']) ? translateFamily(formatName($_GET['family']), $lang) : "famiglia"  ?></h1>
+                </div>
 
-            <div class="flex flex-col">
-                <p class="uppercase text-[12px] text-primary/50 font-semibold"><?= $page_translations['title'] ?></p>
-                <h1 class="capitalize font-semibold text-[36px] text-primary"><?= isset($_GET['family']) ? translateFamily(formatName($_GET['family']), $lang) : "famiglia"  ?></h1>
-            </div>
-
-            <div class="mt-[32px] mb-[64px] flex flex-col gap-5">
-                <p><?= $page_translations['description_1'] ?></p>
-                <p><?= $page_translations['description_2'] ?></p>
+                <div class=" mb-[64px] flex flex-col gap-5 text-black/50">
+                    <p><?= $page_translations['description_1'] ?></p>
+                    <p><?= $page_translations['description_2'] ?></p>
+                </div>
             </div>
             <div id="product_container">
                 <?php if ($_GET['family'] == "hydromassage") {  ?>
                     <div class="flex flex-col lg:flex-row gap-[20px] w-full h-full mb-[80px]">
                         <div class="h-full w-full">
-                            <div class="relative overflow-hidden h-[120px] border border-black/10 <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "whirlpool-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer" data-family="hydromassage"
+                            <div class="relative overflow-hidden h-[120px] border border-black/10 <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "whirlpool-system" ? "border-primary text-primary" : "border-black/10 text-black"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] font-medium transition-all duration-200 hover:border-primary cursor-pointer" data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="air-system"><span class="z-10"><?= $page_translations['whirlpool'] ?></span><img src="image/h-full.svg" alt="" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-30"></div>
                             <div class="flex flex-col lg:flex-row gap-[20px] w-full h-[70px] mt-[20px]">
-                                <div class="border <?= isset($_GET['type']) && $_GET['type'] == "air-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-center h-full w-full text-[20px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer"
+                                <div class="border <?= isset($_GET['type']) && $_GET['type'] == "air-system" ? "border-primary text-primary" : "border-black/10 text-black"  ?> rounded-xl flex justify-center items-center h-full w-full text-[20px] font-medium transition-all duration-200 hover:border-primary cursor-pointer"
                                     data-family="hydromassage"
                                     data-subfamily="whirlpool-system"
                                     data-type="air-system"><?= $page_translations['air_system'] ?></div>
-                                <div class="border <?= isset($_GET['type']) && $_GET['type'] == "water-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-center h-full w-full text-[20px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer"
+                                <div class="border <?= isset($_GET['type']) && $_GET['type'] == "water-system" ?  "border-primary text-primary" : "border-black/10 text-black"  ?> rounded-xl flex justify-center items-center h-full w-full text-[20px] font-medium transition-all duration-200 hover:border-primary cursor-pointer"
                                     data-family="hydromassage"
                                     data-subfamily="whirlpool-system"
                                     data-type="water-system"><?= $page_translations['water_system'] ?></div>
                             </div>
                         </div>
-                        <div class="relative overflow-hidden h-[120px] border <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "shower-system" ? "border-primary" : "border-black/10"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] text-primary font-semibold transition-all duration-200 hover:border-primary cursor-pointer" data-family="hydromassage"
+                        <div class="relative overflow-hidden h-[120px] border <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "shower-system" ?  "border-primary text-primary" : "border-black/10 text-black"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] font-medium transition-all duration-200 hover:border-primary cursor-pointer" data-family="hydromassage"
                             data-subfamily="shower-system"><span class="z-10"><?= $page_translations['shower'] ?></span><img src="image/s-full.svg" alt="" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-30"></div>
                     </div>
                 <?php  }  ?>
@@ -527,7 +528,7 @@ function nameToSlug($name)
                 <?php if (isset($_GET['category']) && $_GET['family'] == "hydromassage") { ?>
 
                     <div class="flex flex-col md:flex-row gap-20 w-screen mt-6">
-                        <div class="flex flex-col gap-[20px] items-start w-fit">
+                        <!-- <div class="flex flex-col gap-[20px] items-start w-fit">
 
                             <?php
                             $family    = isset($_GET['family']) ? formatName($_GET['family']) : '';
@@ -611,6 +612,117 @@ function nameToSlug($name)
                                 $json_nav = json_encode($nav_list["Hydromassage"]["Shower System"]);
                             }
                             ?>
+                        </div> -->
+
+                        <div class="flex flex-col gap-[20px] items-start w-fit">
+
+                            <?php
+                            $family    = isset($_GET['family']) ? formatName($_GET['family']) : '';
+                            $subfamily = isset($_GET['subfamily']) ? formatName($_GET['subfamily']) : '';
+                            $type      = isset($_GET['type']) ? formatName($_GET['type']) : '';
+                            $category  = isset($_GET['category']) ? formatName($_GET['category']) : '';
+
+                            $nav_list_en = [
+                                "Hydromassage" => [
+                                    "Whirlpool System" => [
+                                        "Air System" => ["Airjet", "Basic Air Kit", "Blower", "Controls", "Manifolds", "Pipes & Fittings"],
+                                        "Water System" => ["Basic Hydro Kit", "Controls", "Jets, Suction & Sealings", "Microjet Kit", "Pipes, Fittings & Disinfection", "Pumps"]
+                                    ],
+                                    "Shower System" => [
+                                        "Shower Fittings",
+                                        "Shower Jets",
+                                        "Steam, Accessories & Fittings"
+                                    ]
+                                ]
+                            ];
+
+                            $nav_list_it = [
+                                "Hydromassage" => [
+                                    "Whirlpool System" => [
+                                        "Air System" => ["Airjet", "Basic Air Kit", "Blower", "Comandi", "Collettori", "Tubi e Raccordi"],
+                                        "Water System" => ["Basic Hydro Kit", "Comandi", "Bocchette", "Microjet Kit", "Tubi, Raccordi & Disinfezione", "Pompe"]
+                                    ],
+                                    "Shower System" => [
+                                        "Raccordi Doccia",
+                                        "Bocchette Doccia",
+                                        "Vapori, Tubi e Accessori"
+                                    ]
+                                ]
+                            ];
+
+                            $nav_list = $lang == "it" ? $nav_list_it : $nav_list_en;
+
+                            // Funzione per trovare il corrispondente valore in inglese
+                            function findEnglishValue($italianValue, $nav_list_it, $nav_list_en)
+                            {
+                                // Cerca nel Whirlpool System
+                                foreach ($nav_list_it["Hydromassage"]["Whirlpool System"] as $type_it => $categories_it) {
+                                    if (is_array($categories_it)) {
+                                        foreach ($categories_it as $index => $category_it) {
+                                            if ($category_it === $italianValue) {
+                                                return $nav_list_en["Hydromassage"]["Whirlpool System"][$type_it][$index];
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // Cerca nel Shower System
+                                foreach ($nav_list_it["Hydromassage"]["Shower System"] as $index => $system_it) {
+                                    if ($system_it === $italianValue) {
+                                        return $nav_list_en["Hydromassage"]["Shower System"][$index];
+                                    }
+                                }
+
+                                // Se non trova corrispondenza, restituisce il valore originale
+                                return $italianValue;
+                            }
+
+                            if ($subfamily === "Whirlpool System") {
+                                if ($type && isset($nav_list["Hydromassage"]["Whirlpool System"][$type])) {
+                                    echo '<ul class="w-fit md:mt-6 space-y-2 md:space-y-6 sm:mt-4 sm:space-y-4">';
+                                    foreach ($nav_list["Hydromassage"]["Whirlpool System"][$type] as $item) {
+                                        $class = ($category === $item) ? 'text-primary' : 'hover:text-gray-800';
+
+                                        // Trova il valore inglese per i data attribute
+                                        $item_en = $lang == "it" ? findEnglishValue($item, $nav_list_it, $nav_list_en) : $item;
+                                        $type_en = $lang == "it" ? findEnglishValue($type, $nav_list_it, $nav_list_en) : $type;
+                                        $subfamily_en = $lang == "it" ? "Whirlpool System" : $subfamily;
+                                        $family_en = $lang == "it" ? "Hydromassage" : $family;
+
+                                        echo '<li class="text-nowrap" id="item">';
+                                        echo '<a href="javascript:void(0)" 
+                                            class="text-sm ' . $class . ' sidebar-link"
+                                            data-family="' . htmlspecialchars(slugifyName($family_en)) . '"
+                                            data-subfamily="' . htmlspecialchars(slugifyName($subfamily_en)) . '"
+                                            data-type="' . htmlspecialchars(slugifyName($type_en)) . '"
+                                            data-category="' . htmlspecialchars(slugifyName($item_en)) . '">' . htmlspecialchars($item) . '</a>';
+                                        echo '</li>';
+                                    }
+                                    echo '</ul>';
+                                    $json_nav = json_encode($nav_list["Hydromassage"]["Whirlpool System"][$type]);
+                                }
+                            } elseif ($subfamily === "Shower System") {
+                                echo '<ul class="md:mt-6 space-y-2 md:space-y-6 sm:mt-4 sm:space-y-4">';
+                                foreach ($nav_list["Hydromassage"]["Shower System"] as $system_name) {
+                                    $class = ($category === $system_name) ? 'text-primary' : 'hover:text-gray-800';
+
+                                    // Trova il valore inglese per i data attribute
+                                    $system_name_en = $lang == "it" ? findEnglishValue($system_name, $nav_list_it, $nav_list_en) : $system_name;
+                                    $subfamily_en = $lang == "it" ? "Shower System" : $subfamily;
+                                    $family_en = $lang == "it" ? "Hydromassage" : $family;
+
+                                    echo '<li class="text-nowrap" id="item">';
+                                    echo '<a href="javascript:void(0)" 
+                                        class="text-sm ' . $class . ' sidebar-link"
+                                        data-family="' . htmlspecialchars(slugifyName($family_en)) . '"
+                                        data-subfamily="' . htmlspecialchars(slugifyName($subfamily_en)) . '"
+                                        data-category="' . htmlspecialchars(slugifyName($system_name_en)) . '">' . htmlspecialchars($system_name) . '</a>';
+                                    echo '</li>';
+                                }
+                                echo '</ul>';
+                                $json_nav = json_encode($nav_list["Hydromassage"]["Shower System"]);
+                            }
+                            ?>
                         </div>
                         <div class="col-span-8 sm:col-span-7 flex-1 flex flex-col gap-4">
                             <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 w-fit justify-center md:justify-start items-center md:items-start gap-4" id="no_category">
@@ -663,7 +775,7 @@ function nameToSlug($name)
                     $iconClass = $isFirst ? 'w-3 h-3 shrink-0' : 'w-3 h-3 rotate-180 shrink-0';
                 ?>
                     <h2 id="<?= $headingId ?>">
-                        <button type="button" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#<?= $bodyId ?>" aria-expanded="<?= $expanded ?>" aria-controls="<?= $bodyId ?>">
+                        <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#<?= $bodyId ?>" aria-expanded="<?= $expanded ?>" aria-controls="<?= $bodyId ?>">
                             <span class="flex gap-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -702,27 +814,26 @@ function nameToSlug($name)
 
         <div class="mx-[115px] mt-[90px] flex flex-col gap-[64px]">
             <div class="flex flex-col items-center">
-                <p class="uppercase text-[12px] text-primary/50 font-semibold"><?= $page_translations['about_subtitle'] ?></p>
-                <h2 class="text-primary text-[32px] text-center"><?= $page_translations['about_title'] ?></h2>
+                <p class="uppercase text-[12px] text-black/50 font-medium"><?= $page_translations['about_subtitle'] ?></p>
+                <h2 class="text-black text-[32px] text-center"><?= $page_translations['about_title'] ?></h2>
             </div>
-            <div class="flex gap-[18px] flex-wrap items-center justify-center">
+            <div class="flex gap-[20px] flex-wrap items-center justify-center">
                 <div class="flex flex-col gap-[10px] items-center max-w-[390px]">
-                    <h4 class="text-[20px] text-primary font-semibold text-center"><?= $page_translations['about_excelence_title'] ?></h4>
-                    <p class="text-[14px] font-medium text-center"><?= $page_translations['about_excelence_description'] ?></p>
+                    <h4 class="text-[20px] font-medium text-center"><?= $page_translations['about_excelence_title'] ?></h4>
+                    <p class="text-[14px] text-black/50 text-center"><?= $page_translations['about_excelence_description'] ?></p>
                 </div>
                 <div class="flex flex-col gap-[10px] items-center max-w-[390px]">
-                    <h4 class="text-[20px] text-primary font-semibold text-center"><?= $page_translations['about_research_title'] ?></h4>
-                    <p class="text-[14px] font-medium text-center"><?= $page_translations['about_research_description'] ?></p>
+                    <h4 class="text-[20px] font-medium text-center"><?= $page_translations['about_research_title'] ?></h4>
+                    <p class="text-[14px] text-black/50 text-center"><?= $page_translations['about_research_description'] ?></p>
                 </div>
                 <div class="flex flex-col gap-[10px] items-center max-w-[390px]">
-                    <h4 class="text-[20px] text-primary font-semibold text-center"><?= $page_translations['about_passion_title'] ?></h4>
-                    <p class="text-[14px] font-medium text-center"><?= $page_translations['about_passion_description'] ?></p>
+                    <h4 class="text-[20px] font-medium text-center"><?= $page_translations['about_passion_title'] ?></h4>
+                    <p class="text-[14px] text-black/50 text-center"><?= $page_translations['about_passion_description'] ?></p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <?php #require("footer.php"); 
-            ?> -->
+    <?php require("footer.php"); ?>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@1.7.0/dist/flowbite.min.js"></script>
 
 </body>
@@ -967,7 +1078,7 @@ function nameToSlug($name)
 
         subcategory.forEach(sub => {
             const categoryTitle = document.createElement('h3');
-            categoryTitle.className = 'font-bold text-lg text-primary';
+            categoryTitle.className = 'font-medium text-lg text-primary';
             categoryTitle.textContent = sub;
             container.appendChild(categoryTitle);
 
@@ -1041,7 +1152,7 @@ function nameToSlug($name)
                         <img src="${imageSrc}" alt="${item.nome}" loading="lazy"
                             class="cursor-pointer w-[250px] h-[150px] lg:w-[300px] lg:h-[200px] rounded-lg object-cover" />
                         <div class="p-4">
-                            <h3 class="font-bold text-lg w-[250px] lg:w-[300px] text-center">${item.nome}</h3>
+                            <h3 class="font-medium text-lg w-[250px] lg:w-[300px] text-center">${item.nome}</h3>
                         </div>
                     </div>
                 </div>`;
