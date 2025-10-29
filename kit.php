@@ -1,44 +1,34 @@
 <?php require("translator.php") ?>
 <?php
-// Gestione della richiesta GET
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Verifica che l'ID e il tipo siano stati inviati tramite GET
     function formatName($str)
     {
-        $str = rawurldecode($str);             // decode %20
-        $str = str_replace("-", " ", $str);    // trattini -> spazi
-        $str = str_replace(" and ", " & ", $str);    // trattini -> spazi
-        $str = str_replace("_", ", ", $str);    // trattini -> spazi
-        return ucwords(strtolower($str));      // Air System
+        $str = rawurldecode($str);
+        $str = str_replace("-", " ", $str);
+        $str = str_replace(" and ", " & ", $str);
+        $str = str_replace("_", ", ", $str);
+        return ucwords(strtolower($str));
     }
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
         $slug = isset($_GET['slug']) ? $_GET['slug'] : null;
         require("config.php");
-        // Connessione al database
         $lang = $_GET['lang'] ?? ($_COOKIE['lang'] ?? 'it');
         /* $db_to_use = ($lang === 'en') ? $db_name : $db_name_it;
 
         $conn = new mysqli($host, $username, $password, $db_to_use); */
         $host = "localhost";
-        $user = "root";       // utente di XAMPP
-        $password = "";       // di default la password è vuota
-        $dbname = "sacith_it";   // il nome del database che hai creato
+        $user = "root";
+        $password = "";
+        $dbname = "sacith_it";
         $conn = new mysqli($host, $user, $password, $dbname);
-        // Controllo della connessione
         if ($conn->connect_error) {
             die("Connessione fallita: " . $conn->connect_error);
         }
-        // Query SQL per ottenere il prodotto
         $sql = "SELECT * FROM Kit WHERE id = " . $id;
         $result = $conn->query($sql);
-        // $stmt = $conn->prepare("SELECT * FROM $type WHERE id = ?");
-        // $stmt->bind_param("i", $id);
-        // $stmt->execute();
-        // $result = $stmt->get_result();
-        // Variabili per i dettagli del prodotto
-        $immagine = "/public/logo/Logotipo_Sacith_Nosrl.png";  // Default image
+        $immagine = "/public/logo/Logotipo_Sacith_Nosrl.png";
         $nome = "Nome non disponibile";
         $codice_univoco = "Codice non disponibile";
         $descrizione = "Descrizione non disponibile";
@@ -46,15 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $sottotitoli_prodottiConfigurabili = "sottotitoli non disponibili";
         $titoli_prodottiNonConfigurabili = "titoli non configurabili non disponibili";
         $titoli_prodottiOptional = "titoli optional non disponibili";
-        // Verifica se sono stati trovati dei risultati
         if ($result->num_rows > 0) {
-            // Estrai i dati dal risultato della query
             $row = $result->fetch_assoc();
-            // Assegna i dati a variabili
             if ($row["immagine"] !== "" || $row["immagine"] !== null) {
                 $immagine = $row["immagine"];
                 $immagini = explode('-', $immagine);
-                // print_r($immagini);
             }
             $nome = $row["nome"] ?? $nome;
             $codice_univoco = $row["codice_univoco"] ?? $codice_univoco;
@@ -80,19 +66,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 "pdf" => $row["pdf"]
             ];
             $json_kit = json_encode($kit);
-            // print_r($titoli_prodottiConfigurabili_array);
-            // print_r($sottotitoli_prodottiConfigurabili_array);
-            // Chiudi la connessione al database
         } else {
             echo "Prodotto non trovato";
             exit;
         }
-        // Query SQL per ottenere la struttura del kit
         $sql = "SELECT * FROM StrutturaKit WHERE codice_kit = ?";
         $stmt = $conn->prepare($sql);
-        // Controllo che la preparazione sia riuscita
         if ($stmt) {
-            $stmt->bind_param("s", $codice_univoco); // Assumendo che $codice_univoco sia una stringa
+            $stmt->bind_param("s", $codice_univoco);
             $stmt->execute();
             $result = $stmt->get_result();
             $codice_singolo = "Codice non disponibile";
@@ -113,8 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         } else {
             echo "Errore nella preparazione della query.";
         }
-        // Stampa i risultati
-        //print_r($strutturaKit);
         $json_strutturaKit = json_encode($strutturaKit);
     } else {
         echo "ID o tipo non inviati.";
@@ -128,9 +107,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($strutturaKit[$i]["titolo_configurazione"] === "Non Configurabili" && $strutturaKit[$i]["codice_prodottoSingolo"] !== null) {
                 $sql2 = "SELECT * FROM ProdottoSingolo WHERE codice_univoco = ?";
                 $stmt2 = $conn->prepare($sql2);
-                // Controllo che la preparazione sia riuscita
                 if ($stmt2) {
-                    $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoSingolo"]); // Usa il codice prodotto singolo dalla struttura
+                    $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoSingolo"]);
                     $stmt2->execute();
                     $result2 = $stmt2->get_result();
                     $immagine2 = "/public/logo/Logotipo_Sacith_Nosrl.png";
@@ -155,9 +133,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($strutturaKit[$i]["titolo_configurazione"] === "Non Configurabili" && $strutturaKit[$i]["codice_prodottoConfigurabile"] !== null) {
                 $sql2 = "SELECT * FROM ProdottoConfigurabile WHERE codice_base = ?";
                 $stmt2 = $conn->prepare($sql2);
-                // Controllo che la preparazione sia riuscita
                 if ($stmt2) {
-                    $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoConfigurabile"]); // Usa il codice prodotto singolo dalla struttura
+                    $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoConfigurabile"]);
                     $stmt2->execute();
                     $result2 = $stmt2->get_result();
                     $immagine3 = "/public/logo/Logotipo_Sacith_Nosrl.png";
@@ -182,9 +159,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($strutturaKit[$i]["titolo_configurazione"] === "Optional" && $strutturaKit[$i]["codice_prodottoSingolo"] !== null) {
                 $sql2 = "SELECT * FROM ProdottoSingolo WHERE codice_univoco = ?";
                 $stmt2 = $conn->prepare($sql2);
-                // Controllo che la preparazione sia riuscita
                 if ($stmt2) {
-                    $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoSingolo"]); // Usa il codice prodotto singolo dalla struttura
+                    $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoSingolo"]);
                     $stmt2->execute();
                     $result2 = $stmt2->get_result();
                     $immagine2 = "/public/logo/Logotipo_Sacith_Nosrl.png";
@@ -209,9 +185,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($strutturaKit[$i]["titolo_configurazione"] === "Optional" && $strutturaKit[$i]["codice_prodottoConfigurabile"] !== null) {
                 $sql2 = "SELECT * FROM ProdottoConfigurabile WHERE codice_base = ?";
                 $stmt2 = $conn->prepare($sql2);
-                // Controllo che la preparazione sia riuscita
                 if ($stmt2) {
-                    $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoConfigurabile"]); // Usa il codice prodotto singolo dalla struttura
+                    $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoConfigurabile"]);
                     $stmt2->execute();
                     $result2 = $stmt2->get_result();
                     $immagine3 = "/public/logo/Logotipo_Sacith_Nosrl.png";
@@ -236,16 +211,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (isset($kit)) {
                 foreach ($kit as $kItem) {
                     foreach ($kItem["titoli_prodottiConfigurabili"] as $titolo) {
-                        // print_r($titolo);
-                        // echo "   ----  ";
-                        // print_r($strutturaKit[$i]["titolo_configurazione"]);
-                        // echo "<br>";
                         if ($strutturaKit[$i]["titolo_configurazione"] === $titolo && $strutturaKit[$i]["codice_prodottoSingolo"] !== null) {
                             $sql2 = "SELECT * FROM ProdottoSingolo WHERE codice_univoco = ?";
                             $stmt2 = $conn->prepare($sql2);
-                            // Controllo che la preparazione sia riuscita
                             if ($stmt2) {
-                                $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoSingolo"]); // Usa il codice prodotto singolo dalla struttura
+                                $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoSingolo"]);
                                 $stmt2->execute();
                                 $result2 = $stmt2->get_result();
                                 $immagine2 = "/public/logo/Logotipo_Sacith_Nosrl.png";
@@ -271,9 +241,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         if ($strutturaKit[$i]["titolo_configurazione"] === $titolo && $strutturaKit[$i]["codice_prodottoConfigurabile"] !== null) {
                             $sql2 = "SELECT * FROM ProdottoConfigurabile WHERE codice_base = ?";
                             $stmt2 = $conn->prepare($sql2);
-                            // Controllo che la preparazione sia riuscita
                             if ($stmt2) {
-                                $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoConfigurabile"]); // Usa il codice prodotto singolo dalla struttura
+                                $stmt2->bind_param("s", $strutturaKit[$i]["codice_prodottoConfigurabile"]);
                                 $stmt2->execute();
                                 $result2 = $stmt2->get_result();
                                 $immagine3 = "/public/logo/Logotipo_Sacith_Nosrl.png";
@@ -304,11 +273,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo "ID o tipo non inviati.";
         exit;
     }
-    //print_r($config);
     $json_config = json_encode($config);
-    //print_r($nonConfig);
     $json_nonConfig = json_encode($nonConfig);
-    //print_r($optional);
     $json_optional = json_encode($optional);
 } else {
     echo "Metodo di richiesta non valido.";
@@ -369,7 +335,7 @@ $conn->close();
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -379,35 +345,45 @@ $conn->close();
                         hover: "#0C699E"
                     },
                     fontFamily: {
-                        default: ["Quicksand", "sans-serif"],
+                        default: ["Raleway", "sans-serif"],
                     },
+                    animation: {
+                        'slide-up': 'slideUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': {
+                                transform: 'translateY(100%)',
+                                opacity: '0'
+                            },
+                            '100%': {
+                                transform: 'translateY(0)',
+                                opacity: '1'
+                            },
+                        }
+                    }
                 },
             },
         };
-        // Funzione per aprire e chiudere il menu mobile
+
         function toggleMenu() {
             const mobileMenu = document.getElementById("mobile-menu");
             const overlay = document.getElementById("menu-overlay");
             const body = document.body;
             if (mobileMenu.classList.contains("translate-x-full")) {
-                // Mostra il menu (entra da destra)
                 mobileMenu.classList.remove("translate-x-full", "opacity-0");
                 mobileMenu.classList.add("translate-x-0", "opacity-100");
                 overlay.classList.remove("hidden");
                 overlay.classList.add("block");
-                // Disabilita lo scroll del body
                 body.classList.add("overflow-hidden");
             } else {
-                // Nasconde il menu (esce verso destra)
                 mobileMenu.classList.remove("translate-x-0", "opacity-100");
                 mobileMenu.classList.add("translate-x-full", "opacity-0");
                 overlay.classList.remove("block");
                 overlay.classList.add("hidden");
-                // Riattiva lo scroll del body
                 body.classList.remove("overflow-hidden");
             }
         }
-        // Aggiungi evento per il pulsante del menu
         window.onload = function() {
             const menuButton = document.getElementById("menu-button");
             const closeButton = document.getElementById("close-button");
@@ -426,7 +402,6 @@ $conn->close();
     <!-- End Google Tag Manager (noscript) -->
     <div class="bg-white">
         <?php require("navbar.php"); ?>
-        <!-- contenuto kit -->
         <!-- Breadcrumb -->
         <div class="container mx-auto mt-6 px-4">
             <nav class="text-gray-500 text-sm">
@@ -458,7 +433,7 @@ $conn->close();
                 </div>
                 <!-- Product Details -->
                 <div class="lg:col-span-4">
-                    <h1 class="text-3xl font-bold mb-2"><?php echo htmlspecialchars($nome); ?></h1>
+                    <h1 class="text-3xl font-medium mb-2"><?php echo htmlspecialchars($nome); ?></h1>
                     <p class="text-gray-700 mb-4">
                         <?php echo nl2br(htmlspecialchars($descrizione)); ?>
                     </p>
@@ -477,11 +452,11 @@ $conn->close();
             </div>
             <!-- Section: Components -->
             <section class="mt-[87px]">
-                <h2 class="text-xl text-primary font-semibold my-[22px]"><?= $page_translations['components_list'] ?></h2>
+                <h2 class="text-xl text-primary font-semimedium my-[22px]"><?= $page_translations['components_list'] ?></h2>
                 <!-- Non-Configurable Components -->
                 <div class="w-full mt-8 flex gap-8 items-center">
                     <div class="w-max">
-                        <h3 class="text-lg text-primary font-semibold mb-[26px] w-max">
+                        <h3 class="text-lg text-primary font-semimedium mb-[26px] w-max">
                             <?= $page_translations['non_configurable'] ?>
                         </h3>
                     </div>
@@ -492,7 +467,7 @@ $conn->close();
                 <!-- Configurable Components -->
                 <div class="w-full mt-10 flex gap-8 items-center">
                     <div class="w-max">
-                        <h3 class="text-lg text-primary font-semibold mb-[26px] w-max">
+                        <h3 class="text-lg text-primary font-semimedium mb-[26px] w-max">
                             <?= $page_translations['configurable'] ?>
                         </h3>
                     </div>
@@ -503,7 +478,7 @@ $conn->close();
                 <!-- Optional Components -->
                 <div class="w-full mt-10 flex gap-8 items-center">
                     <div class="w-max">
-                        <h3 class="text-lg text-primary font-semibold mb-[26px] w-max">
+                        <h3 class="text-lg text-primary font-semimedium mb-[26px] w-max">
                             <?= $page_translations['optional'] ?>
                         </h3>
                     </div>
@@ -517,7 +492,6 @@ $conn->close();
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript">
-        // La variabile 'phpData' contiene i risultati della query in formato JSON
         const kit = <?php echo $json_kit; ?>;
         const strutturaKit = <?php echo $json_strutturaKit; ?>;
         const nonConfig = <?php echo $json_nonConfig; ?>;
@@ -526,14 +500,8 @@ $conn->close();
         const componentiConfigurabili = document.getElementById("componentiConfigurabili");
         const conponentiNonConfigurabili = document.getElementById("conponentiNonConfigurabili");
         const componentiOptional = document.getElementById("componentiOptional");
-        // Ora i dati sono disponibili in JavaScript
-        console.log(kit[0]); // Stampa i dati per vedere il risultato
-        console.log(kit[0].titoli_prodottiConfigurabili);
-        console.log(strutturaKit); // Stampa i dati per vedere il risultato
-        console.log(nonConfig);
-        console.log(configItem);
+
         nonConfig.forEach(function(item) {
-            console.log('Nome: ' + item);
             if (item.immagine.includes("-")) {
                 var immagine = item.immagine.split("-");
                 conponentiNonConfigurabili.innerHTML += `<div class="flex flex-col items-center text-center gap-[10px] me-4">
@@ -573,7 +541,6 @@ $conn->close();
             }
         });
         optional.forEach(function(item) {
-            console.log('Nome: ' + item);
             if (item.immagine.includes("-")) {
                 var immagine = item.immagine.split("-");
                 componentiOptional.innerHTML += `<div class="flex flex-col items-center bg-white text-center gap-[10px] me-4">
@@ -618,51 +585,10 @@ $conn->close();
         if (componentiOptional.innerHTML.trim() == "") {
             componentiOptional.previousElementSibling.classList.add("hidden");
         }
-        // Esempio di come accedere ai dati
-        // kit[0].titoli_prodottiConfigurabili.forEach(function(config) {
-        //     console.log('Nome: ' + config);
-        //     componentiConfigurabili.innerHTML += `<div class="flex items-center space-x-4">
-        //                                     <div>
-        //                                         <h4 class="font-semibold">` + config + `</h4>
-        //                                         <div class="flex flex-wrap items-center gap-4 mt-4 mb[24px]" id="config-${config}"></div>
-        //                                     </div>
-        //                                 </div>`;
-        //     const configId = document.getElementById(`config-${config}`); // Usa un ID unico
-        //     configItem.forEach(function(item) {
-        //         if (item.titolo == config) {
-        //             console.log('Nome: ' + item.nome);
-        //             if (item.immagine.includes("-")) {
-        //                 var immagine = item.immagine.split("-");
-        //                 configId.innerHTML += `<div class="flex flex-col items-center gap-[10px] me-4">
-        //                                     <img
-        //                                         src="/public/img/` + immagine[0] + `"
-        //                                         loading="lazy"
-        //                                         alt="` + item.nome + `"
-        //                                         class="rounded-lg shadow w-[300px] h-[200px]" 
-        //                                         onclick="window.location.href='redirect.php?id=` + item.id + `'"
-        //                                         />
-        //                                     <p>` + item.nome + `</p>
-        //                                 </div>`;
-        //             } else {
-        //                 configId.innerHTML += `<div class="flex flex-col items-center gap-[10px] me-4">
-        //                                     <img
-        //                                         src="/public/img/` + item.immagine + `"
-        //                                         loading="lazy"
-        //                                         alt="` + item.nome + `"
-        //                                         class="rounded-lg shadow w-[300px] h-[200px]" 
-        //                                         onclick="window.location.href='redirect.php?id=` + item.id + `'"
-        //                                         />
-        //                                     <p>` + item.nome + `</p>
-        //                                 </div>`;
-        //             }
-        //         }
-        //     });
-        // });
         kit[0].titoli_prodottiConfigurabili.forEach(function(config) {
-            console.log("Nome: " + config);
             componentiConfigurabili.innerHTML += `
                 <div class="space-y-4">
-                    <h4 class="font-semibold text-lg">${config}</h4>
+                    <h4 class="font-semimedium text-lg">${config}</h4>
                     <div class="flex flex-wrap md:flex-nowrap items-start space-x-4 gap-20 mt-4 mb-6">
                         <!-- Contenitore primo prodotto -->
                         <div id="config-${config}" class="flex items-center gap-4"></div>
@@ -675,7 +601,6 @@ $conn->close();
             let firstProductDisplayed = false;
             configItem.forEach(function(item) {
                 if (item.titolo == config) {
-                    console.log("Nome: " + item.nome);
                     let imgSrc = item.immagine.includes("-") ? `${item.immagine.split("-")[0]}` : `${item.immagine}`;
                     imgSrc = imgSrc == "/public/logo/Logotipo_Sacith_Nosrl.png" ? imgSrc : `/public/img/${imgSrc}`;
                     let productHTML = `
@@ -701,58 +626,23 @@ $conn->close();
             });
             const hiddendiv = document.getElementById(`configsecond-${config}`)
             const btnconfig = document.getElementById(`btn-${config}`)
-            console.log("Div interno: " + hiddendiv.innerHTML);
             if (hiddendiv.innerHTML == "") {
-                console.log("VUOTOOOOO");
-                console.log(hiddendiv);
-                console.log(btnconfig);
-                //hiddendiv.remove();
                 if (btnconfig) {
                     btnconfig.classList.add("hidden");
                 }
             }
-            // Mostra la freccia solo se ci sono prodotti extra
-            /* setTimeout(() => {
-                if (extraProductsContainer.innerHTML.trim() !== "") {
-                    const toggleBtn = firstProductContainer.querySelector(".toggle-products");
-                    console.log("arrow")
-                    toggleBtn.addEventListener("click", function() {
-                        console.log("click")
-                        extraProductsContainer.classList.toggle("hidden");
-                        const arrow = toggleBtn.querySelector("i");
-                        arrow.classList.toggle("bi-chevron-right");
-                        arrow.classList.toggle("bi-chevron-left");
-                    });
-                }
-            }, 0); */
-            /* componentiConfigurabili.addEventListener("click", function(event) {
-                if (event.target.closest(".toggle-products")) {
-                    console.log("click");
-                    const btn = event.target.closest(".toggle-products");
-                    const extraProductsContainer = document.getElementById(btn.dataset.target);
-                    extraProductsContainer.classList.toggle("hidden");
-                    const arrow = btn.querySelector("i");
-                    arrow.classList.toggle("bi-chevron-right");
-                    arrow.classList.toggle("bi-chevron-left");
-                }
-            }); */
         });
-        // Aggiungi la logica per il click sulla freccia
         document.querySelectorAll(".toggle-products").forEach(function(button) {
             button.addEventListener("click", function() {
-                console.log(this.parentElement.parentElement.parentElement.children[1])
                 const extraProducts = this.parentElement.parentElement.parentElement.children[1];
-                // Log per verificare se i prodotti extra sono selezionati correttamente
-                console.log(extraProducts);
-                extraProducts.classList.toggle("hidden"); // Mostra o nascondi gli altri prodotti
-                // Cambia l'icona della freccia
+                extraProducts.classList.toggle("hidden");
                 const arrow = this.querySelector("i");
                 if (arrow.classList.contains("bi-chevron-right")) {
                     arrow.classList.remove("bi-chevron-right");
-                    arrow.classList.add("bi-chevron-left"); // Cambia la freccia verso sinistra
+                    arrow.classList.add("bi-chevron-left");
                 } else {
                     arrow.classList.remove("bi-chevron-left");
-                    arrow.classList.add("bi-chevron-right"); // Cambia la freccia verso destra
+                    arrow.classList.add("bi-chevron-right");
                 }
             });
         });
@@ -777,7 +667,7 @@ $conn->close();
             currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
             updateCarousel();
         });
-        updateCarousel(); // Initialize the carousel position
+        updateCarousel();
     }
 </script>
 

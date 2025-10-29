@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -148,8 +148,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         hover: "#0C699E"
                     },
                     fontFamily: {
-                        default: ["Quicksand", "sans-serif"],
+                        default: ["Raleway", "sans-serif"],
                     },
+                    animation: {
+                        'slide-up': 'slideUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': {
+                                transform: 'translateY(100%)',
+                                opacity: '0'
+                            },
+                            '100%': {
+                                transform: 'translateY(0)',
+                                opacity: '1'
+                            },
+                        }
+                    }
                 },
             },
         };
@@ -235,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 </div>
                 <div class="lg:col-span-4">
                     <div>
-                        <h1 class="text-3xl font-bold mb-2"><?php echo htmlspecialchars($nome); ?></h1>
+                        <h1 class="text-3xl font-medium mb-2"><?php echo htmlspecialchars($nome); ?></h1>
                         <p class="text-gray-700 mb-4">
                             <?php echo nl2br(htmlspecialchars($descrizione)); ?>
                         </p>
@@ -249,35 +264,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             </a>
                         <?php } ?>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    <div id="accordion-flush" class="max-w-[700px] mx-auto" data-accordion="collapse" data-active-classes="text-[#009FE3]" data-inactive-classes="text-black">
                         <?php if (!empty($dimensioni_array)) : ?>
-                            <div>
-                                <p class="font-bold mb-1"><?= $page_translations['dimensions'] ?></p>
-                                <p class="text-sm"><?php
-                                                    for ($i = 0; $i < count($dimensioni_array); $i++) {
-                                                        // Stampa ogni elemento seguito da un a capo (HTML <br>)
-                                                        echo $dimensioni_array[$i] . "<br>";
-                                                    }
-                                                    ?></p>
+                            <h2 id="accordion-flush-heading-1">
+                                <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-1" aria-expanded="false" aria-controls="accordion-flush-body-1">
+                                    <span class="flex gap-3">
+                                        <?= $page_translations['dimensions'] ?>
+                                    </span>
+                                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                                    </svg>
+                                </button>
+                            </h2>
+                            <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
+                                <div class="py-5 border-b border-gray-200">
+                                    <p><?php
+                                        for ($i = 0; $i < count($dimensioni_array); $i++) {
+                                            echo $dimensioni_array[$i] . "<br>";
+                                        }
+                                        ?></p>
+                                </div>
                             </div>
                         <?php endif; ?>
                         <?php if (!empty($finiture)) : ?>
-                            <div>
-                                <p class="font-bold mb-1"><?= $page_translations['finishes'] ?></p>
-                                <p><?php echo htmlspecialchars($finiture); ?></p>
-                            </div>
-                        <?php endif; ?>
+                            <h2 id="accordion-flush-heading-2">
+                                <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-2" aria-expanded="false" aria-controls="accordion-flush-body-2">
+                                    <span class="flex gap-3">
+                                        <?= $page_translations['finishes'] ?>
+                                    </span>
+                                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                                    </svg>
+                                </button>
+                            </h2>
+                            <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
+                                <div class="py-5 border-b border-gray-200">
+                                    <p><?php echo htmlspecialchars($finiture); ?></p>
+                                </div>
+                            </div> <?php endif; ?>
                         <?php if (!empty($materiali)) : ?>
-                            <div>
-                                <p class="font-bold mb-1"><?= $page_translations['materials'] ?></p>
-                                <p><?php echo htmlspecialchars($materiali); ?></p>
-                            </div>
-                        <?php endif; ?>
+                            <h2 id="accordion-flush-heading-3">
+                                <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-3" aria-expanded="false" aria-controls="accordion-flush-body-3">
+                                    <span class="flex gap-3">
+                                        <?= $page_translations['materials'] ?>
+                                    </span>
+                                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                                    </svg>
+                                </button>
+                            </h2>
+                            <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
+                                <div class="py-5 border-b border-gray-200">
+                                    <p><?php echo htmlspecialchars($materiali); ?></p>
+                                </div>
+                            </div><?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
         <?php require("footer.php"); ?>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@1.7.0/dist/flowbite.min.js"></script>
     </div>
 </body>
 <script>

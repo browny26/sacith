@@ -1246,17 +1246,6 @@ function nameToSlug($name)
                 loadProductsViaAjax(family, subfamily, type, category);
             }
         }, 100);
-
-        // Al caricamento iniziale, usa i dati PHP incorporati
-        /* if (category) {
-            setTimeout(() => {
-                // Verifica se abbiamo dati PHP, altrimenti carica via AJAX
-                const hasPhpData = <?php echo isset($json_data) && $json_data !== 'null' ? 'true' : 'false'; ?>;
-                if (!hasPhpData) {
-                    loadProductsViaAjax(family, subfamily, type, category);
-                }
-            }, 300);
-        } */
     });
 
     function handleSidebarNavigation() {

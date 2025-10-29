@@ -1,59 +1,45 @@
 <?php require("translator.php") ?>
 <?php
-// Gestione della richiesta GET
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Verifica che l'ID e il tipo siano stati inviati tramite GET
     function formatName($str)
     {
-        $str = rawurldecode($str);             // decode %20
-        $str = str_replace("-", " ", $str);    // trattini -> spazi
-        $str = str_replace(" and ", " & ", $str);    // trattini -> spazi
-        $str = str_replace("_", ", ", $str);    // trattini -> spazi
-        return ucwords(strtolower($str));      // Air System
+        $str = rawurldecode($str);
+        $str = str_replace("-", " ", $str);
+        $str = str_replace(" and ", " & ", $str);
+        $str = str_replace("_", ", ", $str);
+        return ucwords(strtolower($str));
     }
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
         $slug = isset($_GET['slug']) ? $_GET['slug'] : null;
         require("config.php");
-        // Connessione al database
         $lang = $_GET['lang'] ?? ($_COOKIE['lang'] ?? 'it');
         /* $db_to_use = ($lang === 'en') ? $db_name : $db_name_it;
 
         $conn = new mysqli($host, $username, $password, $db_to_use); */
         $host = "localhost";
-        $user = "root";       // utente di XAMPP
-        $password = "";       // di default la password è vuota
-        $dbname = "sacith_it";   // il nome del database che hai creato
+        $user = "root";
+        $password = "";
+        $dbname = "sacith_it";
         $conn = new mysqli($host, $user, $password, $dbname);
-        // Controllo della connessione
         if ($conn->connect_error) {
             die("Connessione fallita: " . $conn->connect_error);
         }
-        // Query SQL per ottenere il prodotto
         $sql = "SELECT * FROM ProdottoConfigurabile WHERE id = " . $id;
         $result = $conn->query($sql);
-        // $stmt = $conn->prepare("SELECT * FROM $type WHERE id = ?");
-        // $stmt->bind_param("i", $id);
-        // $stmt->execute();
-        // $result = $stmt->get_result();
-        // Variabili per i dettagli del prodotto
-        $immagine = "/public/logo/Logotipo_Sacith_Nosrl.png";  // Default image
+        $immagine = "/public/logo/Logotipo_Sacith_Nosrl.png";
         $nome = "Nome non disponibile";
         $codice_base = "Codice non disponibile";
         $descrizione = "Descrizione non disponibile";
         $titoli_configurazione = "titoli non disponibili";
         $sottotitoli_configurazione = "sottotitoli non disponibili";
         $titolo_optional = "titoli optional non disponibili";
-        // Verifica se sono stati trovati dei risultati
         if ($result->num_rows > 0) {
-            // Estrai i dati dal risultato della query
             $row = $result->fetch_assoc();
-            // Assegna i dati a variabili
             if ($row["immagine"] !== "" || $row["immagine"] !== null) {
                 $immagine = $row["immagine"];
                 $immagini = explode('-', $immagine);
-                // print_r($immagini);
             }
             $nome = $row["nome"] ?? $nome;
             $codice_base = $row["codice_base"] ?? $codice_univoco;
@@ -83,35 +69,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 "pdf" => $row["pdf"]
             ];
             $json_pc = json_encode($pc);
-            //print_r($pc);
             $json_titoli_configurazione_array = json_encode($titoli_configurazione_array);
-            //print_r($titoli_configurazione_array);
             $json_sottotitoli_configurazione_array = json_encode($sottotitoli_configurazione_array);
-            //print_r($sottotitoli_configurazione_array);
             $json_titolo_optional_array = json_encode($titolo_optional_array);
-            // print_r($sottotitoli_prodottiConfigurabili_array);
-            // Chiudi la connessione al database
         } else {
             echo "Prodotto non trovato";
             exit;
         }
-        // Query SQL per ottenere la struttura del kit
         $sql = "SELECT * FROM StrutturaPC WHERE codice_pc = ?";
         $stmt = $conn->prepare($sql);
-        //echo $codice_base;
-        // Controllo che la preparazione sia riuscita
         if ($stmt) {
-            $stmt->bind_param("s", $codice_base); // Assumendo che $codice_univoco sia una stringa
+            $stmt->bind_param("s", $codice_base);
             $stmt->execute();
             $result = $stmt->get_result();
-            $immagine2 = "/public/logo/Logotipo_Sacith_Nosrl.png";  // Default image
+            $immagine2 = "/public/logo/Logotipo_Sacith_Nosrl.png";
             $nome2 = "Nome non disponibile";
             $tipo = "tipo non disponibile";
             $titolo_configurazione = "titolo non disponibile";
             $strutturaPc = [];
             if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    //echo $row["nome"] . "<br>";
                     $immagine2 = ($row["immagine"] == null || $row["immagine"] == "") ? "/public/logo/Logotipo_Sacith_Nosrl.png" : $row["immagine"];
                     $strutturaPc[] = [
                         "nome" => $row["nome"],
@@ -142,9 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             }
         }
         $json_codici = json_encode($codici);
-        // Stampa i risultati
         $json_strutturaPc = json_encode($strutturaPc);
-        //print_r($strutturaPc);
     } else {
         echo "ID o tipo non inviati.";
         exit;
@@ -200,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -214,35 +189,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         hover: "#0C699E"
                     },
                     fontFamily: {
-                        default: ["Quicksand", "sans-serif"],
+                        default: ["Raleway", "sans-serif"],
                     },
+                    animation: {
+                        'slide-up': 'slideUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': {
+                                transform: 'translateY(100%)',
+                                opacity: '0'
+                            },
+                            '100%': {
+                                transform: 'translateY(0)',
+                                opacity: '1'
+                            },
+                        }
+                    }
                 },
             },
         };
-        // Funzione per aprire e chiudere il menu mobile
+
         function toggleMenu() {
             const mobileMenu = document.getElementById("mobile-menu");
             const overlay = document.getElementById("menu-overlay");
             const body = document.body;
             if (mobileMenu.classList.contains("translate-x-full")) {
-                // Mostra il menu (entra da destra)
                 mobileMenu.classList.remove("translate-x-full", "opacity-0");
                 mobileMenu.classList.add("translate-x-0", "opacity-100");
                 overlay.classList.remove("hidden");
                 overlay.classList.add("block");
-                // Disabilita lo scroll del body
                 body.classList.add("overflow-hidden");
             } else {
-                // Nasconde il menu (esce verso destra)
                 mobileMenu.classList.remove("translate-x-0", "opacity-100");
                 mobileMenu.classList.add("translate-x-full", "opacity-0");
                 overlay.classList.remove("block");
                 overlay.classList.add("hidden");
-                // Riattiva lo scroll del body
                 body.classList.remove("overflow-hidden");
             }
         }
-        // Aggiungi evento per il pulsante del menu
         window.onload = function() {
             const menuButton = document.getElementById("menu-button");
             const closeButton = document.getElementById("close-button");
@@ -261,7 +246,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <!-- End Google Tag Manager (noscript) -->
     <div class="bg-white">
         <?php require("navbar.php"); ?>
-        <!-- contenuto kit -->
         <!-- Breadcrumb -->
         <div class="container mx-auto mt-6 px-4">
             <nav class="text-gray-500 text-sm">
@@ -294,7 +278,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 </div>
                 <div class="lg:col-span-3">
                     <div class="bg-white pb-6">
-                        <h1 class="text-3xl font-bold mb-2"><?php echo htmlspecialchars($nome); ?></h1>
+                        <h1 class="text-3xl font-medium mb-2"><?php echo htmlspecialchars($nome); ?></h1>
                         <p class="text-gray-700 mb-4">
                             <?php echo htmlspecialchars(string: $descrizione); ?>
                         </p>
@@ -308,35 +292,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             </a>
                         <?php } ?>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    <div id="accordion-flush" class="max-w-[700px] mx-auto" data-accordion="collapse" data-active-classes="text-[#009FE3]" data-inactive-classes="text-black">
                         <?php if (!empty($dimensioni_array)) : ?>
-                            <div>
-                                <p class="font-bold mb-1"><?= $page_translations['dimensions'] ?></p>
-                                <p class="text-sm"><?php
-                                                    for ($i = 0; $i < count($dimensioni_array); $i++) {
-                                                        // Stampa ogni elemento seguito da un a capo (HTML <br>)
-                                                        echo $dimensioni_array[$i] . "<br>";
-                                                    }
-                                                    ?></p>
+                            <h2 id="accordion-flush-heading-1">
+                                <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-1" aria-expanded="false" aria-controls="accordion-flush-body-1">
+                                    <span class="flex gap-3">
+                                        <?= $page_translations['dimensions'] ?>
+                                    </span>
+                                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                                    </svg>
+                                </button>
+                            </h2>
+                            <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
+                                <div class="py-5 border-b border-gray-200">
+                                    <p><?php
+                                        for ($i = 0; $i < count($dimensioni_array); $i++) {
+                                            echo $dimensioni_array[$i] . "<br>";
+                                        }
+                                        ?></p>
+                                </div>
                             </div>
                         <?php endif; ?>
                         <?php if (!empty($finiture)) : ?>
-                            <div>
-                                <p class="font-bold mb-1"><?= $page_translations['finishes'] ?></p>
-                                <p class="text-sm"><?php
-                                                    for ($i = 0; $i < count($finiture_array); $i++) {
-                                                        // Stampa ogni elemento seguito da un a capo (HTML <br>)
-                                                        echo $finiture_array[$i] . "<br>";
-                                                    }
-                                                    ?></p>
-                            </div>
-                        <?php endif; ?>
+                            <h2 id="accordion-flush-heading-2">
+                                <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-2" aria-expanded="false" aria-controls="accordion-flush-body-2">
+                                    <span class="flex gap-3">
+                                        <?= $page_translations['finishes'] ?>
+                                    </span>
+                                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                                    </svg>
+                                </button>
+                            </h2>
+                            <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
+                                <div class="py-5 border-b border-gray-200">
+                                    <p><?php
+                                        for ($i = 0; $i < count($finiture_array); $i++) {
+                                            echo $finiture_array[$i] . "<br>";
+                                        }
+                                        ?></p>
+                                </div>
+                            </div> <?php endif; ?>
                         <?php if (!empty($materiali)) : ?>
-                            <div>
-                                <p class="font-bold mb-1"><?= $page_translations['materials'] ?></p>
-                                <p><?php echo htmlspecialchars($materiali); ?></p>
-                            </div>
-                        <?php endif; ?>
+                            <h2 id="accordion-flush-heading-3">
+                                <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-3" aria-expanded="false" aria-controls="accordion-flush-body-3">
+                                    <span class="flex gap-3">
+                                        <?= $page_translations['materials'] ?>
+                                    </span>
+                                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                                    </svg>
+                                </button>
+                            </h2>
+                            <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
+                                <div class="py-5 border-b border-gray-200">
+                                    <p><?php echo htmlspecialchars($materiali); ?></p>
+                                </div>
+                            </div><?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -345,7 +358,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <!-- Configurable Components -->
                 <div class="w-full flex gap-8 items-center">
                     <div class="w-max">
-                        <h3 class="text-lg text-primary font-semibold mb-3 w-max">
+                        <h3 class="text-lg text-primary font-semimedium mb-3 w-max">
                             <?= $page_translations['configurations'] ?>
                         </h3>
                     </div>
@@ -364,7 +377,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <!-- Optional Components -->
                 <div class="w-full flex gap-8 items-center mt-5">
                     <div class="w-max">
-                        <h3 class="text-lg text-primary font-semibold mb-4 w-max">
+                        <h3 class="text-lg text-primary font-semimedium mb-4 w-max">
                             <?= $page_translations['optional'] ?>
                         </h3>
                     </div>
@@ -384,14 +397,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <div class="sm:flex sm:items-start">
                                 <div class="mt-3 text-center sm:mt-0 sm:text-left">
-                                    <h3 id="modal-title" class="text-base font-semibold text-gray-900" id="modal-title"><?= $page_translations['code_title'] ?></h3>
+                                    <h3 id="modal-title" class="text-base font-semimedium text-gray-900" id="modal-title"><?= $page_translations['code_title'] ?></h3>
                                     <div class="mt-2 flex flex-col gap-2" id="modal-content">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                            <button onclick="modalClose()" type="button" class="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary/70 sm:ml-3 sm:w-auto"><?= $lang == 'it' ? "Chiudi" : "Close" ?></button>
+                            <button onclick="modalClose()" type="button" class="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semimedium text-white shadow-xs hover:bg-primary/70 sm:ml-3 sm:w-auto"><?= $lang == 'it' ? "Chiudi" : "Close" ?></button>
                         </div>
                     </div>
                 </div>
@@ -410,17 +423,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             </div>
                         </div>
                         <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                            <button onclick="modalClose2()" type="button" class="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary/70 sm:ml-3 sm:w-auto"><?= $lang == 'it' ? "Chiudi" : "Close" ?></button>
+                            <button onclick="modalClose2()" type="button" class="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semimedium text-white shadow-xs hover:bg-primary/70 sm:ml-3 sm:w-auto"><?= $lang == 'it' ? "Chiudi" : "Close" ?></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <?php require("footer.php"); ?>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@1.7.0/dist/flowbite.min.js"></script>
     </div>
 </body>
 <script type="text/javascript">
-    // La variabile 'phpData' contiene i risultati della query in formato JSON
     const pc = <?php echo $json_pc; ?>;
     const strutturaPc = <?php echo $json_strutturaPc; ?>;
     const titoli_configurazione = <?php echo $json_titoli_configurazione_array; ?>;
@@ -429,13 +442,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     const codici = <?php echo $json_codici; ?>;
     const configurazioni = document.getElementById("configurazioni");
     const optional = document.getElementById("optional");
-    // Ora i dati sono disponibili in JavaScript
-    //console.log(pc[0]); // Stampa i dati per vedere il risultato
-    console.log(codici);
-    //console.log(titoli_configurazione); // Stampa i dati per vedere il risultato
-    console.log(sottotitoli_configurazione);
-    //console.log(strutturaPc);
-    //console.log(titoli_optional);
+
     let c = 0;
     let array = [];
     sottotitoli_configurazione.forEach(function(item) {
@@ -443,35 +450,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         array.push(array_sott);
     })
     let hasSubtitles = false;
-    //console.log(array);
-    // Esempio di come accedere ai dati
+
     titoli_configurazione.forEach(function(config) {
-        //console.log('Nome: ' + config);
         configurazioni.innerHTML += `
-        <h4 class="font-semibold uppercase">` + config + `:</h4>
+        <h4 class="font-semimedium uppercase">` + config + `:</h4>
         <div class="flex flex-wrap justify-center sm:justify-start gap-3 mb-3" id="config-${config}">
         </div>
         <button type="button" id="btn-config-complessa" class="btn-${config.replace(/\s+/g, '')} w-[300px] text-sm text-center bg-primary rounded-full no-underline text-white px-4 py-2 mb-[38px]">
         <?= $page_translations['code_btn'] ?>
         </button>`;
-        const configId = document.getElementById(`config-${config}`); // Usa un ID unico
+        const configId = document.getElementById(`config-${config}`);
         c++;
-        // Variabile per determinare se ci sono sottotitoli
         hasSubtitles = false;
         sottotitoli_configurazione.forEach(function(item) {
             if (item.startsWith(config)) {
-                hasSubtitles = true; // Se ci sono sottotitoli, imposta il flag su true
-                console.log("subtitle: " + hasSubtitles);
+                hasSubtitles = true;
                 configId.classList.add("flex-col");
                 item = item.split("-")[1];
-                console.log('Nome sottotitolo: ' + item);
                 let containerId = item.split(" ");
                 if (containerId.length > 1) {
                     containerId = containerId.join("_");
                 } else {
                     containerId = containerId[0]
                 }
-                configId.innerHTML += `<h4 class="font-semibold">` + item + `:</h4>
+                configId.innerHTML += `<h4 class="font-semimedium">` + item + `:</h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-8 mt-4" id="item-${containerId}">
                 </div>
                 `;
@@ -479,30 +481,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 const lastId = document.querySelectorAll(`#item-${containerId}`);
                 let contatore = lastId.length - 1;
                 strutturaPc.forEach(function(str) {
-                    //console.log('Titolo config: ', str.titolo_configurazione);
-                    //console.log('Nome: ' + str.nome);
-                    //console.log("lunghezza lastId:", lastId.length);
-                    //console.log("lastID: ", lastId[contatore]);
                     let prov = str.titolo_configurazione.split("-");
                     let stringa1 = str.nome;
                     let stringa2 = item;
                     let parole = stringa2.split(" ");
-                    if (prov.length == 2) {
-                        //console.log(prov)
-                        //console.log(config)
-                        //console.log("prov: ---->>>>", prov[1] == item && prov[0] == config);
-                    }
-                    //console.log("iiiiii ---- ");
-                    //if (str.titolo_configurazione === item) {
-                    //console.log(parole);
-                    //console.log(stringa1);
-                    //console.log(item);
-                    //console.log("primo check: ", parole.every(parola => stringa1.includes(parola)));
-                    //console.log("secondo check: ", config.split(" ").every(con => stringa1.includes(con)));
-                    //console.log("fffff ---- ");
                     if (prov[1] == item && prov[0] == config) {
-                        //console.log("dentro ++++++++++++")
-                        //console.log("itemId:", itemId)
                         if (str.immagine == "/public/logo/Logotipo_Sacith_Nosrl.png") {
                             lastId[contatore].innerHTML += `<div
                                 class="flex flex-col items-center bg-white gap-[10px] text-center">
@@ -526,23 +509,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         }
                     }
                 })
-            } else {
-                //console.log("no sottotitolo: " + item);
-            }
+            } else {}
         });
-        // Se non ci sono sottotitoli, rimuovi il bottone
         if (!hasSubtitles) {
-            //console.log("non ha il sottotitolo: " + config)
             const button = document.querySelector(`.btn-${config.replace(/\s+/g, '')}`);
-            console.log(button);
             button.remove();
-        } else {
-            console.log("ha il sottotitolo e metto il bottone: " + config)
         }
         strutturaPc.forEach(function(str) {
-            //console.log('Nome: ' + str);
             if (str.titolo_configurazione === config) {
-                // Controlla se il prodotto è già stato aggiunto
                 if (!configId.querySelector(`[alt="${str.nome}"]`)) {
                     if (str.immagine == "/public/logo/Logotipo_Sacith_Nosrl.png") {
                         configId.innerHTML += `<div
@@ -570,16 +544,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         });
     });
     titoli_optional.forEach(function(op) {
-        //console.log('Nome: ' + op);
         if (op == "" || op == null) {
             return;
         }
-        optional.innerHTML += `<h4 class="font-semibold">` + op + `</h4>
+        optional.innerHTML += `<h4 class="font-semimedium">` + op + `</h4>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-8 my-4" id="op-${op}">
             </div>`;
-        const optId = document.getElementById(`op-${op}`); // Usa un ID unico
+        const optId = document.getElementById(`op-${op}`);
         strutturaPc.forEach(function(str) {
-            //console.log('Nome: ' + str.titolo_configurazione);
             if (str.titolo_configurazione === op) {
                 if (str.immagine == "/public/logo/Logotipo_Sacith_Nosrl.png") {
                     optId.innerHTML += `<div
@@ -617,17 +589,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         due: [],
         tre: []
     };
-    //console.log("click btn");
-    //console.log(btns)
     btns.forEach((btn) => {
         btn.addEventListener("click", () => {
-            //console.log(btn);
             modal.classList.remove("hidden");
             modaltitle.innerHTML = btn.previousElementSibling.previousElementSibling.innerHTML;
             const elements = btn.previousElementSibling?.children;
             if (!elements) return;
-            console.log(elements);
-            // Inizializziamo correttamente l'oggetto righe
             let righe = {
                 uno: [],
                 due: [],
@@ -635,34 +602,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             };
             for (let i = 0; i < elements.length; i++) {
                 const elem = elements[i].children;
-                console.log("element", elem);
-                console.log("element lenght", elem.length)
                 if (elem.length != 0) {
-                    /* console.log(elem[1].innerHTML)
-                    if (!elem[1].innerHTML.includes("<img")) {
-                        let valore = elem[1].innerHTML.trim(); // Rimuove spazi extra
-                        console.log("valore", valore)
-                        console.log("i", i)
-                        if (valore) { // Controlla che non sia vuoto
-                        if (i === 0) {
-                            righe.uno.push(valore);
-                            } else if (i === 1) {
-                                righe.due.push(valore);
-                                } else if (i === 2) {
-                                    righe.tre.push(valore);
-                                    }
-                                    }
-                                    } else { */
                     for (let j = 0; j < elem.length; j++) {
                         const childrenArray = [...elem[j].children];
-                        console.log("childrenArray", childrenArray)
-                        console.log("childrenArray length", childrenArray.length)
-                        // Verifica che ci siano almeno 2 figli prima di accedere a [1]
                         if (childrenArray.length > 1) {
-                            let valore = childrenArray[1].innerHTML.trim(); // Rimuove spazi extra
-                            console.log("valore", valore)
-                            console.log("i", i)
-                            if (valore) { // Controlla che non sia vuoto
+                            let valore = childrenArray[1].innerHTML.trim();
+                            if (valore) {
                                 if (i === 1) {
                                     righe.uno.push(valore);
                                 } else if (i === 3) {
@@ -671,22 +616,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     righe.tre.push(valore);
                                 }
                             }
-                        } else {
-                            console.log("empty")
                         }
                     }
-                    /* } */
                 }
             }
-            console.log(righe);
-            modalcontent.innerHTML = ""; // Svuota il contenuto prima di aggiungere nuovi risultati
+            modalcontent.innerHTML = "";
             codici.forEach((cod) => {
                 let matchUno = cod.uno && righe.uno.includes(cod.uno);
                 let matchDue = cod.due && righe.due.includes(cod.due);
                 let matchTre = cod.tre && righe.tre.includes(cod.tre);
-                /* if (matchUno || matchDue || matchTre) {
-                    modalcontent.innerHTML += `<p class="w-full text-sm">${cod.uno ?? ''} ${cod.due ? (cod.uno ? ' - ' + cod.due + ' - ' : (cod.tre ? cod.due + ' - ' : cod.due)) : ''} ${cod.tre ?? ''} : ${cod.codice}</p>`;
-                    } */
                 if (matchUno || matchDue || matchTre) {
                     let details = [cod.uno, cod.due, cod.tre].filter(Boolean).join(" - ");
                     modalcontent.innerHTML += `<p class="w-full text-sm">${details} : ${cod.codice}</p>`;
@@ -694,12 +632,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             });
         });
     });
-    const imgshow = document.querySelectorAll(".showImg"); // Usa una classe invece di un ID
-    const modalSrc = document.getElementById("modal-src"); // L'elemento immagine dentro il modal
+    const imgshow = document.querySelectorAll(".showImg");
+    const modalSrc = document.getElementById("modal-src");
     imgshow.forEach((img) => {
         img.addEventListener("click", () => {
-            console.log("clicked: " + img);
-            console.log("src: " + img.src);
             modalSrc.src = img.src;
             modalimg.classList.remove("hidden");
         })
@@ -708,15 +644,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     function modalClose() {
         modalcontent.innerHTML = "";
-        console.log(modalcontent.innerHTML)
         modal.classList.add("hidden");
-        console.log("modal close")
     }
 
     function modalClose2() {
-        console.log(modalcontent.innerHTML)
         modalimg.classList.add("hidden");
-        console.log("modal close")
     }
 </script>
 <script>
@@ -738,7 +670,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
         updateCarousel();
     });
-    updateCarousel(); // Initialize the carousel position
+    updateCarousel();
 </script>
 
 </html>

@@ -117,28 +117,6 @@
                 </div>
                 <p class="text-black/50">Scopri le due principali linee di prodotti Sacith: soluzioni idromassaggio per il benessere e componenti tecnici per vasche e spa. Tutto studiato per garantire qualità, innovazione ed efficienza.</p>
             </div>
-
-            <!-- <div class="flex flex-col md:flex-row gap-[20px] w-full h-[373px]">
-                <div class="relative overflow-hidden border border-black/10 rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[60px] transition-all duration-500 hover:scale-105 hover:shadow-lg">
-                    <div class="absolute -right-52 top-1/2 -translate-y-1/2 h-full w-full flex items-center justify-end">
-                        <img src="/sacith/image/whirlpool.png" alt="Shower Drains" class="object-contain">
-                    </div>
-                    <div class="z-10">
-                        <h2 class="uppercase text-[36px] font-bold text-primary">HYDROMASSAGE</h2>
-                        <p class="text-black/50">vasche & docce</p>
-                    </div>
-                    <button type="button" data-category="hydromassage" class="category px-[16px] py-[4px] bg-primary text-white w-fit rounded-full">Scopri</button>
-                    <img src="image/h-img.svg" alt="" class="absolute right-0 top-1/2 -translate-y-1/2 opacity-30">
-                </div>
-                <div class="relative overflow-hidden border border-black/10 rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[90px] transition-all duration-500 hover:scale-105 hover:shadow-lg">
-                    <div class="absolute -right-64 top-1/2 -translate-y-1/2 h-full w-full flex items-center justify-end">
-                        <img src="/sacith/image/shower_drains.png" alt="Shower Drains" class="object-contain">
-                    </div>
-                    <h2 class="uppercase text-[36px] font-bold text-primary z-10">SHOWER DRAINS</h2>
-                    <button type="button" data-category="shower-drains" class="category px-[16px] py-[4px] bg-primary text-white w-fit rounded-full">Scopri</button>
-                    <img src="image/s-img.svg" alt="" class="absolute right-0 top-1/2 -translate-y-1/2 opacity-20">
-                </div>
-            </div> -->
             <div class="mt-[32px] flex flex-col md:flex-row gap-[20px] w-full h-[373px]">
                 <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[60px] animate-card" data-animate="fade-up" data-delay="0.2">
                     <div class="z-10">
