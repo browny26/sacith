@@ -4,21 +4,35 @@
 <html lang="<?= $lang ?>">
 
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WR87MMR4');</script>
-<!-- End Google Tag Manager -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9NN1EHK3RT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WR87MMR4');
+  </script>
+  <!-- End Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9NN1EHK3RT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-9NN1EHK3RT');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-9NN1EHK3RT');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google" content="notranslate">
@@ -37,13 +51,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="alternate" hreflang="en" href="https://www.sacith.com/en/" />
   <link rel="icon" href="/public/logo/logo_small.png" type="image/png">
   <link rel="stylesheet" href="style.css" />
+  <!-- Includi GSAP nel tuo head -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -53,35 +70,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             hover: "#0C699E"
           },
           fontFamily: {
-            default: ["Quicksand", "sans-serif"],
+            default: ["Raleway", "sans-serif"],
           },
+          animation: {
+            'slide-up': 'slideUp 1s ease-out forwards',
+          },
+          keyframes: {
+            slideUp: {
+              '0%': {
+                transform: 'translateY(100%)',
+                opacity: '0'
+              },
+              '100%': {
+                transform: 'translateY(0)',
+                opacity: '1'
+              },
+            }
+          }
         },
       },
     };
-    // Funzione per aprire e chiudere il menu mobile
+
     function toggleMenu() {
       const mobileMenu = document.getElementById("mobile-menu");
       const overlay = document.getElementById("menu-overlay");
       const body = document.body;
       if (mobileMenu.classList.contains("translate-x-full")) {
-        // Mostra il menu (entra da destra)
         mobileMenu.classList.remove("translate-x-full", "opacity-0");
         mobileMenu.classList.add("translate-x-0", "opacity-100");
         overlay.classList.remove("hidden");
         overlay.classList.add("block");
-        // Disabilita lo scroll del body
         body.classList.add("overflow-hidden");
       } else {
-        // Nasconde il menu (esce verso destra)
         mobileMenu.classList.remove("translate-x-0", "opacity-100");
         mobileMenu.classList.add("translate-x-full", "opacity-0");
         overlay.classList.remove("block");
         overlay.classList.add("hidden");
-        // Riattiva lo scroll del body
         body.classList.remove("overflow-hidden");
       }
     }
-    // Aggiungi evento per il pulsante del menu
     window.onload = function() {
       const menuButton = document.getElementById("menu-button");
       const closeButton = document.getElementById("close-button");
@@ -91,487 +118,262 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       overlay.addEventListener("click", toggleMenu);
     };
   </script>
+  <!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Animazione per il testo introduttivo
+      gsap.from('.animate-on-scroll', {
+        y: 60,
+        opacity: 0,
+        duration: 3,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: '.animate-on-scroll',
+          start: "top 85%",
+          end: "bottom 20%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      // Animazione per le cards (entrano una dopo l'altra)
+      gsap.from('.animate-card', {
+        y: 80,
+        opacity: 0,
+        duration: 3,
+        stagger: 0.3, // Ritardo tra le cards
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: '.animate-card',
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none"
+        }
+      });
+    });
+  </script> -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Animazione universale per tutti gli elementi con data-animate
+      gsap.utils.toArray('[data-animate]').forEach(element => {
+        const delay = element.getAttribute('data-delay') || 0;
+
+        gsap.from(element, {
+          y: 60,
+          opacity: 0,
+          duration: 1,
+          delay: parseFloat(delay),
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        });
+      });
+    });
+  </script>
 </head>
 
 <body class="relative font-default">
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WR87MMR4"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <div class="sticky top-0 shadow-md bg-white z-10"><?php require("navbar.php"); ?></div>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WR87MMR4"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
 
   <main class="flex flex-col overflow-hidden">
-    <!-- First section -->
+    <section class="relative flex flex-col gap-[43px] items-center justify-end w-full bg-[url(/sacith/image/hero.svg)] h-[100vh] bg-center bg-cover bg-no-repeat">
+      <div class="absolute z-10 backdrop-blur-0 w-full top-0" style="background-color: transparent !important;"><?php require("navbar-home.php"); ?></div>
 
-    <section
-      style="height: calc(90vh - 56px)"
-      class="carousel3 relative w-full overflow-hidden h-80 flex items-center justify-center bg-gray-50 mb-20">
-      <div
-        class="carousel-images3 flex w-full h-full transition-transform duration-500 ease-in-out"
-        id="carousel-track">
-        <!-- Slide 1 -->
-        <div
-          class="carousel-item3 min-w-full px-20 h-full flex flex-col md:flex-row items-center justify-center gap-10 xl:gap-20 bg-white text-center">
-          <div class="flex flex-col">
-            <h2
-              class="<?= $lang == "it" ? "text-[45px] md:text-[50px]" : "text-[55px] md:text-[65px]" ?> leading-none text-left font-semibold text-primary flex flex-col">
-              <span><?= $page_translations['whirlpool_1'] ?></span>
-              <span><?= $page_translations['whirlpool_2'] ?></span>
-            </h2>
-            <a href="/<?= $lang ?>/product" class="mt-4 bg-primary w-fit text-white px-[22px] py-1 md:px-[32px] md:py-2 rounded-full hover:bg-hover transition">
-              <?= $page_translations['hero_btn'] ?>
-            </a>
-          </div>
-          <img
-            src="/public/img/home/obj.png"
-            alt="whirpool systems"
-            class="3xl:w-fit w-[60%] md:w-[40%] h-auto" />
-        </div>
-        <!-- Slide 2 -->
-        <div
-          class="carousel-item3 min-w-full h-full px-20 flex flex-col md:flex-row items-center justify-center gap-[120px] bg-white text-center">
-          <div class="flex flex-col">
-            <h2
-              class="text-[55px] md:text-[65px] leading-none text-left font-semibold text-primary flex flex-col">
-              <span><?= $page_translations['shower_1'] ?></span>
-              <span><?= $page_translations['shower_2'] ?></span>
-            </h2>
-            <a href="/<?= $lang ?>/product" class="mt-4 bg-primary w-fit text-white px-[22px] py-1 md:px-[32px] md:py-2 rounded-full hover:bg-hover transition">
-              <?= $page_translations['hero_btn'] ?>
-            </a>
-          </div>
-          <img
-            src="/public/img/home/obj_2.png"
-            alt="whirpool systems"
-            class="xl:w-fit w-[60%] md:w-[40%] h-auto" />
-        </div>
+      <div class="flex flex-col gap-[24px] max-w-[626px] animate-slide-up">
+        <h1 class="text-[48px] text-white font-bold leading-[50px] text-center">Soluzioni idromassaggio e benessere made in Italy</h1>
+        <p class="text-white/50 text-center">Sistemi idromassaggio e componenti tecnici Made in Italy per wellness e arredo bagno. Qualità, innovazione e design firmati Sacith.</p>
       </div>
-
-      <!-- Controls -->
-      <button
-        id="prev3"
-        class="absolute left-2 top-1/2 -translate-y-1/2 bg-primary text-white px-1 py-2 rounded-full">
-        <i class="bi bi-chevron-left"></i>
-      </button>
-      <button
-        id="next3"
-        class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white px-1 py-2 rounded-full">
-        <i class="bi bi-chevron-right"></i>
-      </button>
-
-      <!-- Indicators (pallini) -->
-      <div class="absolute bottom-4 flex space-x-2" id="first-carousel">
-        <button
-          class="w-3 h-3 bg-primary rounded-full"
-          data-index="0"></button>
-        <button
-          class="w-3 h-3 bg-gray-400 rounded-full"
-          data-index="1"></button>
+      <div class="flex gap-[32px] mb-[73px] animate-slide-up">
+        <a class="py-[4px] px-[26px] bg-primary rounded-md text-nowrap text-white" href="/product">Vai ai prodotti</a>
+        <a class="py-[4px] px-[26px] bg-white rounded-md text-nowrap text-primary" href="/catalogues">Scarica cataloghi</a>
+      </div>
       </div>
     </section>
 
-    <!-- Second section -->
-
-    <section class="h-[90vh] w-full overflow-hidden">
-      <h1 class="text-primary text-[40px] font-bold ms-10 lg:ms-[115px]">
-        <?= $page_translations['new_product_title'] ?>
-      </h1>
-      <div class="carousel relative w-full" style="height: calc(90vh - 60px)">
-        <div
-          class="carousel-images flex transition-transform duration-500"
-          style="height: calc(90vh - 60px)" id="carousel-track3">
-          <!-- Slide 1 -->
-          <div
-            class="carousel-item flex-shrink-0 w-full h-full flex lg:flex-row flex-col-reverse items-start lg:items-center justify-between">
-            <img
-              src="/public/img/home/moon_jet.png"
-              class="h-[60%] lg:h-[65%] xl:h-[95%] w-auto object-left-bottom"
-              alt="MoonJet" />
-            <div
-              class="flex flex-col w-full lg:w-fit justify-end items-center lg:items-start pb-10 mb-20 sm:mb-8 lg:mb-0 lg:pb-[120px] lg:pe-[220px]"
-              style="height: calc(90vh - 60px)">
-              <h2 class="text-[35px] text-primary font-semibold mt-4">
-                MoonJet
-              </h2>
-              <p class="flex flex-col text-lg">
-                <span><?= $page_translations['new_product_description_1'] ?></span>
-                <span><?= $page_translations['new_product_description_2'] ?></span>
-              </p>
-              <a href="/<?= $lang ?>/product/water-system/jets/moon-jet?id=38&type=pc"
-                class="mt-4 bg-primary w-fit text-white px-[32px] py-2 rounded-full hover:bg-hover transition">
-                <?= $page_translations['product_btn'] ?>
-              </a>
-            </div>
-          </div>
-
-          <!-- Slide 2 -->
-          <div
-            class="carousel-item flex-shrink-0 w-full h-full flex lg:flex-row flex-col-reverse items-start lg:items-center justify-center lg:justify-between">
-            <div class="w-full h-[50%] lg:h-fit flex items-center justify-center">
-              <img
-                src="/public/img/home/air_jet_moon.png"
-                class="h-[50%] lg:h-[80%] w-auto object-left-bottom"
-                alt="AirJet Moon" />
-            </div>
-            <div
-              class="flex flex-col w-full lg:w-fit justify-end items-center lg:items-start pb-10 lg:pb-0 lg:pt-[220px] lg:pe-[220px]">
-              <h2
-                class="text-[35px] text-nowrap w-fit text-primary font-semibold mt-4">
-                AirJet Moon
-              </h2>
-              <p class="flex flex-col text-lg">
-                <span><?= $page_translations['new_product_description_1'] ?></span>
-                <span><?= $page_translations['new_product_description_2'] ?></span>
-              </p>
-              <a href="/<?= $lang ?>/product/air-system/airjet/airjet-moon?id=47&type=pc"
-                class="mt-4 bg-primary w-fit text-white px-[32px] py-2 rounded-full hover:bg-hover transition">
-                <?= $page_translations['product_btn'] ?>
-              </a>
-            </div>
-          </div>
-
-          <!-- Slide 3 -->
-          <div
-            class="carousel-item flex-shrink-0 w-full h-full flex lg:flex-row flex-col-reverse items-start lg:items-center justify-center lg:justify-between">
-            <div
-              class="w-full flex items-center justify-center pb-20 lg:pb-0">
-              <img
-                src="/public/img/home/micro_jet_moon.png"
-                class="h-[60%] lg:h-[80%] w-auto object-left-bottom"
-                alt="MicroJet Moon" />
-            </div>
-            <div
-              class="flex flex-col lg:h-full w-full lg:w-fit justify-end items-center lg:items-start pb-10 sm:pb-[120px] lg:pe-[220px]">
-              <h2
-                class="text-[35px] text-nowrap w-fit text-primary font-semibold mt-4">
-                MicroJet Moon
-              </h2>
-              <p class="flex flex-col text-lg">
-                <span><?= $page_translations['new_product_description_1'] ?></span>
-                <span><?= $page_translations['new_product_description_2'] ?></span>
-              </p>
-              <div class="flex gap-5">
-                <a href="/<?= $lang ?>/product/water-system/microjets/microjet-moon-st?id=130&type=singolo"
-                  class="mt-4 bg-primary w-fit text-white px-[32px] py-2 rounded-full hover:bg-hover transition text-nowrap">
-                  <?= $page_translations['version_st'] ?>
-                </a>
-                <a href="/<?= $lang ?>/product/water-system/microjets/microjet-moon-bi?id=131&type=singolo"
-                  class="mt-4 bg-primary w-fit text-white px-[32px] py-2 rounded-full hover:bg-hover transition text-nowrap">
-                  <?= $page_translations['version_bi'] ?>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 4 -->
-
-          <div
-            class="carousel-item flex-shrink-0 w-full h-full flex lg:flex-row flex-col-reverse items-start lg:items-center justify-center lg:justify-between">
-            <div
-              class="w-full flex items-center justify-center pb-20 lg:pb-0">
-              <img
-                src="/public/img/home/sacitronic_cover.png"
-                class="h-[60%] lg:h-[80%] w-auto object-left-bottom"
-                alt="MicroJet Moon" />
-            </div>
-            <div
-              class="flex flex-col lg:h-full w-full lg:w-fit justify-end items-center lg:items-start pb-0 lg:pb-[120px] lg:pe-[120px]">
-              <h2
-                class="text-[35px] text-nowrap w-fit text-primary font-semibold mt-4">
-                Sacitronic cover
-              </h2>
-              <p class="flex flex-col text-lg">
-                <span><?= $page_translations['new_product_description_1'] ?></span>
-                <span><?= $page_translations['new_product_description_2'] ?></span>
-              </p>
-              <a href="/<?= $lang ?>/product/water-system/controls/sacitronic?id=48&type=pc"
-
-                class="mt-4 bg-primary w-fit text-white px-[32px] py-2 rounded-full hover:bg-hover transition">
-                <?= $page_translations['product_btn'] ?>
-              </a>
-            </div>
-          </div>
-
+    <section class="px-[100px] my-16">
+      <div class="animate-on-scroll" data-animate="fade-up" data-delay="0">
+        <div>
+          <h6 class="uppercase text-black/50 font-medium text-[14px]">Esplora il catalogo</h6>
+          <h2 class="text-black font-medium text-[36px]">Le nostre categorie principali</h2>
         </div>
+        <p class="text-black/50">Scopri le due principali linee di prodotti Sacith: soluzioni idromassaggio per il benessere e componenti tecnici per vasche e spa. Tutto studiato per garantire qualità, innovazione ed efficienza.</p>
+      </div>
+      <div class="mt-[32px] flex flex-col md:flex-row gap-[20px] w-full h-[373px]">
+        <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[60px] animate-card" data-animate="fade-up" data-delay="0.2">
+          <div class="z-10">
+            <h2 class="uppercase text-[36px] font-medium text-black">HYDROMASSAGE</h2>
+            <p class="text-black/50">vasche & docce</p>
+          </div>
+          <button type="button" data-category="hydromassage" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+          <img src="image/h-full.svg" alt="" class="absolute right-20 top-1/2 -translate-y-1/2 opacity-30">
+        </div>
+        <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[90px] animate-card" data-animate="fade-up" data-delay="0.4">
 
-        <!-- Controls -->
-        <button
-          id="prev"
-          class="absolute left-2 top-1/2 -translate-y-1/2 bg-primary text-white px-1 py-2 rounded-full">
-          <i class="bi bi-chevron-left"></i>
-        </button>
-        <button
-          id="next"
-          class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white px-1 py-2 rounded-full">
-          <i class="bi bi-chevron-right"></i>
-        </button>
+          <h2 class="uppercase text-[36px] font-medium text-black z-10">SHOWER DRAINS</h2>
+          <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+          <img src="image/s-full.svg" alt="" class="absolute right-20 top-1/2 -translate-y-1/2 opacity-20">
+        </div>
       </div>
     </section>
 
-    <!-- Third section -->
-    <section
-      style="height: calc(90vh - 56px)"
-      class="relative w-full overflow-hidden flex justify-center items-center mb-20">
-      <div
-        class="flex w-full h-fit transition-transform duration-500 ease-in-out"
-        id="carousel-track2">
-        <!-- Slide 1 -->
-        <div
-          class="min-w-full h-full flex flex-col lg:flex-row items-center lg:items-end justify-center lg:justify-around gap-20 md:gap-7 bg-white text-center">
-          <img
-            src="/public/img/home/basic_air_kit.png"
-            alt="whirpool systems"
-            class="lg:w-fit w-[70%]" />
-          <div class="flex flex-col">
-            <h2
-              class="text-[35px] text-left font-semibold text-primary flex flex-col">
-              Basic Air Kit
-            </h2>
-            <p class="flex flex-col text-left">
-              <span><?= $page_translations['kit_description_1'] ?></span>
-              <span><?= $page_translations['kit_description_2'] ?></span>
-            </p>
-            <a href="/<?= $lang ?>/product/air-system/basic-air-kit/basic-air-kit?id=17&type=kit"
-              class="mt-4 bg-primary w-fit text-white px-[32px] py-2 rounded-full hover:bg-hover transition">
-              <?= $page_translations['product_btn'] ?>
-            </a>
+    <section class="my-16">
+      <div class="px-[100px]" data-animate="fade-up" data-delay="0">
+        <div>
+          <h6 class=" uppercase text-black/50 font-medium text-[14px]">In evidenza</h6>
+          <h2 class="text-black font-medium text-[36px]">Novità dal catalogo</h2>
+        </div>
+        <p class="text-black/50">Scopri i nostri ultimi sistemi idromassaggio e componenti tecnici, progettati per unire innovazione, design e massima qualità.</p>
+      </div>
+      <div class="mt-[42px] flex flex-col w-full border-y border-neutral-100" data-animate="fade-up" data-delay="0.2">
+        <div class="h-32 hover:h-80 transition-all duration-700 ease-in-out overflow-hidden flex w-full items-center justify-end bg-[url(/sacith/image/moon-jet-full.svg)] bg-center bg-cover bg-no-repeat">
+          <div class="me-[100px]">
+            <h3 class="text-[24px] font-semibold">MoonJet</h3>
+            <p class="font-light mb-2 text-sm">Discover our newest whirpool technology</p>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
           </div>
         </div>
-        <!-- Slide 2 -->
-        <div
-          class="min-w-full h-full flex flex-col lg:flex-row items-center lg:items-end justify-center lg:justify-around gap-20 md:gap-7 bg-white text-center">
-          <img
-            src="/public/img/home/basic_hydro_kit.png"
-            alt="whirpool systems"
-            class="lg:w-fit w-[70%]" />
-          <div class="flex flex-col">
-            <h2
-              class="text-[35px] text-left font-semibold text-primary flex flex-col">
-              Basic Hydro Kit
-            </h2>
-            <p class="flex flex-col text-left">
-              <span><?= $page_translations['kit_description_1'] ?></span>
-              <span><?= $page_translations['kit_description_2'] ?></span>
-            </p>
-            <a href="/<?= $lang ?>/product/water-system/basic-hydro-kit/basic-hydro-kit?id=18&type=kit"
-              class="mt-4 bg-primary w-fit text-white px-[32px] py-2 rounded-full hover:bg-hover transition">
-              <?= $page_translations['product_btn'] ?>
-            </a>
+        <div class="h-32 hover:h-80 transition-all duration-700 border-y border-neutral-100 ease-in-out overflow-hidden flex w-full items-center justify-start bg-[url(/sacith/image/sacitronic-img.svg)] bg-center bg-cover bg-no-repeat">
+          <div class="ms-[100px]">
+            <h3 class="text-[24px] font-semibold">Sacitronic Cover</h3>
+            <p class="font-light mb-2 text-sm">Discover our newest whirpool technology</p>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
           </div>
+        </div>
+        <div class="h-32 hover:h-80 transition-all duration-700 ease-in-out border-b border-neutral-100 overflow-hidden flex w-full items-center justify-end bg-[url(/sacith/image/microjet-moon-img.svg)] bg-center bg-cover bg-no-repeat">
+          <div class="me-[100px]">
+            <h3 class="text-[24px] font-semibold">MicroJet Moon</h3>
+            <p class="font-light mb-2 text-sm">Discover our newest whirpool technology</p>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+          </div>
+        </div>
+        <div class="h-32 hover:h-80 transition-all duration-700 ease-in-out overflow-hidden flex w-full items-center justify-start bg-[url(/sacith/image/air-jet-moon-img.svg)] bg-center bg-cover bg-no-repeat">
+          <div class="ms-[100px]">
+            <h3 class="text-[24px] font-semibold">Sacitronic Cover</h3>
+            <p class="font-light mb-2 text-sm">Discover our newest whirpool technology</p>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+          </div>
+        </div>
+    </section>
+
+    <section class="px-[100px] my-16">
+      <div data-animate="fade-up" data-delay="0">
+        <div>
+          <h6 class="uppercase text-black/50 font-medium text-[14px]">Scopri le nostre soluzioni</h6>
+          <h2 class="text-black font-medium text-[36px]">Kit per ogni esigenza</h2>
+        </div>
+        <p class="text-black/50">Dai sistemi base a quelli più avanzati, i nostri kit offrono soluzioni complete e versatili per soddisfare ogni necessità nel settore wellness e idromassaggio, combinando qualità, affidabilità e facilità di installazione.</p>
+      </div>
+      <div class="mt-[42px] flex flex-col justify-center md:flex-row gap-[123px] w-full">
+        <div class="flex flex-col gap-[38px]" data-animate="fade-up" data-delay="0.2">
+          <img src="image/basic-air-kit.svg" alt="">
+          <div class="flex flex-col items-center gap-[14px]">
+            <div class="flex flex-col items-center gap-[2px]">
+              <h3 class="text-[24px] font-semibold">Basic Air Kit</h3>
+              <p class="font-light mb-2 text-sm">Everything you need for your whirpool in one place.</p>
+            </div>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+          </div>
+        </div>
+        <div class="flex flex-col gap-[38px]" data-animate="fade-up" data-delay="0.4">
+          <img src="image/basic-hydro-kit.svg" alt="">
+          <div class="flex flex-col items-center gap-[14px]">
+            <div class="flex flex-col items-center gap-[2px]">
+              <h3 class="text-[24px] font-semibold">Basic Hydro Kit</h3>
+              <p class="font-light mb-2 text-sm">Everything you need for your whirpool in one place.</p>
+            </div>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+          </div>
+        </div>
+    </section>
+
+    <section class="px-[100px] my-16">
+      <div data-animate="fade-up" data-delay="0">
+        <h6 class="uppercase text-black/50 font-medium text-[14px]">I nostri valori</h6>
+        <div class="flex gap-[130px]">
+          <h2 class="text-black font-medium text-[36px] text-nowrap">Cosa ci distingue</h2>
+          <!--           <p class="text-black/50">In Sacith crediamo che la qualità nasca dall’unione tra innovazione, competenza e cura dei dettagli. Ogni progetto riflette la nostra dedizione nel creare sistemi idromassaggio e componenti tecnici che rappresentano l’eccellenza del Made in Italy.</p>
+ -->
         </div>
       </div>
+      <div class="mt-[42px] flex flex-col w-full border-y border-neutral-100" data-animate="fade-up" data-delay="0.2">
+        <div class="group h-32 hover:h-64 transition-all duration-700 ease-in-out overflow-hidden flex w-full items-start justify-end">
+          <div class="mx-[100px] flex flex-col w-full py-3 group-hover:py-6 transition-all duration-700 ease-in-out">
+            <div class="flex justify-end relative items-start w-full">
+              <span class="absolute left-0 -top-20 text-[200px] font-extralight text-black/10">1</span>
+              <h3 class="text-[24px] font-medium mt-8">Innovazione</h3>
+            </div>
+            <div class="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-in-out delay-200">
+              <p class="text-black/50 pt-10">Investiamo costantemente in ricerca e sviluppo per offrire soluzioni idromassaggio sempre più performanti, sostenibili e in linea con le nuove tecnologie del settore wellness. Grazie a un approccio che unisce innovazione tecnica, design e attenzione ai materiali, Sacith realizza prodotti affidabili e di alta qualità, pensati per garantire comfort, efficienza e durata nel tempo, nel segno dell'eccellenza Made in Italy.</p>
+            </div>
+          </div>
+        </div>
 
-      <!-- Indicators (pallini) -->
-      <div class="absolute bottom-4 flex space-x-2" id="second-carousel">
-        <button
-          class="w-3 h-3 bg-primary rounded-full"
-          data-index="0"></button>
-        <button
-          class="w-3 h-3 bg-gray-400 rounded-full"
-          data-index="1"></button>
+        <div class="group h-32 hover:h-64 transition-all duration-700 border-y border-neutral-100 ease-in-out overflow-hidden flex w-full items-start justify-end">
+          <div class="mx-[100px] flex flex-col w-full py-3 group-hover:py-6 transition-all duration-700 ease-in-out">
+            <div class="flex justify-end relative items-start w-full">
+              <span class="absolute left-0 -top-20 text-[200px] font-extralight text-black/10">2</span>
+              <h3 class="text-[24px] font-medium mt-8">Qualità</h3>
+            </div>
+            <div class="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-in-out delay-200">
+              <p class="text-black/50 pt-4">Ogni componente è progettato e testato con la massima attenzione ai dettagli, per garantire affidabilità, durata e standard produttivi elevati. Grazie a controlli rigorosi e processi all’avanguardia, Sacith offre prodotti che soddisfano le esigenze dei professionisti del settore wellness, unendo cura artigianale, precisione e design Made in Italy per un’esperienza di benessere superiore.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group h-32 hover:h-64 transition-all duration-700 ease-in-out overflow-hidden flex w-full items-start justify-end">
+          <div class="mx-[100px] flex flex-col w-full py-3 group-hover:py-6 transition-all duration-700 ease-in-out">
+            <div class="flex justify-end relative items-start w-full">
+              <span class="absolute left-0 -top-20 text-[200px] font-extralight text-black/10">3</span>
+              <h3 class="text-[24px] font-medium mt-8">Eccellenza</h3>
+            </div>
+            <div class="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-in-out delay-200">
+              <p class="text-black/50 pt-4">Dall’idea alla realizzazione seguiamo ogni fase con precisione e cura artigianale: progettazione, produzione, collaudo e installazione. Creiamo sistemi idromassaggio e componenti tecnici che uniscono innovazione, qualità e tradizione Made in Italy, superando le aspettative di professionisti e aziende.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Fourth section -->
-    <section class="h-[70vh] bg-neutral-950 flex flex-col lg:flex-row items-center gap-10 justify-between lg:justify-around">
+    <section class="h-[70vh] bg-neutral-950 flex flex-col lg:flex-row items-center gap-10 justify-between lg:justify-around mt-16">
       <img src="/public/img/home/sacith_lab.png" alt="sacith lab" class="xl:h-full sm:h-[60%] h-fit" />
-      <div class="text-white mx-10 flex flex-col gap-3 pb-10 lg:pb-0">
-        <div class="flex w-full justify-end">
-        </div>
-        <h1 class="text-[35px] font-semibold mb-0 leading-none"><?= $page_translations['lab_title'] ?></h1>
-        <p class="text-[20px] font-medium"><?= $page_translations['lab_description'] ?></p>
+      <div class="text-white mx-10 flex flex-col items-end gap-3 pb-10 lg:pb-0" data-animate="fade-up" data-delay="0">
+        <h1 class="text-[35px] font-medium mb-0 leading-none"><?= $page_translations['lab_title'] ?></h1>
+        <p><?= $page_translations['lab_description'] ?></p>
         <div class="flex w-full justify-end">
           <a href="https://sacith-lab.com"
-            class="bg-neutral-50 px-[32px] py-2 rounded-full text-nowrap text-neutral-950">
+            class="bg-neutral-50 py-[4px] px-[26px] rounded-md text-nowrap text-neutral-950">
             <?= $page_translations['lab_btn'] ?>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Fifth section -->
-
-    <section class="h-[90vh] w-full overflow-hidden">
-      <div
-        class="carousel2 relative w-full"
-        style="height: calc(90vh - 60px)">
-        <div
-          class="carousel-images2 flex transition-transform duration-500"
-          style="height: calc(90vh - 60px)">
-          <!-- Slide 1 -->
-          <div
-            class="carousel-item2 relative flex-shrink-0 w-full h-full flex lg:flex-row flex-col-reverse items-start lg:items-center justify-between">
-            <img
-              src="/public/img/home/sacith_1.png"
-              alt="immagine azienda"
-              class="w-full h-full object-cover object-left" />
-            <div class="absolute bottom-[47px] left-[50px] md:left-[115px] flex flex-col gap-5">
-              <h1 class="<?= $lang == "it" ? "text-[25px] md:text-[44px]" : "text-[34px] md:text-[44px]" ?>  leading-none text-white flex flex-col">
-                <span><?= $page_translations['about_title_1'] ?></span><span><?= $page_translations['about_title_2'] ?></span>
-              </h1>
-              <a href="/<? $lang ?>/about" class="bg-primary px-[32px] w-fit py-2 rounded-full text-nowrap text-white">
-                <?= $page_translations['about_btn'] ?>
-              </a>
-            </div>
-          </div>
-
-          <!-- Slide 2 -->
-          <div
-            class="carousel-item2 relative flex-shrink-0 w-full h-full flex lg:flex-row flex-col-reverse items-start lg:items-center justify-center lg:justify-between">
-            <img
-              src="/public/img/home/sacith_2.png"
-              alt="immagine azienda"
-              class="w-full h-full object-cover object-center" />
-            <div class="absolute bottom-[47px] left-[50px] md:left-[115px] flex flex-col gap-5">
-              <h1 class="<?= $lang == "it" ? "text-[25px] md:text-[44px]" : "text-[34px] md:text-[44px]" ?> leading-none text-white flex flex-col">
-                <span><?= $page_translations['about_title_1'] ?></span><span><?= $page_translations['about_title_2'] ?></span>
-              </h1>
-              <a href="/<? $lang ?>/about.php" class="bg-primary px-[32px] w-fit py-2 rounded-full text-nowrap text-white">
-                <?= $page_translations['about_btn'] ?>
-              </a>
-            </div>
-          </div>
-
-          <!-- Slide 3 -->
-          <div
-            class="carousel-item2 relative flex-shrink-0 w-full h-full flex lg:flex-row flex-col-reverse items-start lg:items-center justify-center lg:justify-between">
-            <img
-              src="/public/img/home/sacith_3.png"
-              alt="immagine azienda"
-              class="w-full h-full object-cover object-center" />
-            <div class="absolute bottom-[47px] left-[50px] md:left-[115px] flex flex-col gap-5">
-              <h1 class="<?= $lang == "it" ? "text-[25px] md:text-[44px]" : "text-[34px] md:text-[44px]" ?> leading-none text-white flex flex-col">
-                <span><?= $page_translations['about_title_1'] ?></span><span><?= $page_translations['about_title_2'] ?></span>
-              </h1>
-              <a href="/<? $lang ?>/about.php" class="bg-primary px-[32px] w-fit py-2 rounded-full text-nowrap text-white">
-                <?= $page_translations['about_btn'] ?>
-              </a>
-            </div>
-          </div>
-
-          <div
-            class="carousel-item2 relative flex-shrink-0 w-full h-full flex lg:flex-row flex-col-reverse items-start lg:items-center justify-center lg:justify-between">
-            <img
-              src="/public/img/home/sacith_4.png"
-              alt="immagine azienda"
-              class="w-full h-full object-cover object-center" />
-            <div class="absolute bottom-[47px] left-[50px] md:left-[115px] flex flex-col gap-5">
-              <h1 class="<?= $lang == "it" ? "text-[25px] md:text-[44px]" : "text-[34px] md:text-[44px]" ?> leading-none text-white flex flex-col">
-                <span><?= $page_translations['about_title_1'] ?></span><span><?= $page_translations['about_title_2'] ?></span>
-              </h1>
-              <a href="/<? $lang ?>/about.php" class="bg-primary px-[32px] w-fit py-2 rounded-full text-nowrap text-white">
-                <?= $page_translations['about_btn'] ?>
-              </a>
-            </div>
-          </div>
+    <section class="bg-primary/5 py-[90px]">
+      <div class="mx-auto flex flex-col items-center gap-[32px]">
+        <div class="relative" data-animate="fade-up" data-delay="0">
+          <h2 class="text-primary/20 text-[90px] lg:text-[128px] font-bold leading-none"><?= $page_translations['contact_title'] ?></h2>
+          <h3 class="z-10 absolute bottom-2 lg:bottom-6 left-1/2 -translate-x-1/2 text-nowrap text-[#005F88] text-[24px] lg:text-[32px] font-bold"><?= $page_translations['contact_subtitle'] ?></h3>
         </div>
-
-        <!-- Controls -->
-        <button
-          id="prev2"
-          class="absolute left-2 top-1/2 -translate-y-1/2 bg-primary text-white px-1 py-2 rounded-full">
-          <i class="bi bi-chevron-left"></i>
-        </button>
-        <button
-          id="next2"
-          class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white px-1 py-2 rounded-full">
-          <i class="bi bi-chevron-right"></i>
-        </button>
-      </div>
-    </section>
-
-    <!-- Sixth section -->
-
-    <section class="h-fit flex flex-col container mx-auto gap-10">
-      <h1 class="text-[36px] md:text-[46px] font-semibold text-primary ps-10"><?= $page_translations['values_title'] ?></h1>
-
-      <div class="w-full overflow-x-hidden gallery-wrapper">
-        <!-- Flex interno per le immagini, gap regolato -->
-        <div class="flex gap-6 min-w-max gallery ms-[120px]">
-          <!-- Immagini originali -->
-          <div class="relative w-[390px] md:w-[490px] h-[308px] md:h-[408px] flex-shrink-0">
-            <img
-              src="/public/img/home/values_1.png"
-              alt="immagine azienda"
-              class="w-[390px] md:w-[490px] h-[308px] md:h-[408px] object-cover rounded-lg" />
-            <h1 class="text-[35px] absolute bottom-[10px] left-[20px] text-white"><?= $page_translations['values_1'] ?></h1>
-          </div>
-          <div class="relative w-[390px] md:w-[490px] h-[308px] md:h-[408px] flex-shrink-0">
-            <img
-              src="/public/img/home/values_2.png"
-              alt="immagine azienda"
-              class="w-[390px] md:w-[490px] h-[308px] md:h-[408px] object-cover rounded-lg" />
-            <h1 class="text-[35px] absolute bottom-[10px] left-[20px] text-white"><?= $page_translations['values_2'] ?></h1>
-          </div>
-          <div class="relative w-[390px] md:w-[490px] h-[308px] md:h-[408px] flex-shrink-0">
-            <img
-              src="/public/img/home/values_3.png"
-              alt="immagine azienda"
-              class="w-[390px] md:w-[490px] h-[308px] md:h-[408px] object-cover rounded-lg" />
-            <h1 class="text-[35px] absolute bottom-[10px] left-[20px] text-white"><?= $page_translations['values_3'] ?></h1>
-          </div>
-          <div class="relative w-[390px] md:w-[490px] h-[308px] md:h-[408px] flex-shrink-0">
-            <img
-              src="/public/img/home/values_4.png"
-              alt="immagine azienda"
-              class="w-[390px] md:w-[490px] h-[308px] md:h-[408px] object-cover rounded-lg" />
-            <h1 class="text-[35px] absolute bottom-[10px] left-[20px] text-white"><?= $page_translations['values_4'] ?></h1>
-          </div>
-          <div class="relative w-[390px] md:w-[490px] h-[308px] md:h-[408px] flex-shrink-0">
-            <img
-              src="/public/img/home/values_5.png"
-              alt="immagine azienda"
-              class="w-[390px] md:w-[490px] h-[308px] md:h-[408px] object-cover rounded-lg" />
-            <h1 class="text-[35px] absolute bottom-[10px] left-[20px] text-white"><?= $page_translations['values_5'] ?></h1>
-          </div>
-
-          <!-- Duplicato delle immagini per il loop infinito -->
-          <div class="relative w-[390px] md:w-[490px] h-[308px] md:h-[408px] flex-shrink-0">
-            <img
-              src="/public/img/home/values_1.png"
-              alt="immagine azienda"
-              class="w-[390px] md:w-[490px] h-[308px] md:h-[408px] object-cover rounded-lg" />
-            <h1 class="text-[35px] absolute bottom-[10px] left-[20px] text-white"><?= $page_translations['values_1'] ?></h1>
-          </div>
-          <div class="relative w-[390px] md:w-[490px] h-[308px] md:h-[408px] flex-shrink-0">
-            <img
-              src="/public/img/home/values_2.png"
-              alt="immagine azienda"
-              class="w-[390px] md:w-[490px] h-[308px] md:h-[408px] object-cover rounded-lg" />
-            <h1 class="text-[35px] absolute bottom-[10px] left-[20px] text-white"><?= $page_translations['values_2'] ?></h1>
-          </div>
-          <div class="relative w-[390px] md:w-[490px] h-[308px] md:h-[408px] flex-shrink-0">
-            <img
-              src="/public/img/home/values_3.png"
-              alt="immagine azienda"
-              class="w-[390px] md:w-[490px] h-[308px] md:h-[408px] object-cover rounded-lg" />
-            <h1 class="text-[35px] absolute bottom-[10px] left-[20px] text-white"><?= $page_translations['values_3'] ?></h1>
-          </div>
-          <div class="relative w-[390px] md:w-[490px] h-[308px] md:h-[408px] flex-shrink-0">
-            <img
-              src="/public/img/home/values_4.png"
-              alt="immagine azienda"
-              class="w-[390px] md:w-[490px] h-[308px] md:h-[408px] object-cover rounded-lg" />
-            <h1 class="text-[35px] absolute bottom-[10px] left-[20px] text-white"><?= $page_translations['values_4'] ?></h1>
-          </div>
-          <div class="relative w-[390px] md:w-[490px] h-[308px] md:h-[408px] flex-shrink-0">
-            <img
-              src="/public/img/home/values_5.png"
-              alt="immagine azienda"
-              class="w-[390px] md:w-[490px] h-[308px] md:h-[408px] object-cover rounded-lg" />
-            <h1 class="text-[35px] absolute bottom-[10px] left-[20px] text-white"><?= $page_translations['values_5'] ?></h1>
-          </div>
+        <p class="text-black/60 text-center" data-animate="fade-up" data-delay="0.2"><?= $page_translations['contact_description'] ?></p>
+        <div class="flex flex-col md:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
+          <button class="py-[4px] px-[26px] rounded-md text-nowrap bg-primary text-white"><?= $page_translations['contact_btn_info'] ?></button>
+          <button class="py-[4px] px-[26px] rounded-md text-nowrap text-primary bg-white"><?= $page_translations['contact_btn_catalogues'] ?></button>
         </div>
       </div>
     </section>
 
-    <!-- Seventh section -->
-
-    <section class="h-[90vh] flex flex-col gap-10 px-10 container mx-auto w-full mt-20">
-      <h1 class="text-primary text-[30px] md:text-[40px] font-semibold">
-        <?= $page_translations['maps_title'] ?>
-      </h1>
-      <div class="w-full h-[80%] relative">
+    <section class="relative h-[70vh] flex flex-col gap-10 w-full mt-20">
+      <div class="w-full h-full relative">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5576.498410786878!2d8.835578677005344!3d45.665897271078165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478689a1d46f2f7f%3A0x9037d39ca0469c04!2sSacith!5e0!3m2!1sit!2sit!4v1740942968789!5m2!1sit!2sit"
           height="100%"
@@ -582,6 +384,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           referrerpolicy="no-referrer-when-downgrade"
           class="rounded-lg"></iframe>
       </div>
+      <div class="absolute p-[40px] flex flex-col gap-[62px] bg-white top-1/2 left-[100px] -translate-y-1/2 rounded-md shadow-md" data-animate="fade-up" data-delay="0">
+        <div class="flex gap-[92px]">
+          <div>
+            <h3 class="text-[24px font-medium">Telefono</h3>
+            <a href="tel:+390331619011">+39 0331 619011</a>
+          </div>
+          <div>
+            <h3 class="text-[24px font-medium">Orari</h3>
+            <p class="max-w-[280px]">Dal lunedì al venerdì dalle dalle 08.30 alle 12.00 e dalle 14:00 alle 18:00</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-[24px font-medium">La nostra sede</h3>
+          <p>Via Luigi Pirandello, 21, 21012 Cassano Magnago (VA)</p>
+        </div>
+        <div>
+          <h3 class="text-[24px font-medium">Social</h3>
+        </div>
+      </div>
+
     </section>
 
     <?php require("footer.php"); ?>

@@ -38,7 +38,12 @@
     "values_3": "Qualità eccellente",
     "values_4": "Affidabilità",
     "values_5": "Innovazione",
-    "maps_title": "Dove ci puoi trovare"
+    "maps_title": "Dove ci puoi trovare",
+    "contact_title": "CONTATTACI",
+    "contact_subtitle": "Per maggiori informazioni",
+    "contact_description": "Contattaci per ricevere una consulenza gratuita o scarica il nostro catalogo completo in PDF.",
+    "contact_btn_info": "Maggiori Informazioni",
+    "contact_btn_catalogues": "Scarica Cataloghi"
   },
   "about": {
     "hero_title": "Eccellenza <span class='font-bold'>made in Italy</span>",

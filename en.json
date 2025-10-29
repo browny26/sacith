@@ -38,7 +38,12 @@
     "values_3": "Top Quality",
     "values_4": "Reliability",
     "values_5": "Innovation",
-    "maps_title": "Where you can find us"
+    "maps_title": "Where you can find us",
+    "contact_title": "CONTACT US",
+    "contact_subtitle": "Not sure which category is right for you?",
+    "contact_description": "Contact us for a free consultation or download our complete catalog in PDF.",
+    "contact_btn_info": "More Information",
+    "contact_btn_catalogues": "Download Catalogs"
   },
   "about": {
     "hero_title": "Excellence <span class='font-bold'>made in Italy</span>",

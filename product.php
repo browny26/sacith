@@ -109,7 +109,6 @@
     <!-- End Google Tag Manager (noscript) -->
     <div class="bg-white">
         <?php require("navbar.php"); ?>
-        <!-- contenuto -->
         <section class="mx-[10px] md:mx-[115px] flex flex-col gap-[61px] mt-[61px]">
             <h1 class="text-[50px] font-medium text-primary">Scegli una <span class="font-semibold">categoria</span></h1>
 
