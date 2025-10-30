@@ -51,7 +51,6 @@
   <link rel="alternate" hreflang="en" href="https://www.sacith.com/en/" />
   <link rel="icon" href="/public/logo/logo_small.png" type="image/png">
   <link rel="stylesheet" href="style.css" />
-  <!-- Includi GSAP nel tuo head -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <link
@@ -118,40 +117,6 @@
       overlay.addEventListener("click", toggleMenu);
     };
   </script>
-  <!-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      gsap.registerPlugin(ScrollTrigger);
-
-      // Animazione per il testo introduttivo
-      gsap.from('.animate-on-scroll', {
-        y: 60,
-        opacity: 0,
-        duration: 3,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: '.animate-on-scroll',
-          start: "top 85%",
-          end: "bottom 20%",
-          toggleActions: "play none none none"
-        }
-      });
-
-      // Animazione per le cards (entrano una dopo l'altra)
-      gsap.from('.animate-card', {
-        y: 80,
-        opacity: 0,
-        duration: 3,
-        stagger: 0.3, // Ritardo tra le cards
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: '.animate-card',
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none"
-        }
-      });
-    });
-  </script> -->
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -190,7 +155,7 @@
       <div class="absolute z-10 backdrop-blur-0 w-full top-0" style="background-color: transparent !important;"><?php require("navbar-home.php"); ?></div>
 
       <div class="flex flex-col gap-[24px] max-w-[626px] animate-slide-up">
-        <h1 class="text-[48px] text-white font-bold leading-[50px] text-center">Soluzioni idromassaggio e benessere made in Italy</h1>
+        <h1 class="text-[36px] text-white font-bold leading-[50px] text-center">Soluzioni idromassaggio e benessere made in Italy</h1>
         <p class="text-white/50 text-center">Sistemi idromassaggio e componenti tecnici Made in Italy per wellness e arredo bagno. Qualità, innovazione e design firmati Sacith.</p>
       </div>
       <div class="flex gap-[32px] mb-[73px] animate-slide-up">

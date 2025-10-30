@@ -396,7 +396,7 @@ function nameToSlug($name)
             <div class="h-full h-full bg-[url(/sacith/image/new.svg)] bg-center bg-cover bg-no-repeat opacity-50 lg:opacity-100"></div><span class="absolute left-1/2 lg:left-auto lg:right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 lg:translate-x-0 text-primary text-[36px] lg:text-[44px] font-medium me-20"><?= $page_translations['new'] ?></span>
         </div>
         <div class="mx-[10px] lg:mx-[115px] mt-[26px] h-fit">
-            <div>
+            <div data-animate="fade-up" data-delay="0">
                 <div>
                     <p class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['title'] ?></p>
                     <h1 class="text-black font-medium text-[36px]"><?= isset($_GET['family']) ? translateFamily(formatName($_GET['family']), $lang) : "famiglia"  ?></h1>
@@ -409,7 +409,7 @@ function nameToSlug($name)
             </div>
             <div id="product_container">
                 <?php if ($_GET['family'] == "hydromassage") {  ?>
-                    <div class="flex flex-col lg:flex-row gap-[20px] w-full h-full mb-[80px]">
+                    <div class="flex flex-col lg:flex-row gap-[20px] w-full h-full mb-[80px]" data-animate="fade-up" data-delay="0">
                         <div class="h-full w-full">
                             <div class="relative overflow-hidden h-[120px] border border-black/10 <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "whirlpool-system" ? "border-primary text-primary" : "border-black/10 text-black"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] font-medium transition-all duration-200 hover:border-primary cursor-pointer" data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
@@ -431,7 +431,7 @@ function nameToSlug($name)
                 <?php  }  ?>
                 <?php if (!isset($_GET['category']) && isset($_GET['type']) && $_GET['type'] == "air-system" && $_GET['family'] == "hydromassage") {  ?>
                     <div class="flex flex-col gap-[10px] w-full h-full mx-auto">
-                        <div class="flex flex-col lg:flex-row gap-[10px]">
+                        <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.2">
                             <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
@@ -448,7 +448,7 @@ function nameToSlug($name)
                                 data-type="air-system"
                                 data-category="blower">Blower</div>
                         </div>
-                        <div class="flex flex-col lg:flex-row gap-[10px]">
+                        <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
                             <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
@@ -469,7 +469,7 @@ function nameToSlug($name)
                 <?php  }  ?>
                 <?php if (!isset($_GET['category']) && isset($_GET['type']) && $_GET['type'] == "water-system" && $_GET['family'] == "hydromassage") {  ?>
                     <div class="flex flex-col gap-[10px] w-full h-full mx-auto">
-                        <div class="flex flex-col lg:flex-row gap-[10px]">
+                        <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.2">
                             <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
@@ -486,7 +486,7 @@ function nameToSlug($name)
                                 data-type="water-system"
                                 data-category="jets_suctions-and-sealings">Jets, Suction & Sealings</div>
                         </div>
-                        <div class="flex flex-col lg:flex-row gap-[10px]">
+                        <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
                             <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
@@ -507,7 +507,7 @@ function nameToSlug($name)
                 <?php  }  ?>
                 <?php if (!isset($_GET['category']) && isset($_GET['subfamily']) && $_GET['subfamily'] == "shower-system" && $_GET['family'] == "hydromassage") {  ?>
                     <div class="flex flex-col gap-[10px] w-full h-full mx-auto">
-                        <div class="flex flex-col lg:flex-row gap-[10px]">
+                        <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.2">
                             <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="shower-system"
@@ -761,7 +761,7 @@ function nameToSlug($name)
             </div>
 
 
-            <div id="accordion-flush" class="max-w-[700px] mx-auto mt-[116px]" data-accordion="collapse" data-active-classes="text-[#009FE3]" data-inactive-classes="text-black">
+            <div id="accordion-flush" class="max-w-[700px] mx-auto mt-[116px]" data-accordion="collapse" data-active-classes="text-[#009FE3]" data-inactive-classes="text-black" data-animate="fade-up" data-delay="0.2">
                 <?php
                 $faqs = $_GET['family'] == "shower-drains" ? $page_translations['faq_drains'] : $page_translations['faq_whirlpool'];
                 $faqCount = count($faqs);
@@ -800,12 +800,12 @@ function nameToSlug($name)
 
         <div class="bg-primary/5 py-[90px] mt-[115px]">
             <div class="mx-auto flex flex-col items-center gap-[32px]">
-                <div class="relative">
+                <div class="relative" data-animate="fade-up" data-delay="0">
                     <h2 class="text-primary/20 text-[90px] lg:text-[128px] font-bold"><?= $page_translations['contact_title'] ?></h2>
                     <h3 class="z-10 absolute bottom-10 lg:bottom-14 left-1/2 -translate-x-1/2 text-nowrap text-[#005F88] text-[24px] lg:text-[32px] font-bold"><?= $page_translations['contact_subtitle'] ?></h3>
                 </div>
-                <p class="text-black/60 text-center"><?= $page_translations['contact_description'] ?></p>
-                <div class="flex flex-col md:flex-row gap-[10px]">
+                <p class="text-black/60 text-center" data-animate="fade-up" data-delay="0.2"><?= $page_translations['contact_description'] ?></p>
+                <div class="flex flex-col md:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
                     <button class="px-[30px] py-[10px] bg-primary rounded-full text-white"><?= $page_translations['contact_btn_info'] ?></button>
                     <button class="px-[30px] py-[10px] text-primary border border-primary rounded-full"><?= $page_translations['contact_btn_catalogues'] ?></button>
                 </div>
@@ -813,20 +813,20 @@ function nameToSlug($name)
         </div>
 
         <div class="mx-[115px] mt-[90px] flex flex-col gap-[64px]">
-            <div class="flex flex-col items-center">
+            <div class="flex flex-col items-center" data-animate="fade-up" data-delay="0">
                 <p class="uppercase text-[12px] text-black/50 font-medium"><?= $page_translations['about_subtitle'] ?></p>
                 <h2 class="text-black text-[32px] text-center"><?= $page_translations['about_title'] ?></h2>
             </div>
             <div class="flex gap-[20px] flex-wrap items-center justify-center">
-                <div class="flex flex-col gap-[10px] items-center max-w-[390px]">
+                <div class="flex flex-col gap-[10px] items-center max-w-[390px]" data-animate="fade-up" data-delay="0.2">
                     <h4 class="text-[20px] font-medium text-center"><?= $page_translations['about_excelence_title'] ?></h4>
                     <p class="text-[14px] text-black/50 text-center"><?= $page_translations['about_excelence_description'] ?></p>
                 </div>
-                <div class="flex flex-col gap-[10px] items-center max-w-[390px]">
+                <div class="flex flex-col gap-[10px] items-center max-w-[390px]" data-animate="fade-up" data-delay="0.4">
                     <h4 class="text-[20px] font-medium text-center"><?= $page_translations['about_research_title'] ?></h4>
                     <p class="text-[14px] text-black/50 text-center"><?= $page_translations['about_research_description'] ?></p>
                 </div>
-                <div class="flex flex-col gap-[10px] items-center max-w-[390px]">
+                <div class="flex flex-col gap-[10px] items-center max-w-[390px]" data-animate="fade-up" data-delay="0.6">
                     <h4 class="text-[20px] font-medium text-center"><?= $page_translations['about_passion_title'] ?></h4>
                     <p class="text-[14px] text-black/50 text-center"><?= $page_translations['about_passion_description'] ?></p>
                 </div>

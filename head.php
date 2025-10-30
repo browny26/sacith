@@ -43,6 +43,8 @@
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -58,6 +60,21 @@
                     fontFamily: {
                         default: ["Raleway", "sans-serif"],
                     },
+                    animation: {
+                        'slide-up': 'slideUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': {
+                                transform: 'translateY(100%)',
+                                opacity: '0'
+                            },
+                            '100%': {
+                                transform: 'translateY(0)',
+                                opacity: '1'
+                            },
+                        }
+                    }
                 },
             },
         };
@@ -93,5 +110,28 @@
             closeButton.addEventListener("click", toggleMenu);
             overlay.addEventListener("click", toggleMenu);
         };
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animazione universale per tutti gli elementi con data-animate
+            gsap.utils.toArray('[data-animate]').forEach(element => {
+                const delay = element.getAttribute('data-delay') || 0;
+
+                gsap.from(element, {
+                    y: 60,
+                    opacity: 0,
+                    duration: 1,
+                    delay: parseFloat(delay),
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                });
+            });
+        });
     </script>
 </head>

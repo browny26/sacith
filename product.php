@@ -64,6 +64,21 @@
                     fontFamily: {
                         default: ["Raleway", "sans-serif"],
                     },
+                    animation: {
+                        'slide-up': 'slideUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': {
+                                transform: 'translateY(100%)',
+                                opacity: '0'
+                            },
+                            '100%': {
+                                transform: 'translateY(0)',
+                                opacity: '1'
+                            },
+                        }
+                    }
                 },
             },
         };
@@ -110,7 +125,7 @@
     <div class="bg-white">
         <?php require("navbar.php"); ?>
         <section class="mx-[10px] md:mx-[115px] flex flex-col gap-[61px] mt-[61px]">
-            <div class="animate-on-scroll" data-animate="fade-up" data-delay="0">
+            <div class="animate-slide-up" data-animate="fade-up" data-delay="0">
                 <div>
                     <h6 class="uppercase text-black/50 font-medium text-[14px]">Esplora il catalogo</h6>
                     <h2 class="text-black font-medium text-[36px]">Scegli una categoria</h2>
@@ -118,7 +133,7 @@
                 <p class="text-black/50">Scopri le due principali linee di prodotti Sacith: soluzioni idromassaggio per il benessere e componenti tecnici per vasche e spa. Tutto studiato per garantire qualità, innovazione ed efficienza.</p>
             </div>
             <div class="mt-[32px] flex flex-col md:flex-row gap-[20px] w-full h-[373px]">
-                <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[60px] animate-card" data-animate="fade-up" data-delay="0.2">
+                <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[60px] animate-slide-up" data-animate="fade-up" data-delay="0.2">
                     <div class="z-10">
                         <h2 class="uppercase text-[36px] font-medium text-black">HYDROMASSAGE</h2>
                         <p class="text-black/50">vasche & docce</p>
@@ -126,7 +141,7 @@
                     <button type="button" data-category="hydromassage" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
                     <img src="image/h-full.svg" alt="" class="absolute right-20 top-1/2 -translate-y-1/2 opacity-30">
                 </div>
-                <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[90px] animate-card" data-animate="fade-up" data-delay="0.4">
+                <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[90px] animate-slide-up" data-animate="fade-up" data-delay="0.4">
 
                     <h2 class="uppercase text-[36px] font-medium text-black z-10">SHOWER DRAINS</h2>
                     <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
