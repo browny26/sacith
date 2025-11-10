@@ -141,7 +141,7 @@ $products = json_decode(file_get_contents('new-products.json'), true);
     <div class="sticky top-0 shadow-md bg-white z-10">
         <?php require("navbar.php"); ?>
     </div>
-    <main class="mx-[115px] flex flex-col gap-[153px] mt-[68px]">
+    <main class="mx-[10px] md:mx-[50px] lg:mx-[100px] flex flex-col gap-[153px] mt-[68px]">
 
         <div class="animate-slide-up" data-animate="fade-up" data-delay="0">
             <div>
@@ -155,14 +155,14 @@ $products = json_decode(file_get_contents('new-products.json'), true);
                 <?php
                 $reverse = $index % 2 !== 0;
                 ?>
-                <div class="flex gap-[64px] justify-between <?= $reverse ? 'flex-row-reverse' : '' ?>"
+                <div class="flex flex-col gap-[64px] justify-between <?= $reverse ? 'lg:flex-row-reverse' : 'lg:flex-row' ?>"
                     data-animate="fade-up"
                     data-delay="0">
 
                     <img src="<?= htmlspecialchars($product['immagine']) ?>"
                         alt="<?= htmlspecialchars($product['nome']) ?>"
                         loading="lazy"
-                        class="h-[200px] w-[400px] object-cover object-center rounded-md border border-neutral-100">
+                        class="h-[200px] w-full lg:w-[400px] object-cover object-center rounded-md border border-neutral-100">
 
                     <div class="flex flex-col gap-[24px]">
                         <div>

@@ -175,7 +175,7 @@ foreach ($pdfArray as $pdfFile) {
     <div class="sticky top-0 shadow-md bg-white z-10">
         <?php require("navbar.php"); ?>
     </div>
-    <main class="mx-[115px] flex flex-col gap-[153px] mt-[68px]">
+    <main class="mx-[10px] md:mx-[50px] lg:mx-[100px] flex flex-col gap-[153px] mt-[68px]">
 
         <div class="animate-slide-up" data-animate="fade-up" data-delay="0">
             <div>
@@ -185,17 +185,17 @@ foreach ($pdfArray as $pdfFile) {
             <p class="text-black/50">Consulta e scarica cataloghi, brochure e schede tecniche delle nostre soluzioni per l’idromassaggio e per la componentistica dedicata a vasche e spa.
                 Troverai informazioni dettagliate, specifiche tecniche, istruzioni e materiali utili per produttori, installatori e partner del settore benessere.</p>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6" data-animate="fade-up" data-delay="0">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6" data-animate="fade-up" data-delay="0">
             <?php if (!empty($pdfFiles)): ?>
                 <?php foreach ($pdfFiles as $pdfItem): ?>
                     <div class="col-span-1 flex flex-col items-center">
                         <div class="flex flex-col gap-[10px] items-center product cursor-pointer"
                             onclick="downloadPDF('/public/pdf/<?= htmlspecialchars($pdfItem['file']) ?>', '<?= htmlspecialchars($pdfItem['nome']) ?>')">
-                            <div class="w-[250px] h-[150px] lg:w-[300px] lg:h-[200px] rounded-lg bg-gray-100 flex items-center justify-center hover:border hover:border-primary transition-colors">
+                            <div class="w-[250px] h-[150px] xl:w-[300px] xl:h-[200px] rounded-lg bg-gray-100 flex items-center justify-center hover:border hover:border-primary transition-colors">
                                 <i class="bi bi-file-earmark-pdf text-6xl text-primary"></i>
                             </div>
                             <div class="p-4">
-                                <h3 class="font-medium text-lg w-[250px] lg:w-[300px] text-center"><?= htmlspecialchars($pdfItem['nome']) ?></h3>
+                                <h3 class="font-medium text-lg w-[250px] xl:w-[300px] text-center"><?= htmlspecialchars($pdfItem['nome']) ?></h3>
                                 <p class="text-sm text-gray-600 text-center mt-2"><?= $page_translations['click_to_download'] ?></p>
                             </div>
                         </div>

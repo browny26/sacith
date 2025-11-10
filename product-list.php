@@ -527,7 +527,7 @@ function nameToSlug($name)
 
                 <?php if (isset($_GET['category']) && $_GET['family'] == "hydromassage") { ?>
 
-                    <div class="flex flex-col md:flex-row gap-20 w-screen mt-6">
+                    <div class="flex flex-col sm:flex-row gap-20 w-screen mt-6">
                         <!-- <div class="flex flex-col gap-[20px] items-start w-fit">
 
                             <?php
@@ -724,8 +724,8 @@ function nameToSlug($name)
                             }
                             ?>
                         </div>
-                        <div class="col-span-8 sm:col-span-7 flex-1 flex flex-col gap-4">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 w-fit justify-center md:justify-start items-center md:items-start gap-4" id="no_category">
+                        <div class="col-span-8 sm:col-span-7 flex-1 flex flex-col gap-4 justify-center items-center">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 w-fit justify-center items-center gap-4" id="no_category">
                             </div>
                             <div class="flex flex-col items-start gap-4" id="items_container">
                             </div>
@@ -736,7 +736,7 @@ function nameToSlug($name)
                 <?php if ($_GET['family'] == "shower-drains") { ?>
 
                     <div class="col-span-8 sm:col-span-7 flex-1 flex flex-col items-center gap-4">
-                        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 w-fit justify-center md:justify-start items-center md:items-start gap-4" id="no_category">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 4xl:grid-cols-5 w-fit justify-center md:justify-start items-center md:items-start gap-4" id="no_category">
                             <?php
                             if (isset($data) && !empty($data)) {
                                 renderProductsFromPhp($data, "singolo");
@@ -1083,7 +1083,7 @@ function nameToSlug($name)
             container.appendChild(categoryTitle);
 
             const categoryContainer = document.createElement('div');
-            categoryContainer.className = 'my-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 justify-center md:justify-start items-center md:items-start gap-1 my-5';
+            categoryContainer.className = 'my-5 grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 justify-center md:justify-start items-center md:items-start gap-1 my-5';
             categoryContainer.id = `category-${sub.replace(/\s+/g, '-')}`;
             container.appendChild(categoryContainer);
         });
@@ -1091,7 +1091,7 @@ function nameToSlug($name)
         if (subcategory.length === 0) {
             if (!productsGrid) {
                 const noCategoryContainer = document.createElement('div');
-                noCategoryContainer.className = 'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 w-fit justify-center md:justify-start items-center md:items-start gap-4';
+                noCategoryContainer.className = 'grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 w-fit justify-center items-center gap-4';
                 noCategoryContainer.id = 'no_category';
                 container.appendChild(noCategoryContainer);
             }
@@ -1150,7 +1150,7 @@ function nameToSlug($name)
                         data-type="${typeItem}" 
                         data-slug="${nameToSlug(item.nome)}">
                         <img src="${imageSrc}" alt="${item.nome}" loading="lazy"
-                            class="cursor-pointer w-[250px] h-[150px] lg:w-[300px] lg:h-[200px] rounded-lg object-cover" />
+                            class="cursor-pointer w-[250px] h-[150px] 2xl:w-[300px] 2xl:h-[200px] rounded-lg object-cover" />
                         <div class="p-4">
                             <h3 class="font-medium text-lg w-[250px] lg:w-[300px] text-center">${item.nome}</h3>
                         </div>
