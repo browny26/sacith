@@ -1,38 +1,6 @@
 <?php require("translator.php") ?>
 <?php
-/* require("config.php"); */
-$host = "localhost";
-$user = "root";       // utente di XAMPP
-$password = "";       // di default la password è vuota
-$dbname = "sacith_it";   // il nome del database che hai creato
-$conn = new mysqli($host, $user, $password, $dbname);
-//$conn = new mysqli($host, $username, $password, (isset($_COOKIE['lang']) && $_COOKIE['lang'] == 'en' ? $db_name : $db_name_it));
-if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
-}
-
-$pdfArray = array();
-
-$sql = "SELECT kit.pdf AS pdf FROM kit WHERE kit.pdf IS NOT NULL AND kit.pdf != '' UNION SELECT prodottoconfigurabile.pdf FROM prodottoconfigurabile WHERE prodottoconfigurabile.pdf IS NOT NULL AND prodottoconfigurabile.pdf != '' UNION SELECT prodottosingolo.pdf FROM prodottosingolo WHERE prodottosingolo.pdf IS NOT NULL AND prodottosingolo.pdf != '' LIMIT 0, 25;";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $pdfArray[] = $row['pdf'];
-    }
-}
-
-$conn->close();
-
-$pdfFiles = array();
-
-foreach ($pdfArray as $pdfFile) {
-    $formattedName = str_replace('_', ' ', pathinfo($pdfFile, PATHINFO_FILENAME));
-
-    $pdfFiles[] = [
-        'file' => $pdfFile,
-        'nome' => $formattedName
-    ];
-}
+$products = json_decode(file_get_contents('new-products.json'), true);
 ?>
 
 <!DOCTYPE html>
@@ -106,25 +74,30 @@ foreach ($pdfArray as $pdfFile) {
                 },
             },
         };
-
+        // Funzione per aprire e chiudere il menu mobile
         function toggleMenu() {
             const mobileMenu = document.getElementById("mobile-menu");
             const overlay = document.getElementById("menu-overlay");
             const body = document.body;
             if (mobileMenu.classList.contains("translate-x-full")) {
+                // Mostra il menu (entra da destra)
                 mobileMenu.classList.remove("translate-x-full", "opacity-0");
                 mobileMenu.classList.add("translate-x-0", "opacity-100");
                 overlay.classList.remove("hidden");
                 overlay.classList.add("block");
+                // Disabilita lo scroll del body
                 body.classList.add("overflow-hidden");
             } else {
+                // Nasconde il menu (esce verso destra)
                 mobileMenu.classList.remove("translate-x-0", "opacity-100");
                 mobileMenu.classList.add("translate-x-full", "opacity-0");
                 overlay.classList.remove("block");
                 overlay.classList.add("hidden");
+                // Riattiva lo scroll del body
                 body.classList.remove("overflow-hidden");
             }
         }
+        // Aggiungi evento per il pulsante del menu
         window.onload = function() {
             const menuButton = document.getElementById("menu-button");
             const closeButton = document.getElementById("close-button");
@@ -133,20 +106,13 @@ foreach ($pdfArray as $pdfFile) {
             closeButton.addEventListener("click", toggleMenu);
             overlay.addEventListener("click", toggleMenu);
         };
-
-        function downloadPDF(pdfUrl, productName) {
-            const link = document.createElement('a');
-            link.href = pdfUrl;
-            link.download = productName + '.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
     </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             gsap.registerPlugin(ScrollTrigger);
 
+            // Animazione universale per tutti gli elementi con data-animate
             gsap.utils.toArray('[data-animate]').forEach(element => {
                 const delay = element.getAttribute('data-delay') || 0;
 
@@ -179,33 +145,38 @@ foreach ($pdfArray as $pdfFile) {
 
         <div class="animate-slide-up" data-animate="fade-up" data-delay="0">
             <div>
-                <h6 class="uppercase text-black/50 font-medium text-[14px]">Scarica i cataloghi e le schede tecniche</h6>
-                <h2 class="text-black font-medium text-[36px]">Tutta la documentazione dei prodotti Sacith</h2>
+                <h6 class="uppercase text-black/50 font-medium text-[14px]">In evidenza</h6>
+                <h1 class="text-black font-medium text-[36px]">Novità dal catalogo</h1>
             </div>
-            <p class="text-black/50">Consulta e scarica cataloghi, brochure e schede tecniche delle nostre soluzioni per l’idromassaggio e per la componentistica dedicata a vasche e spa.
-                Troverai informazioni dettagliate, specifiche tecniche, istruzioni e materiali utili per produttori, installatori e partner del settore benessere.</p>
+            <p class="text-black/50">Scopri i nostri ultimi sistemi idromassaggio e componenti tecnici, progettati per unire innovazione, design e massima qualità.</p>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6" data-animate="fade-up" data-delay="0">
-            <?php if (!empty($pdfFiles)): ?>
-                <?php foreach ($pdfFiles as $pdfItem): ?>
-                    <div class="col-span-1 flex flex-col items-center">
-                        <div class="flex flex-col gap-[10px] items-center product cursor-pointer"
-                            onclick="downloadPDF('/public/pdf/<?= htmlspecialchars($pdfItem['file']) ?>', '<?= htmlspecialchars($pdfItem['nome']) ?>')">
-                            <div class="w-[250px] h-[150px] lg:w-[300px] lg:h-[200px] rounded-lg bg-gray-100 flex items-center justify-center hover:border hover:border-primary transition-colors">
-                                <i class="bi bi-file-earmark-pdf text-6xl text-primary"></i>
-                            </div>
-                            <div class="p-4">
-                                <h3 class="font-medium text-lg w-[250px] lg:w-[300px] text-center"><?= htmlspecialchars($pdfItem['nome']) ?></h3>
-                                <p class="text-sm text-gray-600 text-center mt-2"><?= $page_translations['click_to_download'] ?></p>
-                            </div>
+        <div class="flex flex-col gap-[88px]">
+            <?php foreach ($products as $index => $product): ?>
+                <?php
+                $reverse = $index % 2 !== 0;
+                ?>
+                <div class="flex gap-[64px] justify-between <?= $reverse ? 'flex-row-reverse' : '' ?>"
+                    data-animate="fade-up"
+                    data-delay="0">
+
+                    <img src="<?= htmlspecialchars($product['immagine']) ?>"
+                        alt="<?= htmlspecialchars($product['nome']) ?>"
+                        loading="lazy"
+                        class="h-[200px] w-[400px] object-cover object-center rounded-md border border-neutral-100">
+
+                    <div class="flex flex-col gap-[24px]">
+                        <div>
+                            <h2 class="text-[24px] font-medium"><?= htmlspecialchars($product['nome']) ?></h2>
+                            <p class="text-black/50"><?= nl2br(htmlspecialchars($product['descrizione'])) ?></p>
                         </div>
+
+                        <a href="<?= htmlspecialchars($product['call_to_action']['url']) ?>"
+                            class="py-[4px] px-[26px] bg-primary text-white w-fit rounded-md hover:bg-hover transition-colors">
+                            <?= htmlspecialchars($product['call_to_action']['label']) ?>
+                        </a>
                     </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <div class="col-span-3 text-center py-8">
-                    <p class="text-gray-500"><?= $page_translations['no_pdf_available'] ?? 'Nessun PDF disponibile' ?></p>
                 </div>
-            <?php endif; ?>
+            <?php endforeach; ?>
         </div>
 
         <section class="flex flex-col lg:flex-row gap-[88px] justify-between">

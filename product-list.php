@@ -385,7 +385,7 @@ function nameToSlug($name)
 <html lang="<?= $lang ?>">
 <?php require("head.php") ?>
 
-<body class="font-default">
+<body class="font-default overflow-x-hidden">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WR87MMR4"
             height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -395,7 +395,7 @@ function nameToSlug($name)
         <div class="relative h-[113px] bg-primary/10 overflow-hidden">
             <div class="h-full h-full bg-[url(/sacith/image/new.svg)] bg-center bg-cover bg-no-repeat opacity-50 lg:opacity-100"></div><span class="absolute left-1/2 lg:left-auto lg:right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 lg:translate-x-0 text-primary text-[36px] lg:text-[44px] font-medium me-20"><?= $page_translations['new'] ?></span>
         </div>
-        <div class="mx-[10px] lg:mx-[115px] mt-[26px] h-fit">
+        <div class="mx-[10px] md:mx-[50px] xl:mx-[100px] mt-[26px] h-fit">
             <div data-animate="fade-up" data-delay="0">
                 <div>
                     <p class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['title'] ?></p>
@@ -806,8 +806,8 @@ function nameToSlug($name)
                 </div>
                 <p class="text-black/60 text-center" data-animate="fade-up" data-delay="0.2"><?= $page_translations['contact_description'] ?></p>
                 <div class="flex flex-col md:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
-                    <button class="px-[30px] py-[10px] bg-primary rounded-full text-white"><?= $page_translations['contact_btn_info'] ?></button>
-                    <button class="px-[30px] py-[10px] text-primary border border-primary rounded-full"><?= $page_translations['contact_btn_catalogues'] ?></button>
+                    <button class="py-[4px] px-[26px] rounded-md bg-primary rounded-full text-white"><?= $page_translations['contact_btn_info'] ?></button>
+                    <button class="py-[4px] px-[26px] rounded-md bg-white text-primary border border-primary rounded-full"><?= $page_translations['contact_btn_catalogues'] ?></button>
                 </div>
             </div>
         </div>

@@ -90,6 +90,19 @@
     "form_email": "Email",
     "form_message": "Messaggio"
   },
+  "new": {
+    "phone": "Telefono",
+    "hours": "Orari",
+    "hours_content": "Dal lunedì al venerdì dalle dalle 08.30 alle 12.00 e dalle 14:00 alle 18:00",
+    "site": "Sede",
+    "form_title": "Per più informazioni scrivici",
+    "form_name": "Nome",
+    "form_surname": "Cognome",
+    "form_phone": "Telefono",
+    "form_company": "Azienda",
+    "form_email": "Email",
+    "form_message": "Messaggio"
+  },
   "product": {
     "whirlpool": "SISTEMA IDROMASSAGGIO",
     "air_system": "Sistema Aria",

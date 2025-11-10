@@ -123,7 +123,9 @@
             height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="bg-white">
-        <?php require("navbar.php"); ?>
+        <div class="sticky top-0 shadow-md bg-white z-10">
+            <?php require("navbar.php"); ?>
+        </div>
         <section class="mx-[10px] md:mx-[115px] flex flex-col gap-[61px] mt-[61px]">
             <div class="animate-slide-up" data-animate="fade-up" data-delay="0">
                 <div>

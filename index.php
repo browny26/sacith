@@ -155,7 +155,7 @@
       <div class="absolute z-10 backdrop-blur-0 w-full top-0" style="background-color: transparent !important;"><?php require("navbar-home.php"); ?></div>
 
       <div class="flex flex-col gap-[24px] max-w-[626px] animate-slide-up">
-        <h1 class="text-[36px] text-white font-bold leading-[50px] text-center">Soluzioni idromassaggio e benessere made in Italy</h1>
+        <h1 class="text-[36px] text-white font-medium leading-[50px] text-center">Soluzioni idromassaggio e benessere made in Italy</h1>
         <p class="text-white/50 text-center">Sistemi idromassaggio e componenti tecnici Made in Italy per wellness e arredo bagno. Qualità, innovazione e design firmati Sacith.</p>
       </div>
       <div class="flex gap-[32px] mb-[73px] animate-slide-up">
@@ -192,12 +192,18 @@
     </section>
 
     <section class="my-16">
-      <div class="px-[100px]" data-animate="fade-up" data-delay="0">
-        <div>
-          <h6 class=" uppercase text-black/50 font-medium text-[14px]">In evidenza</h6>
-          <h2 class="text-black font-medium text-[36px]">Novità dal catalogo</h2>
-        </div>
-        <p class="text-black/50">Scopri i nostri ultimi sistemi idromassaggio e componenti tecnici, progettati per unire innovazione, design e massima qualità.</p>
+      <div class="flex justify-between items-center px-[100px]" data-animate="fade-up" data-delay="0">
+        <div class="">
+
+
+          <div>
+            <h6 class=" uppercase text-black/50 font-medium text-[14px]">In evidenza</h6>
+            <h2 class="text-black font-medium text-[36px]">Novità dal catalogo</h2>
+          </div>
+
+
+          <p class="text-black/50">Scopri i nostri ultimi sistemi idromassaggio e componenti tecnici, progettati per unire innovazione, design e massima qualità.</p>
+        </div><a href="/<?= $lang ?>/new" class="text-primary ">Più info <i class="bi bi-chevron-right"></i></a>
       </div>
       <div class="mt-[42px] flex flex-col w-full border-y border-neutral-100" data-animate="fade-up" data-delay="0.2">
         <div class="h-32 hover:h-80 transition-all duration-700 ease-in-out overflow-hidden flex w-full items-center justify-end bg-[url(/sacith/image/moon-jet-full.svg)] bg-center bg-cover bg-no-repeat">
@@ -223,7 +229,7 @@
         </div>
         <div class="h-32 hover:h-80 transition-all duration-700 ease-in-out overflow-hidden flex w-full items-center justify-start bg-[url(/sacith/image/air-jet-moon-img.svg)] bg-center bg-cover bg-no-repeat">
           <div class="ms-[100px]">
-            <h3 class="text-[24px] font-semibold">Sacitronic Cover</h3>
+            <h3 class="text-[24px] font-semibold">AirJet Moon</h3>
             <p class="font-light mb-2 text-sm">Discover our newest whirpool technology</p>
             <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
           </div>

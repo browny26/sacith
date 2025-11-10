@@ -1,0 +1,38 @@
+[
+  {
+    "nome": "MoonJet",
+    "immagine": "image/moon-jet-full.svg",
+    "descrizione": "'Moon' is the innovative whirlpool jet system developed by Sacith. It’s highly configurable, disassemblable and made in Italy with high-quality materials. - Optional adjustable multicolour LED lighting. - All components are available in white or chrome. - Available with the innovative conical jet or with a directional sphere jet. - Available in the version with the application of silicone or with the sealing gasket. - Available with plastic or metal tightening ring (cover).",
+    "call_to_action": {
+      "label": "Scopri",
+      "url": "/product.php?id=1"
+    }
+  },
+  {
+    "nome": "Sacitronic Cover",
+    "immagine": "image/sacitronic-img.svg",
+    "descrizione": "It is an electromechanical control that operates the switching on and off of the pump and allows the manual regulation of the air in the jet circuit. It is equipped with an integrated check valve and at its end a tee-piece for the connection to the jets' air circuit is installed. This tee-piece is available both in Ø 20 mm and in Ø 16 mm. Sacitronic is certified according to the safety regulations in force.",
+    "call_to_action": {
+      "label": "Scopri",
+      "url": "/product.php?id=2"
+    }
+  },
+  {
+    "nome": "MicroJet Moon",
+    "immagine": "image/microjet-moon-img.svg",
+    "descrizione": "Brand new Microjet of 'moon' family. Ultra-flat design.",
+    "call_to_action": {
+      "label": "Scopri",
+      "url": "/product.php?id=3"
+    }
+  },
+  {
+    "nome": "AirJet Moon",
+    "immagine": "image/air-jet-moon-img.svg",
+    "descrizione": "Brand new Airjet of 'moon' family. Made by cover and insert, it allows to create a bi-color configuration.",
+    "call_to_action": {
+      "label": "Scopri",
+      "url": "/product.php?id=4"
+    }
+  }
+]

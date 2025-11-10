@@ -1,4 +1,4 @@
-<footer class="bg-white text-gray-800 p-[28px] mt-[120px] border-t border-grey-200 font-default">
+<footer class="bg-white text-gray-800 p-[28px] lg:px-8 mt-[120px] border-t border-grey-200 font-default">
     <div class="container mx-auto">
         <div class="flex flex-col sm:flex-row justify-between items-center">
             <address class="text-center sm:text-left mb-10 sm:mb-0">
@@ -28,15 +28,17 @@
                 <div>
                     <h2 class="py-[5px] font-semibold text-primary border-b border-primary text-[14px]"><?= $lang == "it" ? "PRODOTTI" : "PRODUCTS" ?></h2>
                     <ul class="text-[12px] space-y-4 mt-2">
-                        <li><a href="/product.php" class="hover:font-semibold"><?= $lang == "it" ? "Idromassaggio" : "Whirlpool" ?></a></li>
-                        <li><a href="/product.php" class="hover:font-semibold"><?= $lang == "it" ? "Docce" : "Shower" ?></a></li>
-                        <li><a href="/product.php" class="hover:font-semibold"><?= $lang == "it" ? "Arredamento" : "Forniture" ?></a></li>
+                        <li><a href="/product" class="hover:font-semibold"><?= $lang == "it" ? "Idromassaggio" : "Whirlpool" ?></a></li>
+                        <li><a href="/product" class="hover:font-semibold"><?= $lang == "it" ? "Docce" : "Shower" ?></a></li>
+                        <li><a href="/product" class="hover:font-semibold"><?= $lang == "it" ? "Arredamento" : "Forniture" ?></a></li>
                     </ul>
                 </div>
                 <div>
-                    <h2 class="py-[5px] font-semibold text-primary border-b border-primary text-[14px]"><?= $lang == "it" ? "SU DI NOI" : "ABOUT US" ?></h2>
+                    <h2 class="py-[5px] font-semibold text-primary border-b border-primary text-[14px]"><?= $lang == "it" ? "PAGINE" : "PAGES" ?></h2>
                     <ul class="text-[12px] space-y-4 mt-2">
-                        <li><a href="/<? $lang ?>/about.php" class="hover:font-semibold"><?= $lang == "it" ? "Chi siamo" : "Who we are" ?></a></li>
+                        <li><a href="/<?= $lang ?>/about" class="hover:font-semibold"><?= $lang == "it" ? "Chi siamo" : "Who we are" ?></a></li>
+                        <li><a href="/<?= $lang ?>/catalogue" class="hover:font-semibold"><?= $lang == "it" ? "Cataloghi" : "Catalogues" ?></a></li>
+                        <li><a href="/<?= $lang ?>/new" class="hover:font-semibold"><?= $lang == "it" ? "Novità" : "New" ?></a></li>
                     </ul>
                 </div>
             </nav>

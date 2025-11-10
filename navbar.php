@@ -17,8 +17,8 @@
             <a href="/<?= $lang ?>/about" class="text-sm/6 text-gray-900"><?= $lang == "it" ? "Chi Siamo" : "About Us" ?></a>
         </div>
         <div class="hidden lg:flex rounded-full" aria-label="Selettore lingua">
-            <button type="button" class="<?php echo ($lang == 'it') ? 'bg-primary text-white' : 'bg-white text-primary'; ?> py-1 px-3 font-semibold rounded-full cursor-pointer" id="it" onclick="setLang('it')" aria-pressed="<?= $lang == 'it' ? 'true' : 'false' ?>">IT</button>
-            <button type="button" class="<?php echo ($lang == 'en') ? 'bg-primary text-white' : 'bg-white text-primary'; ?> py-1 px-3 font-semibold rounded-full cursor-pointer" onclick="setLang('en')" id="en" aria-pressed="<?= $lang == 'en' ? 'true' : 'false' ?>">EN</button>
+            <button type="button" class="<?php echo ($lang == 'it') ? 'bg-primary text-white' : 'bg-white text-primary'; ?> py-1 px-3 font-semibold rounded-md cursor-pointer" id="it" onclick="setLang('it')" aria-pressed="<?= $lang == 'it' ? 'true' : 'false' ?>">IT</button>
+            <button type="button" class="<?php echo ($lang == 'en') ? 'bg-primary text-white' : 'bg-white text-primary'; ?> py-1 px-3 font-semibold rounded-md cursor-pointer" onclick="setLang('en')" id="en" aria-pressed="<?= $lang == 'en' ? 'true' : 'false' ?>">EN</button>
         </div>
         <div class="flex lg:hidden">
             <button
