@@ -141,7 +141,7 @@ $products = json_decode(file_get_contents('new-products.json'), true);
     <div class="sticky top-0 shadow-md bg-white z-10">
         <?php require("navbar.php"); ?>
     </div>
-    <main class="mx-[10px] md:mx-[50px] lg:mx-[100px] flex flex-col gap-[153px] mt-[68px]">
+    <main class="mx-[10px] md:mx-[50px] lg:mx-[100px] flex flex-col gap-[88px] mt-[68px]">
 
         <div class="animate-slide-up" data-animate="fade-up" data-delay="0">
             <div>
@@ -150,19 +150,19 @@ $products = json_decode(file_get_contents('new-products.json'), true);
             </div>
             <p class="text-black/50">Scopri i nostri ultimi sistemi idromassaggio e componenti tecnici, progettati per unire innovazione, design e massima qualità.</p>
         </div>
-        <div class="flex flex-col gap-[88px]">
+        <section class="flex flex-col gap-[88px] px-[10px] md:px-[41px] xl:px-[82px]">
             <?php foreach ($products as $index => $product): ?>
                 <?php
                 $reverse = $index % 2 !== 0;
                 ?>
-                <div class="flex flex-col gap-[64px] justify-between <?= $reverse ? 'lg:flex-row-reverse' : 'lg:flex-row' ?>"
+                <div class="flex flex-col gap-[64px] items-center justify-between <?= $reverse ? 'lg:flex-row-reverse' : 'lg:flex-row' ?>"
                     data-animate="fade-up"
                     data-delay="0">
 
                     <img src="<?= htmlspecialchars($product['immagine']) ?>"
                         alt="<?= htmlspecialchars($product['nome']) ?>"
                         loading="lazy"
-                        class="h-[200px] w-full lg:w-[400px] object-cover object-center rounded-md border border-neutral-100">
+                        class="h-[365px] w-full lg:w-[425px] object-cover object-center rounded-md border border-neutral-100">
 
                     <div class="flex flex-col gap-[24px]">
                         <div>
@@ -177,7 +177,7 @@ $products = json_decode(file_get_contents('new-products.json'), true);
                     </div>
                 </div>
             <?php endforeach; ?>
-        </div>
+        </section>
 
         <section class="flex flex-col lg:flex-row gap-[88px] justify-between">
             <div class="flex flex-col gap-[62px]">

@@ -255,11 +255,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             <?php echo nl2br(htmlspecialchars($descrizione)); ?>
                         </p>
                         <p
-                            class="inline-block px-3 py-1 border border-primary rounded-full">
+                            class="inline-block py-[4px] px-[26px] border border-primary rounded-md">
                             <?php echo htmlspecialchars($codice_univoco); ?>
                         </p>
                         <?php if (!empty($pdf)) { ?>
-                            <a href="/public/pdf/<?php echo htmlspecialchars($pdf); ?>" target="_blank" class="bg-primary rounded-full no-underline text-white px-4 py-2 ml-5">
+                            <a href="/public/pdf/<?php echo htmlspecialchars($pdf); ?>" target="_blank" class="bg-primary rounded-md no-underline text-white py-[4px] px-[26px] ml-5">
                                 PDF
                             </a>
                         <?php } ?>
@@ -267,7 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     <div id="accordion-flush" class="max-w-[700px] mx-auto" data-accordion="collapse" data-active-classes="text-[#009FE3]" data-inactive-classes="text-black">
                         <?php if (!empty($dimensioni_array)) : ?>
                             <h2 id="accordion-flush-heading-1">
-                                <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-1" aria-expanded="false" aria-controls="accordion-flush-body-1">
+                                <button type="button" class="flex items-center justify-between w-full py-3 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-1" aria-expanded="false" aria-controls="accordion-flush-body-1">
                                     <span class="flex gap-3">
                                         <?= $page_translations['dimensions'] ?>
                                     </span>
@@ -277,18 +277,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 </button>
                             </h2>
                             <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
-                                <div class="py-5 border-b border-gray-200">
-                                    <p><?php
-                                        for ($i = 0; $i < count($dimensioni_array); $i++) {
-                                            echo $dimensioni_array[$i] . "<br>";
-                                        }
-                                        ?></p>
+                                <div class="border-b border-gray-200">
+                                    <?php foreach ($dimensioni_array as $dimensione) : ?>
+                                        <div class="border-b border-gray-200 py-3 text-gray-700">
+                                            <p>
+                                                <?= htmlspecialchars($dimensione) ?></p>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         <?php endif; ?>
                         <?php if (!empty($finiture)) : ?>
                             <h2 id="accordion-flush-heading-2">
-                                <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-2" aria-expanded="false" aria-controls="accordion-flush-body-2">
+                                <button type="button" class="flex items-center justify-between w-full py-3 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-2" aria-expanded="false" aria-controls="accordion-flush-body-2">
                                     <span class="flex gap-3">
                                         <?= $page_translations['finishes'] ?>
                                     </span>
@@ -298,13 +299,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 </button>
                             </h2>
                             <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
-                                <div class="py-5 border-b border-gray-200">
+                                <div class="py-3 border-b border-gray-200">
                                     <p><?php echo htmlspecialchars($finiture); ?></p>
                                 </div>
                             </div> <?php endif; ?>
                         <?php if (!empty($materiali)) : ?>
                             <h2 id="accordion-flush-heading-3">
-                                <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-3" aria-expanded="false" aria-controls="accordion-flush-body-3">
+                                <button type="button" class="flex items-center justify-between w-full py-3 font-medium text-start rtl:text-right text-gray-500 border-b border-gray-200 gap-3" data-accordion-target="#accordion-flush-body-3" aria-expanded="false" aria-controls="accordion-flush-body-3">
                                     <span class="flex gap-3">
                                         <?= $page_translations['materials'] ?>
                                     </span>
@@ -314,7 +315,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 </button>
                             </h2>
                             <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
-                                <div class="py-5 border-b border-gray-200">
+                                <div class="py-3 border-b border-gray-200">
                                     <p><?php echo htmlspecialchars($materiali); ?></p>
                                 </div>
                             </div><?php endif; ?>

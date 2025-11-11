@@ -439,11 +439,11 @@ $conn->close();
                     </p>
                     <div class="flex flex-wrap gap-5">
                         <p
-                            class="inline-block px-4 py-2 border border-primary rounded-full">
+                            class="inline-block py-[4px] px-[26px] w-fit rounded-md border border-primary">
                             <?php echo htmlspecialchars($codice_univoco); ?>
                         </p>
                         <?php if (!empty($pdf)) { ?>
-                            <a href="/public/pdf/<?php echo htmlspecialchars($pdf); ?>" target="_blank" class="bg-primary rounded-full no-underline text-white px-4 py-2">
+                            <a href="/public/pdf/<?php echo htmlspecialchars($pdf); ?>" target="_blank" class="py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">
                                 <?= $page_translations['code_quantity_btn'] ?>
                             </a>
                         <?php } ?>
@@ -452,40 +452,40 @@ $conn->close();
             </div>
             <!-- Section: Components -->
             <section class="mt-[87px]">
-                <h2 class="text-xl text-primary font-semimedium my-[22px]"><?= $page_translations['components_list'] ?></h2>
+                <h2 class="text-xl text-primary font-medium my-[24px]"><?= $page_translations['components_list'] ?></h2>
                 <!-- Non-Configurable Components -->
-                <div class="w-full mt-8 flex gap-8 items-center">
+                <section class="w-full mt-8 flex gap-8 items-center">
                     <div class="w-max">
                         <h3 class="text-lg text-primary font-semimedium mb-[26px] w-max">
                             <?= $page_translations['non_configurable'] ?>
                         </h3>
                     </div>
                     <div class="w-full bg-primary h-[1px]"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-[24px]" id="conponentiNonConfigurabili">
-                </div>
+                </section>
+                <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-[24px]" id="conponentiNonConfigurabili">
+                </section>
                 <!-- Configurable Components -->
-                <div class="w-full mt-10 flex gap-8 items-center">
+                <section class="w-full mt-10 flex gap-8 items-center">
                     <div class="w-max">
                         <h3 class="text-lg text-primary font-semimedium mb-[26px] w-max">
                             <?= $page_translations['configurable'] ?>
                         </h3>
                     </div>
                     <div class="w-full bg-primary h-[1px]"></div>
-                </div>
-                <div class="space-y-8" id="componentiConfigurabili">
-                </div>
+                </section>
+                <section class="space-y-8" id="componentiConfigurabili">
+                </section>
                 <!-- Optional Components -->
-                <div class="w-full mt-10 flex gap-8 items-center">
+                <section class="w-full mt-10 flex gap-8 items-center">
                     <div class="w-max">
                         <h3 class="text-lg text-primary font-semimedium mb-[26px] w-max">
                             <?= $page_translations['optional'] ?>
                         </h3>
                     </div>
                     <div class="w-full bg-primary h-[1px]"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-[24px]" id="componentiOptional">
-                </div>
+                </section>
+                <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-[24px]" id="componentiOptional">
+                </section>
             </section>
         </div>
         <?php require("footer.php"); ?>
