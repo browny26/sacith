@@ -11,10 +11,10 @@
             </a>
         </div>
         <div class="hidden lg:flex lg:gap-x-12 uppercase">
-            <a href="/<?= $lang ?>/index" class="text-sm/6 text-white" aria-current="page">Home</a>
             <a href="/<?= $lang ?>/product" class="text-sm/6 text-white"><?= $lang == "it" ? "Prodotti" : "Product" ?></a>
             <a href="/<?= $lang ?>/contact" class="text-sm/6 text-white"><?= $lang == "it" ? "Contatti" : "Contact" ?></a>
             <a href="/<?= $lang ?>/about" class="text-sm/6 text-white"><?= $lang == "it" ? "Chi Siamo" : "About Us" ?></a>
+            <a href="/<?= $lang ?>/new" class="text-sm/6 text-gray-900"><?= $lang == "it" ? "Novità" : "New" ?></a>
         </div>
         <div class="hidden lg:flex rounded-full" aria-label="Selettore lingua">
             <button type="button" class="<?php echo ($lang == 'it') ? 'bg-white text-black' : 'text-white'; ?> py-1 px-3 font-semibold rounded-md cursor-pointer" id="it" onclick="setLang('it')" aria-pressed="<?= $lang == 'it' ? 'true' : 'false' ?>">IT</button>

@@ -150,7 +150,7 @@
       </div>
       <div class="flex gap-[32px] mb-[73px] animate-slide-up">
         <a class="py-[4px] px-[26px] bg-primary rounded-md text-nowrap text-white" href="/product">Vai ai prodotti</a>
-        <a class="py-[4px] px-[26px] bg-white rounded-md text-nowrap text-primary" href="/catalogues">Scarica cataloghi</a>
+        <a class="py-[4px] px-[26px] bg-white rounded-md text-nowrap text-primary" href="/download">Scarica cataloghi</a>
       </div>
       </div>
     </section>
