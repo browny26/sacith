@@ -63,7 +63,7 @@
             </a>
             <button
                 type="button"
-                class="-m-2.5 rounded-md p-2.5 text-gray-700"
+                class="-m-2.5 rounded-md p-2.5 text-white"
                 id="close-button"
                 aria-label="Chiudi menu">
                 <svg
@@ -85,21 +85,21 @@
             <ul class="space-y-6 px-16">
                 <li>
                     <a
-                        href="/<?= $lang ?>/index"
-                        class="block rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50" aria-current="page">Home</a>
-                </li>
-                <li>
-                    <a
                         href="/<?= $lang ?>/product"
-                        class="block rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Prodotti" : "Product" ?></a>
+                        class="block text-[20px] sm:text-[44px] rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Prodotti" : "Product" ?></a>
                 </li>
                 <li>
-                    <a href="/<?= $lang ?>/contact" class="block rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Contatti" : "Contact" ?></a>
+                    <a href="/<?= $lang ?>/contact" class="block text-[20px] sm:text-[44px] rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Contatti" : "Contact" ?></a>
                 </li>
                 <li>
                     <a
                         href="/<?= $lang ?>/about"
-                        class="block rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Chi Siamo" : "About Us" ?></a>
+                        class="block text-[20px] sm:text-[44px] rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Chi Siamo" : "About Us" ?></a>
+                </li>
+                <li>
+                    <a
+                        href="/<?= $lang ?>/new"
+                        class="block text-[20px] sm:text-[44px] rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Novità" : "New" ?></a>
                 </li>
                 <li>
                     <div class="flex rounded-full w-fit" aria-label="Selettore lingua">

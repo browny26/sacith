@@ -46,18 +46,30 @@
     "contact_btn_catalogues": "Download Catalogs"
   },
   "about": {
-    "hero_title": "Excellence <span class='font-bold'>made in Italy</span>",
-    "first_section_1": "Sacith started its activity in <span class='text-primary'>2004</span>, focusing on the production of very high-tech components for air-massage systems. In a very short period Sacith has become the first supplier of air-system components for the most important Italian whirlpool brands.",
-    "first_section_2": "In 2006, we produced the <span class='text-primary'>SACITRONIC</span>, winning the challenge of realizing an electromechanical control for pumps, responding to safety regulations, without the need of electronic devices. SACITRONIC is covered by an International Patent.",
+    "hero_title_1": "Excellence <span class='font-bold'>Made in Italy</span>",
+    "hero_title_2": "Innovation and quality Made in Italy in hydromassage systems since 2004.",
+
+    "first_section_title_1": "From origins to excellence",
+    "first_section_title_2": "A story of innovation and Italian ingenuity in the wellness sector",
+    "first_section_1": "SACITH began operations in <span class='text-primary'>2004</span>, focusing on the production of high-tech components for air hydromassage systems. It quickly became <span class='text-primary'>the leading supplier</span> of air system components <span class='text-primary'>for the most important Italian hydromassage tub brands</span>, thanks in part to the acquisition of the molds and patents of another leading company specializing in hydromassage component development.",
+    "first_section_2": "In 2006, it created and developed <span class='text-primary'>Sacitronic</span>, successfully meeting the challenge of developing an electromechanical control system for pumps, covered by an international patent.",
+
     "img_title_1": "Technological Innovation",
-    "second_section": "In 2009, just after the Italian whirlpool components producer Aquajet closed its activity, Sacith took over a significant part of its moulds and patents, enlarging its range of products with a complete series of hydro-massage components and granting also a continuation of sales and support to the clients who used to buy from Aquajet. Passion for technical solutions is the spirit that is aiming this company and the satisfaction of clients’ special needs is our mission.",
-    "img_title_2": "Finest Quality",
-    "third_section_1": "We are firmly convinced that good business relationships are based on four important points:",
-    "third_section_2": "- <span class='text-primary'>Price</span>, that is giving the chance of introducing a company and a product;",
-    "third_section_3": "- <span class='text-primary'>Quality</span> of the components, that is convincing the client to go on testing them;",
-    "third_section_4": "- <span class='text-primary'>Service</span> that a supplier must grant to satisfy special requests or to answer normal questions;",
-    "third_section_5": "- <span class='text-primary'>Perseverance</span> and <span class='text-primary'>mutual trust</span> that are the ingredients for a long lasting relationship.",
-    "third_section_6": "If you share our opinions and you are curious to test what we are offering, please, try and contact us!"
+
+    "second_section_title_1": "Innovation in component design",
+    "second_section_title_2": "The first rectangular shower tray drains",
+    "second_section": "In 2015, the company entered the shower drain and waste sector, launching a highly innovative project: <span class='text-primary'>the first rectangular shower tray drain</span>. The product was an immediate <span class='text-primary'>success</span>, leading the company to later introduce more traditional round drains with a 90 mm diameter hole into its catalog.",
+
+    "fourth_section_title_1": "Continuous evolution and research",
+    "fourth_section_title_2": "Introducing the Moon series: the future of modular hydromassage",
+    "fourth_section": "In 2024, a completely <span class='text-primary'>new range of hydromassage products</span> was introduced, groundbreaking in its extreme modularity, customization, and customer-enabled after-sales maintenance: <span class='text-primary'>the Moon series.</span>",
+
+    "img_title_2": "Outstanding Quality",
+
+    "third_section_title_1": "Excellence, research and progress",
+    "third_section_title_2": "SACITH: constant innovation for a smarter future",
+    "third_section_1": "SACITH srl has positioned itself on the market as a company capable of <span class='text-primary'>innovating at every stage</span> of its evolutionary journey, making this the cornerstone of its business—and it <span class='text-primary'>continues to do so</span> today.",
+    "third_section_2": "Stay updated on upcoming news on our <a href='www.sacith.com' class='text-primary'>website</a> and on our social media channels."
   },
   "contact": {
     "title": "Contact Us!",

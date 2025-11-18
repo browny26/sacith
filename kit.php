@@ -52,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $titoli_prodottiNonConfigurabili = $row["titoli_prodottiNonConfigurabili"] ?? $titoli_prodottiNonConfigurabili;
             $titoli_prodottiOptional = $row["titoli_prodottiOptional"] ?? $titoli_prodottiOptional;
             $pdf = $row["pdf"] ?? null;
+            $pdf_array = explode('%', $pdf);
             $navigazione = explode('-', $row["navigazione"]);
             $kit[] = [
                 "id" => $row["id"],
@@ -335,6 +336,7 @@ $conn->close();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style type="text/tailwindcss">
         @theme {
@@ -432,10 +434,27 @@ $conn->close();
                             class="inline-block py-[4px] px-[26px] w-fit rounded-md border border-primary">
                             <?php echo htmlspecialchars($codice_univoco); ?>
                         </p>
-                        <?php if (!empty($pdf)) { ?>
-                            <a href="/public/pdf/<?php echo htmlspecialchars($pdf); ?>" target="_blank" class="py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">
-                                <?= $page_translations['code_quantity_btn'] ?>
-                            </a>
+                        <?php if (!empty($pdf_array)) { ?>
+                            <button id="pdfButton" data-dropdown-toggle="dropdown" class="inline-flex items-center justify-center text-white bg-primary box-border border border-transparent hover:bg-hover font-medium leading-5 rounded-md py-[6px] px-[26px]" type="button">
+                                PDF
+                                <svg class="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                                </svg>
+                            </button>
+
+                            <div id="dropdown" class="z-10 hidden rounded-md shadow-lg w-44">
+                                <ul class="p-2 text-sm font-medium" aria-labelledby="dropdownDefaultButton">
+                                    <?php foreach ($pdf_array as $file): ?>
+                                        <li>
+                                            <a href="/public/pdf/<?php echo htmlspecialchars($file); ?>"
+                                                target="_blank"
+                                                class="block px-4 py-2 hover:bg-neutral-100 rounded-md no-underline">
+                                                <?= str_replace('_', ' ', pathinfo($file, PATHINFO_FILENAME)) ?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
                         <?php } ?>
                     </div>
                 </div>

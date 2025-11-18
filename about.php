@@ -45,7 +45,7 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style type="text/tailwindcss">
         @theme {
@@ -112,44 +112,75 @@
     <main class="flex flex-col">
         <section style="height: calc(100vh - 56px);" class="w-screen relative">
             <img src="/public/img/about/sacith.png" alt="immagine azienda" class="w-full h-full object-cover object-left">
-            <h1 class="text-[44px] absolute bottom-[47px] left-[50px] md:left-[115px] text-white"><?= $page_translations['hero_title'] ?></h1>
+            <div class="absolute bottom-[47px] left-[50px] md:left-[115px] text-white">
+                <h1><?= $page_translations['hero_title_1'] ?></h1>
+                <h1 class="text-[44px]"><?= $page_translations['hero_title_2'] ?></h1>
+            </div>
         </section>
-        <section class="w-screen container mx-auto my-20 px-10 flex flex-col lg:flex-row justify-around items-center gap-[60px] lg:gap-[120px]">
-            <article class="text-center lg:text-left max-w-[390px]">
-                <p><?= $page_translations['first_section_1'] ?></p>
-                <br>
-                <p><?= $page_translations['first_section_2'] ?></p>
-            </article>
-            <img src="/public/img/about/sacith2.png" width="490" height="400" alt="">
+        <section class="w-screen container mx-auto my-20 px-10 flex flex-col gap-[60px]">
+            <div class="text-center mb-10 lg:mb-0">
+                <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['first_section_title_1'] ?></h6>
+                <h2 class="text-black font-medium md:text-[36px] text-[24px]"><?= $page_translations['first_section_title_2'] ?></h2>
+            </div>
+            <div class="flex flex-col lg:flex-row justify-around items-center gap-[60px] lg:gap-[120px]">
+                <article class="text-center lg:text-left max-w-[390px]">
+                    <p><?= $page_translations['first_section_1'] ?></p>
+                </article>
+                <img src="/public/img/about/sacith2.png" width="490" height="400" alt="">
+            </div>
+            <div class="flex flex-col lg:flex-row justify-around items-center gap-[60px] lg:gap-[120px]">
+                <img src="/public/img/about/sacith4.png" width="490" height="400" alt="">
+                <article class="text-center lg:text-left max-w-[390px]">
+                    <p><?= $page_translations['first_section_2'] ?></p>
+                </article>
+            </div>
         </section>
         <section class="w-screen overflow-hidden h-[70vh] relative">
             <img src="/public/img/about/sacith3.png" alt="immagine azienda" class="w-full h-full object-cover object-center">
             <h1 class="text-[44px] absolute bottom-[20px] md:bottom-[47px] left-[50px] md:left-[115px] text-white"><?= $page_translations['img_title_1'] ?></h1>
         </section>
-        <section class="w-screen container mx-auto my-20 px-10 flex flex-col lg:flex-row justify-around items-center gap-[60px] lg:gap-[120px]">
-            <img src="/public/img/about/sacith4.png" width="490" height="400" alt="">
-            <article class="text-center lg:text-left max-w-[390px]">
-                <p><?= $page_translations['second_section'] ?></p>
-            </article>
+        <section class="w-screen container mx-auto my-20 px-10 flex flex-col gap-[60px]">
+            <div class="text-center mb-10 lg:mb-0">
+                <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['second_section_title_1'] ?></h6>
+                <h2 class="text-black font-medium  md:text-[36px] text-[24px]"><?= $page_translations['second_section_title_2'] ?></h2>
+            </div>
+            <div class="flex flex-col lg:flex-row justify-around items-center gap-[60px] lg:gap-[120px]">
+                <img src="/public/img/about/sacith6.png" width="490" height="400" alt="">
+                <article class="text-center lg:text-left max-w-[390px]">
+                    <p><?= $page_translations['second_section'] ?></p>
+                </article>
+            </div>
+        </section>
+        <section class="w-screen overflow-hidden h-[70vh] relative">
+            <img src="/public/img/about/sacith7.png" alt="immagine azienda" class="w-full h-full object-cover object-center">
+            <h1 class="text-[44px] absolute bottom-[20px] md:bottom-[47px] left-[50px] md:left-[115px] text-white"><?= $page_translations['img_title_2'] ?></h1>
+        </section>
+        <section class="w-screen container mx-auto mt-20 px-10 flex flex-col gap-[60px]">
+            <div class="text-center mb-10 lg:mb-0">
+                <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['fourth_section_title_1'] ?></h6>
+                <h2 class="text-black font-medium  md:text-[36px] text-[24px]"><?= $page_translations['fourth_section_title_2'] ?></h2>
+            </div>
+            <div class="flex flex-col lg:flex-row justify-around items-center gap-[60px] lg:gap-[120px]">
+                <img src="/public/img/about/sacith6.png" width="490" height="400" alt="">
+                <article class="text-center lg:text-left max-w-[390px]">
+                    <p><?= $page_translations['fourth_section'] ?></p>
+                </article>
+            </div>
         </section>
         <section class="w-screen overflow-hidden h-[70vh] relative">
             <img src="/public/img/about/sacith5.png" alt="immagine azienda" class="w-full h-full object-cover object-center">
             <h1 class="text-[44px] absolute bottom-[20px] md:bottom-[47px] left-[50px] md:left-[115px] text-white"><?= $page_translations['img_title_2'] ?></h1>
         </section>
-        <section class="w-screen container mx-auto mt-20 px-10 flex flex-col lg:flex-row justify-around items-center gap-[60px] lg:gap-[120px]">
-            <article class="text-center lg:text-left max-w-[390px]">
-                <p><?= $page_translations['third_section_1'] ?></p>
+        <section class="w-screen container mx-auto mt-20 px-10 flex flex-col gap-[60px]">
+            <div class="text-center mb-10 lg:mb-0">
+                <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['third_section_title_1'] ?></h6>
+                <h2 class="text-black font-medium  md:text-[36px] text-[24px]"><?= $page_translations['third_section_title_2'] ?></h2>
+            </div>
+            <div class="flex flex-col gap[20px] max-w-5xl mx-auto">
+                <p class="text-center"><?= $page_translations['third_section_1'] ?></p>
                 <br>
-                <ul>
-                    <li><?= $page_translations['third_section_2'] ?></li>
-                    <li><?= $page_translations['third_section_3'] ?></li>
-                    <li><?= $page_translations['third_section_4'] ?></li>
-                    <li><?= $page_translations['third_section_5'] ?></li>
-                </ul>
-                <br>
-                <p><?= $page_translations['third_section_6'] ?></p>
-            </article>
-            <img src="/public/img/about/sacith6.png" width="490" height="400" alt="">
+                <p class="text-center"><?= $page_translations['third_section_2'] ?></p>
+            </div>
         </section>
     </main>
     <?php require("footer.php"); ?>

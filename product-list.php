@@ -484,7 +484,12 @@ function nameToSlug($name)
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="water-system"
-                                data-category="jets_suctions-and-sealings">Jets, Suction & Sealings</div>
+                                data-category="jets">Jets</div>
+                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                                data-family="hydromassage"
+                                data-subfamily="whirlpool-system"
+                                data-type="water-system"
+                                data-category="microjets">Microjets</div>
                         </div>
                         <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
                             <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
@@ -497,6 +502,11 @@ function nameToSlug($name)
                                 data-subfamily="whirlpool-system"
                                 data-type="water-system"
                                 data-category="microjet-kit">Microjet Kit</div>
+                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                                data-family="hydromassage"
+                                data-subfamily="whirlpool-system"
+                                data-type="water-system"
+                                data-category="suctions"><?= $page_translations['suctions'] ?></div>
                             <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
@@ -626,7 +636,7 @@ function nameToSlug($name)
                                 "Hydromassage" => [
                                     "Whirlpool System" => [
                                         "Air System" => ["Airjet", "Basic Air Kit", "Blower", "Controls", "Manifolds", "Pipes & Fittings"],
-                                        "Water System" => ["Basic Hydro Kit", "Controls", "Jets, Suction & Sealings", "Microjet Kit", "Pipes, Fittings & Disinfection", "Pumps"]
+                                        "Water System" => ["Basic Hydro Kit", "Controls", "Jets", "Suctions", "Microjets", "Microjet Kit", "Pipes, Fittings & Disinfection", "Pumps"]
                                     ],
                                     "Shower System" => [
                                         "Shower Fittings",
@@ -640,7 +650,7 @@ function nameToSlug($name)
                                 "Hydromassage" => [
                                     "Whirlpool System" => [
                                         "Air System" => ["Airjet", "Basic Air Kit", "Blower", "Comandi", "Collettori", "Tubi e Raccordi"],
-                                        "Water System" => ["Basic Hydro Kit", "Comandi", "Bocchette", "Microjet Kit", "Tubi, Raccordi & Disinfezione", "Pompe"]
+                                        "Water System" => ["Basic Hydro Kit", "Comandi", "Bocchette", "Aspirazioni", "Microjets", "Microjet Kit", "Tubi, Raccordi & Disinfezione", "Pompe"]
                                     ],
                                     "Shower System" => [
                                         "Raccordi Doccia",
@@ -677,17 +687,23 @@ function nameToSlug($name)
                                 return $italianValue;
                             }
 
+                            if ($lang == "it") {
+                                $category_compare = findEnglishValue($category, $nav_list_it, $nav_list_en);
+                            } else {
+                                $category_compare = $category;
+                            }
+
                             if ($subfamily === "Whirlpool System") {
                                 if ($type && isset($nav_list["Hydromassage"]["Whirlpool System"][$type])) {
                                     echo '<ul class="w-fit md:mt-6 space-y-2 md:space-y-6 sm:mt-4 sm:space-y-4">';
                                     foreach ($nav_list["Hydromassage"]["Whirlpool System"][$type] as $item) {
-                                        $class = ($category === $item) ? 'text-primary' : 'hover:text-gray-800';
 
                                         // Trova il valore inglese per i data attribute
                                         $item_en = $lang == "it" ? findEnglishValue($item, $nav_list_it, $nav_list_en) : $item;
                                         $type_en = $lang == "it" ? findEnglishValue($type, $nav_list_it, $nav_list_en) : $type;
                                         $subfamily_en = $lang == "it" ? "Whirlpool System" : $subfamily;
                                         $family_en = $lang == "it" ? "Hydromassage" : $family;
+                                        $class = ($category_compare === $item_en) ? 'text-primary' : 'hover:text-gray-800';
 
                                         echo '<li class="text-nowrap" id="item">';
                                         echo '<a href="javascript:void(0)" 
@@ -704,12 +720,10 @@ function nameToSlug($name)
                             } elseif ($subfamily === "Shower System") {
                                 echo '<ul class="md:mt-6 space-y-2 md:space-y-6 sm:mt-4 sm:space-y-4">';
                                 foreach ($nav_list["Hydromassage"]["Shower System"] as $system_name) {
-                                    $class = ($category === $system_name) ? 'text-primary' : 'hover:text-gray-800';
-
-                                    // Trova il valore inglese per i data attribute
                                     $system_name_en = $lang == "it" ? findEnglishValue($system_name, $nav_list_it, $nav_list_en) : $system_name;
                                     $subfamily_en = $lang == "it" ? "Shower System" : $subfamily;
                                     $family_en = $lang == "it" ? "Hydromassage" : $family;
+                                    $class = ($category_compare === $system_name_en) ? 'text-primary' : 'hover:text-gray-800';
 
                                     echo '<li class="text-nowrap" id="item">';
                                     echo '<a href="javascript:void(0)" 

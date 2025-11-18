@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $titolo_optional = $row["titolo_optional"] ?? null;
             $titolo_optional_array = explode('-', $titolo_optional);
             $pdf = $row["pdf"] ?? null;
+            $pdf_array = explode('%', $pdf);
             $dimensioni = $row["dimensioni"] ?? null;
             $dimensioni_array = !empty($dimensioni) ? explode('%', $dimensioni) : [];
             $finiture = $row["finiture"] ?? null;
@@ -179,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style type="text/tailwindcss">
         @theme {
@@ -276,10 +278,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             class="inline-block py-[4px] px-[26px] border border-primary rounded-md">
                             <?php echo htmlspecialchars($codice_base); ?>
                         </p>
-                        <?php if (!empty($pdf)) { ?>
-                            <a href="/public/pdf/<?php echo htmlspecialchars($pdf); ?>" target="_blank" class="bg-primary rounded-md no-underline text-white py-[4px] px-[26px] ml-5">
+                        <?php if (!empty($pdf_array)) { ?>
+                            <button id="pdfButton" data-dropdown-toggle="dropdown" class="inline-flex items-center justify-center text-white bg-primary box-border border border-transparent hover:bg-hover font-medium leading-5 rounded-md py-[6px] px-[26px]" type="button">
                                 PDF
-                            </a>
+                                <svg class="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                                </svg>
+                            </button>
+
+                            <div id="dropdown" class="z-10 hidden rounded-md shadow-lg w-44">
+                                <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownDefaultButton">
+                                    <?php foreach ($pdf_array as $file): ?>
+                                        <li>
+                                            <a href="/public/pdf/<?php echo htmlspecialchars($file); ?>"
+                                                target="_blank"
+                                                class="block px-4 py-2 hover:bg-neutral-100 rounded-md no-underline">
+                                                <?= str_replace('_', ' ', pathinfo($file, PATHINFO_FILENAME)) ?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
                         <?php } ?>
                     </div>
                     <div id="accordion-flush" class="max-w-[700px] mx-auto" data-accordion="collapse" data-active-classes="text-[#009FE3]" data-inactive-classes="text-black">

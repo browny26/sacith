@@ -119,8 +119,8 @@
                 </div>
                 <p class="text-black/50">Scopri le due principali linee di prodotti Sacith: soluzioni idromassaggio per il benessere e componenti tecnici per vasche e spa. Tutto studiato per garantire qualità, innovazione ed efficienza.</p>
             </div>
-            <div class="mt-[32px] flex flex-col md:flex-row gap-[20px] w-full h-[373px]">
-                <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[60px] animate-slide-up" data-animate="fade-up" data-delay="0.2">
+            <div class="mt-[32px] flex flex-col md:flex-row gap-[120px] md:gap-[20px] w-full md:h-[373px] justify-center items-center">
+                <div class="relative overflow-hidden flex flex-col justify-end gap-[16px] w-full h-full md:px-[61px] pb-[60px] animate-slide-up" data-animate="fade-up" data-delay="0.2">
                     <div class="z-10">
                         <h2 class="uppercase text-[36px] font-medium text-black">HYDROMASSAGE</h2>
                         <p class="text-black/50">vasche & docce</p>
@@ -128,7 +128,7 @@
                     <button type="button" data-category="hydromassage" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
                     <img src="image/h-full.svg" alt="" class="absolute right-20 top-1/2 -translate-y-1/2 opacity-30">
                 </div>
-                <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[90px] animate-slide-up" data-animate="fade-up" data-delay="0.4">
+                <div class="relative overflow-hidden flex flex-col justify-end gap-[16px] w-full h-full md:px-[61px] pb-[90px] animate-slide-up" data-animate="fade-up" data-delay="0.4">
 
                     <h2 class="uppercase text-[36px] font-medium text-black z-10">SHOWER DRAINS</h2>
                     <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>

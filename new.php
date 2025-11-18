@@ -169,7 +169,7 @@ $products = json_decode(file_get_contents('new-products.json'), true);
             <?php endforeach; ?>
         </section>
 
-        <section class="flex flex-col lg:flex-row gap-[88px] justify-between">
+        <section class="flex flex-col lg:flex-row gap-[88px] justify-between mt-[80px]">
             <div class="flex flex-col gap-[62px]">
                 <div class="flex flex-col md:flex-row gap-[92px]">
                     <article class="flex flex-col gap-[10px]">

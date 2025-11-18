@@ -85,26 +85,26 @@
             <ul class="space-y-6 px-16">
                 <li>
                     <a
-                        href="/<?= $lang ?>/index"
-                        class="block rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50" aria-current="page">Home</a>
-                </li>
-                <li>
-                    <a
                         href="/<?= $lang ?>/product"
-                        class="block rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Prodotti" : "Product" ?></a>
+                        class="block text-[20px] sm:text-[44px] rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Prodotti" : "Product" ?></a>
                 </li>
                 <li>
-                    <a href="/<?= $lang ?>/contact" class="block rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Contatti" : "Contact" ?></a>
+                    <a href="/<?= $lang ?>/contact" class="block text-[20px] sm:text-[44px] rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Contatti" : "Contact" ?></a>
                 </li>
                 <li>
                     <a
                         href="/<?= $lang ?>/about"
-                        class="block rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Chi Siamo" : "About Us" ?></a>
+                        class="block text-[20px] sm:text-[44px] rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Chi Siamo" : "About Us" ?></a>
+                </li>
+                <li>
+                    <a
+                        href="/<?= $lang ?>/new"
+                        class="block text-[20px] sm:text-[44px] rounded-lg px-3 py-2 text-base text-gray-900 hover:bg-gray-50"><?= $lang == "it" ? "Novità" : "New" ?></a>
                 </li>
                 <li>
                     <div class="flex rounded-full w-fit" aria-label="Selettore lingua">
-                        <button type="button" class="<?php echo ($lang == 'it') ? 'bg-primary text-white' : 'bg-white text-primary'; ?> py-1 px-3 rounded-full cursor-pointer" id="it-mobile" onclick="setLang('it')" aria-pressed="<?= $lang == 'it' ? 'true' : 'false' ?>">IT</button>
-                        <button type="button" class="<?php echo ($lang == 'en') ? 'bg-primary text-white' : 'bg-white text-primary'; ?> py-1 px-3 rounded-full cursor-pointer" onclick="setLang('en')" id="en-mobile" aria-pressed="<?= $lang == 'en' ? 'true' : 'false' ?>">EN</button>
+                        <button type="button" class="<?php echo ($lang == 'it') ? 'bg-primary text-white' : 'bg-white text-primary'; ?> py-1 px-3 font-semibold rounded-md cursor-pointer" id="it-mobile" onclick="setLang('it')" aria-pressed="<?= $lang == 'it' ? 'true' : 'false' ?>">IT</button>
+                        <button type="button" class="<?php echo ($lang == 'en') ? 'bg-primary text-white' : 'bg-white text-primary'; ?> py-1 px-3 font-semibold rounded-md cursor-pointer" onclick="setLang('en')" id="en-mobile" aria-pressed="<?= $lang == 'en' ? 'true' : 'false' ?>">EN</button>
                     </div>
                 </li>
             </ul>
