@@ -48,60 +48,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+        --color-primary: #009FE3;
+        --color-hover: #0C699E;
+        --font-default: Raleway, sans-serif;
+        --animate-slide-up: slideUp 1s ease-out forwards;
+
+        @keyframes slideUp {
+          0% {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+    }
+  </style>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#009FE3",
-                        hover: "#0C699E"
-                    },
-                    fontFamily: {
-                        default: ["Raleway", "sans-serif"],
-                    },
-                    animation: {
-                        'slide-up': 'slideUp 1s ease-out forwards',
-                    },
-                    keyframes: {
-                        slideUp: {
-                            '0%': {
-                                transform: 'translateY(100%)',
-                                opacity: '0'
-                            },
-                            '100%': {
-                                transform: 'translateY(0)',
-                                opacity: '1'
-                            },
-                        }
-                    }
-                },
-            },
-        };
-        // Funzione per aprire e chiudere il menu mobile
         function toggleMenu() {
             const mobileMenu = document.getElementById("mobile-menu");
             const overlay = document.getElementById("menu-overlay");
             const body = document.body;
             if (mobileMenu.classList.contains("translate-x-full")) {
-                // Mostra il menu (entra da destra)
                 mobileMenu.classList.remove("translate-x-full", "opacity-0");
                 mobileMenu.classList.add("translate-x-0", "opacity-100");
                 overlay.classList.remove("hidden");
                 overlay.classList.add("block");
-                // Disabilita lo scroll del body
                 body.classList.add("overflow-hidden");
             } else {
-                // Nasconde il menu (esce verso destra)
                 mobileMenu.classList.remove("translate-x-0", "opacity-100");
                 mobileMenu.classList.add("translate-x-full", "opacity-0");
                 overlay.classList.remove("block");
                 overlay.classList.add("hidden");
-                // Riattiva lo scroll del body
                 body.classList.remove("overflow-hidden");
             }
         }
-        // Aggiungi evento per il pulsante del menu
         window.onload = function() {
             const menuButton = document.getElementById("menu-button");
             const closeButton = document.getElementById("close-button");
@@ -115,7 +100,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             gsap.registerPlugin(ScrollTrigger);
 
-            // Animazione universale per tutti gli elementi con data-animate
             gsap.utils.toArray('[data-animate]').forEach(element => {
                 const delay = element.getAttribute('data-delay') || 0;
 

@@ -56,40 +56,30 @@
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: "#009FE3",
-            hover: "#0C699E"
-          },
-          fontFamily: {
-            default: ["Raleway", "sans-serif"],
-          },
-          animation: {
-            'slide-up': 'slideUp 1s ease-out forwards',
-          },
-          keyframes: {
-            slideUp: {
-              '0%': {
-                transform: 'translateY(100%)',
-                opacity: '0'
-              },
-              '100%': {
-                transform: 'translateY(0)',
-                opacity: '1'
-              },
-            }
-          }
-        },
-      },
-    };
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+        --color-primary: #009FE3;
+        --color-hover: #0C699E;
+        --font-default: Raleway, sans-serif;
+        --animate-slide-up: slideUp 1s ease-out forwards;
 
+        @keyframes slideUp {
+          0% {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+    }
+  </style>
+  <script>
     function toggleMenu() {
       const mobileMenu = document.getElementById("mobile-menu");
       const overlay = document.getElementById("menu-overlay");
