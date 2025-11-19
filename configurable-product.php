@@ -229,6 +229,91 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             overlay.addEventListener("click", toggleMenu);
         };
     </script>
+    <?php
+    $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") .
+        "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    ?>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": "<?= htmlspecialchars($nome) ?>",
+            "description": "<?= htmlspecialchars(strip_tags($descrizione)) ?>",
+            "sku": "<?= htmlspecialchars($codice_base) ?>",
+            "image": [
+                <?php foreach ($immagini as $index => $img): ?> "https://www.sacith.com/public/img/<?= htmlspecialchars($img) ?>"
+                    <?= $index < count($immagini) - 1 ? "," : "" ?>
+                <?php endforeach; ?>
+            ],
+            "brand": {
+                "@type": "Brand",
+                "name": "Sacith"
+            },
+            "category": "<?= htmlspecialchars($_GET['category'] ?? '') ?>",
+            "url": "<?= $currentUrl ?>",
+            <?php if (!empty($materiali)): ?> "material": "<?= htmlspecialchars($materiali) ?>",
+            <?php endif; ?>
+            <?php if (!empty($finiture)): ?> "color": "<?= htmlspecialchars($finiture) ?>",
+            <?php endif; ?> "offers": {
+                "@type": "Offer",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/InStock",
+                "url": "<?= $currentUrl ?>"
+            }
+            <?php if (!empty($pdf_array) && $pdf_array[0] !== ""): ?>,
+                "additionalProperty": [
+                    <?php foreach ($pdf_array as $index => $file): ?> {
+                            "@type": "PropertyValue",
+                            "name": "Scheda tecnica PDF",
+                            "value": "https://www.sacith.com/public/pdf/<?= htmlspecialchars($file) ?>"
+                        }
+                        <?= $index < count($pdf_array) - 1 ? "," : "" ?>
+                    <?php endforeach; ?>
+                ]
+            <?php endif; ?>
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Prodotti",
+                    "item": "https://www.sacith.com/<?= $lang ?>/product"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "<?= formatName($family) ?>",
+                    "item": "https://www.sacith.com/<?= $lang ?>/product/<?= htmlspecialchars($family) ?>"
+                }
+                <?php if (!empty($subfamily)): ?>,
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "<?= formatName($subfamily) ?>",
+                        "item": "https://www.sacith.com/<?= $lang ?>/product/<?= $_GET["family"] ?>/<?= $_GET["subfamily"] ?><?= isset($_GET["type"]) ? "/" . $_GET["type"] : "" ?>"
+                    }
+                <?php endif; ?>
+                <?php if (!empty($category)): ?>,
+                    {
+                        "@type": "ListItem",
+                        "position": <?= !empty($subfamily) ? 4 : 3 ?>,
+                        "name": "<?= formatName($category) ?>",
+                        "item": "https://www.sacith.com/<?= $lang ?>/product/<?= $_GET["family"] ?>/<?= $_GET["subfamily"] ?>/<?= isset($_GET["type"]) ? $_GET["type"] . "/" . $_GET["category"] : $_GET["category"] ?>"
+                    }
+                <?php endif; ?>,
+                {
+                    "@type": "ListItem",
+                    "position": <?= !empty($subfamily) && !empty($category) ? 5 : (!empty($category) ? 4 : 3) ?>,
+                    "name": "<?= htmlspecialchars($nome) ?>",
+                    "item": "<?= $currentUrl ?>"
+                }
+            ]
+        }
+    </script>
 </head>
 
 <body class="font-default">
