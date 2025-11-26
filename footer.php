@@ -26,7 +26,7 @@
             </address>
             <nav class="flex space-x-12" aria-label="Footer">
                 <div>
-                    <h2 class="py-[5px] font-semibold text-primary border-b border-primary text-[14px]"><?= $lang == "it" ? "PRODOTTI" : "PRODUCTS" ?></h2>
+                    <h2 class="py-[5px] font-medium text-primary text-[14px]"><?= $lang == "it" ? "PRODOTTI" : "PRODUCTS" ?></h2>
                     <ul class="text-[12px] space-y-4 mt-2">
                         <li><a href="/product" class="hover:font-semibold"><?= $lang == "it" ? "Idromassaggio" : "Whirlpool" ?></a></li>
                         <li><a href="/product" class="hover:font-semibold"><?= $lang == "it" ? "Docce" : "Shower" ?></a></li>
@@ -34,7 +34,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h2 class="py-[5px] font-semibold text-primary border-b border-primary text-[14px]"><?= $lang == "it" ? "PAGINE" : "PAGES" ?></h2>
+                    <h2 class="py-[5px] font-medium text-primary text-[14px]"><?= $lang == "it" ? "PAGINE" : "PAGES" ?></h2>
                     <ul class="text-[12px] space-y-4 mt-2">
                         <li><a href="/<?= $lang ?>/about" class="hover:font-semibold"><?= $lang == "it" ? "Chi siamo" : "Who we are" ?></a></li>
                         <li><a href="/<?= $lang ?>/catalogue" class="hover:font-semibold"><?= $lang == "it" ? "Cataloghi" : "Catalogues" ?></a></li>

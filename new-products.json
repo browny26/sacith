@@ -1,37 +1,73 @@
 [
   {
-    "nome": "MoonJet",
+    "nome": {
+      "it": "MoonJet",
+      "en": "MoonJet"
+    },
     "immagine": "image/moon-jet-full.svg",
-    "descrizione": "'Moon' is the innovative whirlpool jet system developed by Sacith. It’s highly configurable, disassemblable and made in Italy with high-quality materials. - Optional adjustable multicolour LED lighting. - All components are available in white or chrome. - Available with the innovative conical jet or with a directional sphere jet. - Available in the version with the application of silicone or with the sealing gasket. - Available with plastic or metal tightening ring (cover).",
+    "descrizione": {
+      "it": "'Moon' è il sistema idromassaggio innovativo sviluppato da Sacith. Altamente configurabile, smontabile e Made in Italy con materiali di alta qualità. - Illuminazione LED multicolore opzionale. - Tutti i componenti sono disponibili in bianco o cromo. - Disponibile con getto conico innovativo o con getto a sfera direzionale. - Disponibile nella versione con applicazione di silicone o con guarnizione di tenuta. - Disponibile con ghiera di serraggio in plastica o in metallo (cover).",
+      "en": "'Moon' is the innovative whirlpool jet system developed by Sacith. It’s highly configurable, disassemblable and made in Italy with high-quality materials. - Optional adjustable multicolour LED lighting. - All components are available in white or chrome. - Available with the innovative conical jet or with a directional sphere jet. - Available in the version with the application of silicone or with the sealing gasket. - Available with plastic or metal tightening ring (cover)."
+    },
     "call_to_action": {
-      "label": "Scopri",
+      "label": {
+        "it": "Scopri di più",
+        "en": "Learn more"
+      },
       "url": "/product.php?id=1"
     }
   },
   {
-    "nome": "Sacitronic Cover",
+    "nome": {
+      "it": "Sacitronic Cover",
+      "en": "Sacitronic Cover"
+    },
     "immagine": "image/sacitronic-full.svg",
-    "descrizione": "It is an electromechanical control that operates the switching on and off of the pump and allows the manual regulation of the air in the jet circuit. It is equipped with an integrated check valve and at its end a tee-piece for the connection to the jets' air circuit is installed. This tee-piece is available both in Ø 20 mm and in Ø 16 mm. Sacitronic is certified according to the safety regulations in force.",
+    "descrizione": {
+      "it": "È un controllo elettromeccanico che gestisce l'accensione e lo spegnimento della pompa e consente la regolazione manuale dell'aria nel circuito dei getti. È dotato di valvola di non ritorno integrata e all'estremità è installata una derivazione a T per il collegamento al circuito d'aria dei getti. Questa derivazione è disponibile sia in Ø 20 mm che in Ø 16 mm. Sacitronic è certificato secondo le normative di sicurezza vigenti.",
+      "en": "It is an electromechanical control that operates the switching on and off of the pump and allows the manual regulation of the air in the jet circuit. It is equipped with an integrated check valve and at its end a tee-piece for the connection to the jets' air circuit is installed. This tee-piece is available both in Ø 20 mm and in Ø 16 mm. Sacitronic is certified according to the safety regulations in force."
+    },
     "call_to_action": {
-      "label": "Scopri",
+      "label": {
+        "it": "Scopri di più",
+        "en": "Learn more"
+      },
       "url": "/product.php?id=2"
     }
   },
   {
-    "nome": "MicroJet Moon",
+    "nome": {
+      "it": "MicroJet Moon",
+      "en": "MicroJet Moon"
+    },
     "immagine": "image/microjet-moon-full.svg",
-    "descrizione": "Brand new Microjet of 'moon' family. Ultra-flat design.",
+    "descrizione": {
+      "it": "Nuovissimo Microjet della famiglia 'Moon'. Design ultra-piatto.",
+      "en": "Brand new Microjet of the 'Moon' family. Ultra-flat design."
+    },
     "call_to_action": {
-      "label": "Scopri",
+      "label": {
+        "it": "Scopri di più",
+        "en": "Learn more"
+      },
       "url": "/product.php?id=3"
     }
   },
   {
-    "nome": "AirJet Moon",
+    "nome": {
+      "it": "AirJet Moon",
+      "en": "AirJet Moon"
+    },
     "immagine": "image/air-jet-moon-full.svg",
-    "descrizione": "Brand new Airjet of 'moon' family. Made by cover and insert, it allows to create a bi-color configuration.",
+    "descrizione": {
+      "it": "Nuovissimo Airjet della famiglia 'Moon'. Composto da cover e insert, permette di creare una configurazione bicolore.",
+      "en": "Brand new Airjet of the 'Moon' family. Made by cover and insert, it allows to create a bi-colour configuration."
+    },
     "call_to_action": {
-      "label": "Scopri",
+      "label": {
+        "it": "Scopri di più",
+        "en": "Learn more"
+      },
       "url": "/product.php?id=4"
     }
   }

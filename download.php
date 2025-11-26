@@ -169,11 +169,10 @@ foreach ($pdfArray as $pdfFile) {
 
         <div class="animate-slide-up" data-animate="fade-up" data-delay="0">
             <div>
-                <h6 class="uppercase text-black/50 font-medium text-[14px]">Scarica i cataloghi e le schede tecniche</h6>
-                <h2 class="text-black font-medium text-[36px]">Tutta la documentazione dei prodotti Sacith</h2>
+                <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['subtitle'] ?></h6>
+                <h2 class="text-black font-medium text-[36px]"><?= $page_translations['title'] ?></h2>
             </div>
-            <p class="text-black/50">Consulta e scarica cataloghi, brochure e schede tecniche delle nostre soluzioni per l’idromassaggio e per la componentistica dedicata a vasche e spa.
-                Troverai informazioni dettagliate, specifiche tecniche, istruzioni e materiali utili per produttori, installatori e partner del settore benessere.</p>
+            <p class="text-black/50"><?= $page_translations['description'] ?></p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6" data-animate="fade-up" data-delay="0">
             <?php if (!empty($pdfFiles)): ?>

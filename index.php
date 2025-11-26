@@ -145,12 +145,12 @@
       <div class="absolute z-10 backdrop-blur-0 w-full top-0" style="background-color: transparent !important;"><?php require("navbar-home.php"); ?></div>
 
       <div class="flex flex-col gap-[24px] max-w-[626px] animate-slide-up">
-        <h1 class="text-[36px] text-white font-medium leading-[50px] text-center">Soluzioni idromassaggio e benessere made in Italy</h1>
-        <p class="text-white/50 text-center">Sistemi idromassaggio e componenti tecnici Made in Italy per wellness e arredo bagno. Qualità, innovazione e design firmati Sacith.</p>
+        <h1 class="text-[36px] text-white font-medium leading-[50px] text-center"><?= $page_translations['hero_title'] ?></h1>
+        <p class="text-white/50 text-center"><?= $page_translations['hero_description'] ?></p>
       </div>
       <div class="flex gap-[32px] mb-[73px] animate-slide-up">
-        <a class="py-[4px] px-[26px] bg-primary rounded-md text-nowrap text-white" href="/product">Vai ai prodotti</a>
-        <a class="py-[4px] px-[26px] bg-white rounded-md text-nowrap text-primary" href="/download">Scarica cataloghi</a>
+        <a class="py-[4px] px-[26px] bg-primary rounded-md text-nowrap text-white" href="/product"><?= $page_translations['hero_btn_product'] ?></a>
+        <a class="py-[4px] px-[26px] bg-white rounded-md text-nowrap text-primary" href="/download"><?= $page_translations['hero_btn_download'] ?></a>
       </div>
       </div>
     </section>
@@ -158,24 +158,24 @@
     <section class="px-[100px] my-16">
       <div class="animate-on-scroll" data-animate="fade-up" data-delay="0">
         <div>
-          <h6 class="uppercase text-black/50 font-medium text-[14px]">Esplora il catalogo</h6>
-          <h2 class="text-black font-medium text-[36px]">Le nostre categorie principali</h2>
+          <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['category_subtitle'] ?></h6>
+          <h2 class="text-black font-medium text-[36px]"><?= $page_translations['category_title'] ?></h2>
         </div>
-        <p class="text-black/50">Scopri le due principali linee di prodotti Sacith: soluzioni idromassaggio per il benessere e componenti tecnici per vasche e spa. Tutto studiato per garantire qualità, innovazione ed efficienza.</p>
+        <p class="text-black/50"><?= $page_translations['category_description'] ?></p>
       </div>
       <div class="mt-[32px] flex flex-col md:flex-row gap-[20px] w-full h-[373px]">
         <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[60px] animate-card" data-animate="fade-up" data-delay="0.2">
           <div class="z-10">
-            <h2 class="uppercase text-[36px] font-medium text-black">HYDROMASSAGE</h2>
-            <p class="text-black/50">vasche & docce</p>
+            <h2 class="uppercase text-[36px] font-medium text-black"><?= $page_translations['category_hydromassage'] ?></h2>
+            <p class="text-black/50"><?= $page_translations['category_hydromassage_description'] ?></p>
           </div>
-          <button type="button" data-category="hydromassage" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+          <button type="button" data-category="hydromassage" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md"><?= $page_translations['category_btn_product'] ?></button>
           <img src="image/h-full.svg" alt="" class="absolute right-20 top-1/2 -translate-y-1/2 opacity-30">
         </div>
         <div class="relative overflow-hidden rounded-xl flex flex-col justify-end gap-[16px] w-full h-full px-[61px] pb-[90px] animate-card" data-animate="fade-up" data-delay="0.4">
 
-          <h2 class="uppercase text-[36px] font-medium text-black z-10">SHOWER DRAINS</h2>
-          <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+          <h2 class="uppercase text-[36px] font-medium text-black z-10"><?= $page_translations['category_drains'] ?></h2>
+          <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md"><?= $page_translations['category_btn_product'] ?></button>
           <img src="image/s-full.svg" alt="" class="absolute right-20 top-1/2 -translate-y-1/2 opacity-20">
         </div>
       </div>
@@ -187,41 +187,41 @@
 
 
           <div>
-            <h6 class=" uppercase text-black/50 font-medium text-[14px]">In evidenza</h6>
-            <h2 class="text-black font-medium text-[36px]">Novità dal catalogo</h2>
+            <h6 class=" uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['new_subtitle'] ?></h6>
+            <h2 class="text-black font-medium text-[36px]"><?= $page_translations['new_title'] ?></h2>
           </div>
 
 
-          <p class="text-black/50">Scopri i nostri ultimi sistemi idromassaggio e componenti tecnici, progettati per unire innovazione, design e massima qualità.</p>
-        </div><a href="/<?= $lang ?>/new" class="text-primary ">Più info <i class="bi bi-chevron-right"></i></a>
+          <p class="text-black/50"><?= $page_translations['new_description'] ?></p>
+        </div><a href="/<?= $lang ?>/new" class="text-primary "><?= $page_translations['new_btn'] ?> <i class="bi bi-chevron-right"></i></a>
       </div>
       <div class="mt-[42px] flex flex-col w-full border-y border-neutral-100" data-animate="fade-up" data-delay="0.2">
         <div class="h-32 hover:h-80 transition-all duration-700 ease-in-out overflow-hidden flex w-full items-center justify-end bg-[url(/sacith/image/moon-jet-full.svg)] bg-center bg-cover bg-no-repeat">
           <div class="me-[100px]">
             <h3 class="text-[24px] font-semibold">MoonJet</h3>
-            <p class="font-light mb-2 text-sm">Discover our newest whirpool technology</p>
-            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+            <p class="font-light mb-2 text-sm"><?= $page_translations['new_product_description'] ?></p>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md"><?= $page_translations['new_product_btn'] ?></button>
           </div>
         </div>
         <div class="h-32 hover:h-80 transition-all duration-700 border-y border-neutral-100 ease-in-out overflow-hidden flex w-full items-center justify-start bg-[url(/sacith/image/sacitronic-img.svg)] bg-center bg-cover bg-no-repeat">
           <div class="ms-[100px]">
             <h3 class="text-[24px] font-semibold">Sacitronic Cover</h3>
-            <p class="font-light mb-2 text-sm">Discover our newest whirpool technology</p>
-            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+            <p class="font-light mb-2 text-sm"><?= $page_translations['new_product_description'] ?></p>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md"><?= $page_translations['new_product_btn'] ?></button>
           </div>
         </div>
         <div class="h-32 hover:h-80 transition-all duration-700 ease-in-out border-b border-neutral-100 overflow-hidden flex w-full items-center justify-end bg-[url(/sacith/image/microjet-moon-img.svg)] bg-center bg-cover bg-no-repeat">
           <div class="me-[100px]">
             <h3 class="text-[24px] font-semibold">MicroJet Moon</h3>
-            <p class="font-light mb-2 text-sm">Discover our newest whirpool technology</p>
-            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+            <p class="font-light mb-2 text-sm"><?= $page_translations['new_product_description'] ?></p>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md"><?= $page_translations['new_product_btn'] ?></button>
           </div>
         </div>
         <div class="h-32 hover:h-80 transition-all duration-700 ease-in-out overflow-hidden flex w-full items-center justify-start bg-[url(/sacith/image/air-jet-moon-img.svg)] bg-center bg-cover bg-no-repeat">
           <div class="ms-[100px]">
             <h3 class="text-[24px] font-semibold">AirJet Moon</h3>
-            <p class="font-light mb-2 text-sm">Discover our newest whirpool technology</p>
-            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+            <p class="font-light mb-2 text-sm"><?= $page_translations['new_product_description'] ?></p>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md"><?= $page_translations['new_product_btn'] ?></button>
           </div>
         </div>
     </section>
@@ -229,10 +229,10 @@
     <section class="px-[100px] my-16">
       <div data-animate="fade-up" data-delay="0">
         <div>
-          <h6 class="uppercase text-black/50 font-medium text-[14px]">Scopri le nostre soluzioni</h6>
-          <h2 class="text-black font-medium text-[36px]">Kit per ogni esigenza</h2>
+          <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['kit_subtitle'] ?></h6>
+          <h2 class="text-black font-medium text-[36px]"><?= $page_translations['kit_title'] ?></h2>
         </div>
-        <p class="text-black/50">Dai sistemi base a quelli più avanzati, i nostri kit offrono soluzioni complete e versatili per soddisfare ogni necessità nel settore wellness e idromassaggio, combinando qualità, affidabilità e facilità di installazione.</p>
+        <p class="text-black/50"><?= $page_translations['kit_description'] ?></p>
       </div>
       <div class="mt-[42px] flex flex-col justify-center md:flex-row gap-[123px] w-full">
         <div class="flex flex-col gap-[38px]" data-animate="fade-up" data-delay="0.2">
@@ -240,9 +240,9 @@
           <div class="flex flex-col items-center gap-[14px]">
             <div class="flex flex-col items-center gap-[2px]">
               <h3 class="text-[24px] font-semibold">Basic Air Kit</h3>
-              <p class="font-light mb-2 text-sm">Everything you need for your whirpool in one place.</p>
+              <p class="font-light mb-2 text-sm"><?= $page_translations['kit_product_description'] ?></p>
             </div>
-            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md"><?= $page_translations['kit_product_btn'] ?></button>
           </div>
         </div>
         <div class="flex flex-col gap-[38px]" data-animate="fade-up" data-delay="0.4">
@@ -250,18 +250,18 @@
           <div class="flex flex-col items-center gap-[14px]">
             <div class="flex flex-col items-center gap-[2px]">
               <h3 class="text-[24px] font-semibold">Basic Hydro Kit</h3>
-              <p class="font-light mb-2 text-sm">Everything you need for your whirpool in one place.</p>
+              <p class="font-light mb-2 text-sm"><?= $page_translations['kit_product_description'] ?></p>
             </div>
-            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+            <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md"><?= $page_translations['kit_product_btn'] ?></button>
           </div>
         </div>
     </section>
 
     <section class="px-[100px] my-16">
       <div data-animate="fade-up" data-delay="0">
-        <h6 class="uppercase text-black/50 font-medium text-[14px]">I nostri valori</h6>
+        <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['about_subtitle'] ?></h6>
         <div class="flex gap-[130px]">
-          <h2 class="text-black font-medium text-[36px] text-nowrap">Cosa ci distingue</h2>
+          <h2 class="text-black font-medium text-[36px] text-nowrap"><?= $page_translations['about_title'] ?></h2>
           <!--           <p class="text-black/50">In Sacith crediamo che la qualità nasca dall’unione tra innovazione, competenza e cura dei dettagli. Ogni progetto riflette la nostra dedizione nel creare sistemi idromassaggio e componenti tecnici che rappresentano l’eccellenza del Made in Italy.</p>
  -->
         </div>
@@ -271,10 +271,10 @@
           <div class="mx-[100px] flex flex-col w-full py-3 group-hover:py-6 transition-all duration-700 ease-in-out">
             <div class="flex justify-end relative items-start w-full">
               <span class="absolute left-0 -top-20 text-[200px] font-extralight text-black/10">1</span>
-              <h3 class="text-[24px] font-medium mt-8">Innovazione</h3>
+              <h3 class="text-[24px] font-medium mt-8"><?= $page_translations['about_section_title_1'] ?></h3>
             </div>
             <div class="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-in-out delay-200">
-              <p class="text-black/50 pt-10">Investiamo costantemente in ricerca e sviluppo per offrire soluzioni idromassaggio sempre più performanti, sostenibili e in linea con le nuove tecnologie del settore wellness. Grazie a un approccio che unisce innovazione tecnica, design e attenzione ai materiali, Sacith realizza prodotti affidabili e di alta qualità, pensati per garantire comfort, efficienza e durata nel tempo, nel segno dell'eccellenza Made in Italy.</p>
+              <p class="text-black/50 pt-10"><?= $page_translations['about_section_description_1'] ?></p>
             </div>
           </div>
         </div>
@@ -283,10 +283,10 @@
           <div class="mx-[100px] flex flex-col w-full py-3 group-hover:py-6 transition-all duration-700 ease-in-out">
             <div class="flex justify-end relative items-start w-full">
               <span class="absolute left-0 -top-20 text-[200px] font-extralight text-black/10">2</span>
-              <h3 class="text-[24px] font-medium mt-8">Qualità</h3>
+              <h3 class="text-[24px] font-medium mt-8"><?= $page_translations['about_section_title_2'] ?></h3>
             </div>
             <div class="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-in-out delay-200">
-              <p class="text-black/50 pt-4">Ogni componente è progettato e testato con la massima attenzione ai dettagli, per garantire affidabilità, durata e standard produttivi elevati. Grazie a controlli rigorosi e processi all’avanguardia, Sacith offre prodotti che soddisfano le esigenze dei professionisti del settore wellness, unendo cura artigianale, precisione e design Made in Italy per un’esperienza di benessere superiore.</p>
+              <p class="text-black/50 pt-4"><?= $page_translations['about_section_description_2'] ?></p>
             </div>
           </div>
         </div>
@@ -295,10 +295,10 @@
           <div class="mx-[100px] flex flex-col w-full py-3 group-hover:py-6 transition-all duration-700 ease-in-out">
             <div class="flex justify-end relative items-start w-full">
               <span class="absolute left-0 -top-20 text-[200px] font-extralight text-black/10">3</span>
-              <h3 class="text-[24px] font-medium mt-8">Eccellenza</h3>
+              <h3 class="text-[24px] font-medium mt-8"><?= $page_translations['about_section_title_3'] ?></h3>
             </div>
             <div class="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-in-out delay-200">
-              <p class="text-black/50 pt-4">Dall’idea alla realizzazione seguiamo ogni fase con precisione e cura artigianale: progettazione, produzione, collaudo e installazione. Creiamo sistemi idromassaggio e componenti tecnici che uniscono innovazione, qualità e tradizione Made in Italy, superando le aspettative di professionisti e aziende.</p>
+              <p class="text-black/50 pt-4"><?= $page_translations['about_section_description_3'] ?></p>
             </div>
           </div>
         </div>
@@ -322,13 +322,13 @@
     <section class="bg-primary/5 py-[90px]">
       <div class="mx-auto flex flex-col items-center gap-[32px]">
         <div class="relative" data-animate="fade-up" data-delay="0">
-          <h2 class="text-primary/20 text-[90px] lg:text-[128px] font-bold leading-none"><?= $page_translations['contact_title'] ?></h2>
-          <h3 class="z-10 absolute bottom-2 lg:bottom-6 left-1/2 -translate-x-1/2 text-nowrap text-[#005F88] text-[24px] lg:text-[32px] font-bold"><?= $page_translations['contact_subtitle'] ?></h3>
+          <h2 class="text-primary/20 text-[90px] lg:text-[128px] font-bold leading-none"><?= $page_translations['info_subtitle'] ?></h2>
+          <h3 class="z-10 absolute bottom-2 lg:bottom-6 left-1/2 -translate-x-1/2 text-nowrap text-[#005F88] text-[24px] lg:text-[32px] font-bold"><?= $page_translations['info_title'] ?></h3>
         </div>
-        <p class="text-black/60 text-center" data-animate="fade-up" data-delay="0.2"><?= $page_translations['contact_description'] ?></p>
+        <p class="text-black/60 text-center" data-animate="fade-up" data-delay="0.2"><?= $page_translations['info_description'] ?></p>
         <div class="flex flex-col md:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
-          <button class="py-[4px] px-[26px] rounded-md text-nowrap bg-primary text-white"><?= $page_translations['contact_btn_info'] ?></button>
-          <button class="py-[4px] px-[26px] rounded-md text-nowrap text-primary bg-white"><?= $page_translations['contact_btn_catalogues'] ?></button>
+          <button class="py-[4px] px-[26px] rounded-md text-nowrap bg-primary text-white"><?= $page_translations['info_btn_product'] ?></button>
+          <button class="py-[4px] px-[26px] rounded-md text-nowrap text-primary bg-white"><?= $page_translations['info_btn_download'] ?></button>
         </div>
       </div>
     </section>
@@ -348,16 +348,16 @@
       <div class="absolute p-[40px] flex flex-col gap-[62px] bg-white top-1/2 left-[100px] -translate-y-1/2 rounded-md shadow-md" data-animate="fade-up" data-delay="0">
         <div class="flex gap-[92px]">
           <div>
-            <h3 class="text-[24px font-medium">Telefono</h3>
+            <h3 class="text-[24px font-medium"><?= $page_translations['phone'] ?></h3>
             <a href="tel:+390331619011">+39 0331 619011</a>
           </div>
           <div>
-            <h3 class="text-[24px font-medium">Orari</h3>
-            <p class="max-w-[280px]">Dal lunedì al venerdì dalle dalle 08.30 alle 12.00 e dalle 14:00 alle 18:00</p>
+            <h3 class="text-[24px font-medium"><?= $page_translations['hours'] ?></h3>
+            <p class="max-w-[280px]"><?= $page_translations['hours_content'] ?></p>
           </div>
         </div>
         <div>
-          <h3 class="text-[24px font-medium">La nostra sede</h3>
+          <h3 class="text-[24px font-medium"><?= $page_translations['site'] ?></h3>
           <p>Via Luigi Pirandello, 21, 21012 Cassano Magnago (VA)</p>
         </div>
         <div>

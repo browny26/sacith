@@ -114,24 +114,24 @@
         <section class="mx-[10px] md:mx-[115px] flex flex-col gap-[61px] mt-[61px]">
             <div class="animate-slide-up" data-animate="fade-up" data-delay="0">
                 <div>
-                    <h6 class="uppercase text-black/50 font-medium text-[14px]">Esplora il catalogo</h6>
-                    <h2 class="text-black font-medium text-[36px]">Scegli una categoria</h2>
+                    <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['subtitle'] ?></h6>
+                    <h2 class="text-black font-medium text-[36px]"><?= $page_translations['title'] ?></h2>
                 </div>
-                <p class="text-black/50">Scopri le due principali linee di prodotti Sacith: soluzioni idromassaggio per il benessere e componenti tecnici per vasche e spa. Tutto studiato per garantire qualità, innovazione ed efficienza.</p>
+                <p class="text-black/50"><?= $page_translations['description'] ?></p>
             </div>
             <div class="mt-[32px] flex flex-col md:flex-row gap-[120px] md:gap-[20px] w-full md:h-[373px] justify-center items-center">
                 <div class="relative overflow-hidden flex flex-col justify-end gap-[16px] w-full h-full md:px-[61px] pb-[60px] animate-slide-up" data-animate="fade-up" data-delay="0.2">
                     <div class="z-10">
-                        <h2 class="uppercase text-[36px] font-medium text-black">HYDROMASSAGE</h2>
-                        <p class="text-black/50">vasche & docce</p>
+                        <h2 class="uppercase text-[36px] font-medium text-black"><?= $page_translations['hydromassage'] ?></h2>
+                        <p class="text-black/50"><?= $page_translations['hydromassage_description'] ?></p>
                     </div>
-                    <button type="button" data-category="hydromassage" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+                    <button type="button" data-category="hydromassage" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md"><?= $page_translations['btn_product'] ?></button>
                     <img src="image/h-full.svg" alt="" class="absolute right-20 top-1/2 -translate-y-1/2 opacity-30">
                 </div>
                 <div class="relative overflow-hidden flex flex-col justify-end gap-[16px] w-full h-full md:px-[61px] pb-[90px] animate-slide-up" data-animate="fade-up" data-delay="0.4">
 
-                    <h2 class="uppercase text-[36px] font-medium text-black z-10">SHOWER DRAINS</h2>
-                    <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md">Scopri</button>
+                    <h2 class="uppercase text-[36px] font-medium text-black z-10"><?= $page_translations['drains'] ?></h2>
+                    <button type="button" data-category="shower-drains" class="category py-[4px] px-[26px] bg-primary text-white w-fit rounded-md"><?= $page_translations['btn_product'] ?></button>
                     <img src="image/s-full.svg" alt="" class="absolute right-20 top-1/2 -translate-y-1/2 opacity-20">
                 </div>
             </div>

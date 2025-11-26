@@ -123,7 +123,7 @@
     <main class="mx-[115px] flex flex-col gap-[153px] mt-[68px]">
         <div class="flex flex-col md:flex-row gap-[20px] md:gap-[0px] justify-between">
             <header>
-                <h1 class="text-[35px] font-semibold text-primary"><?= $page_translations['title'] ?></h1>
+                <h1 class="text-[35px] font-medium text-black"><?= $page_translations['title'] ?></h1>
             </header>
             <section class="md:ms-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 <article class="flex flex-col gap-[10px]">
@@ -168,18 +168,18 @@
             <div class="flex flex-col gap-[62px]">
                 <div class="flex flex-col md:flex-row gap-[92px]">
                     <article class="flex flex-col gap-[10px]">
-                        <h2 class="text-[24px] font-medium text-primary"><?= $page_translations['phone'] ?></h2>
+                        <h2 class="text-[24px] font-medium text-black"><?= $page_translations['phone'] ?></h2>
                         <div>
                             <a href="tel:+390331619011" class="flex items-center space-x-2">
                                 <img
                                     src="/public/icons/phone-icon.png"
                                     alt="Telefono SAC" class="h-[24px] w-[24px]" />
-                                <span class="text-[14px]">+39 0331 619011</span>
+                                <span class="text-[14px] text-nowrap">+39 0331 619011</span>
                             </a>
                         </div>
                     </article>
                     <article class="flex flex-col gap-[10px]">
-                        <h2 class="text-[24px] font-medium text-primary"><?= $page_translations['hours'] ?></h2>
+                        <h2 class="text-[24px] font-medium text-black"><?= $page_translations['hours'] ?></h2>
                         <div>
                             <span class="text-[14px]"><?= $page_translations['hours_content'] ?></span>
                         </div>
@@ -187,7 +187,7 @@
                 </div>
                 <div>
                     <article class="flex flex-col gap-[10px]">
-                        <h2 class="text-[24px] font-medium text-primary"><?= $page_translations['site'] ?></h2>
+                        <h2 class="text-[24px] font-medium text-black"><?= $page_translations['site'] ?></h2>
                         <div>
                             <span class="text-[14px]">Via Luigi Pirandello, 21, 21012 Cassano Magnago (VA)</span>
                         </div>
@@ -195,7 +195,7 @@
                 </div>
                 <div>
                     <article class="flex flex-col gap-[10px]">
-                        <h2 class="text-[24px] font-medium text-primary">Social</h2>
+                        <h2 class="text-[24px] font-medium text-black">Social</h2>
                         <div class="flex gap-[24px]">
                             <a href="https://www.linkedin.com/company/sacith-srl">
                                 <img src="image/linkedin-svgrepo-com.svg" alt="" class="h-[24px] w-[24px]">
@@ -206,7 +206,7 @@
             </div>
 
             <form class="max-w-[700px] mx-auto w-full">
-                <h2 class="text-primary text-[24px] font-medium mb-[22px]"><?= $page_translations['form_title'] ?></h2>
+                <h2 class="text-black text-[24px] font-medium mb-[22px]"><?= $page_translations['form_title'] ?></h2>
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-gray-300 appearance-none utf8mb4_general_ci focus:outline-none focus:ring-0 focus:border-primary peer" placeholder=" " required />

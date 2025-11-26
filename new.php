@@ -135,38 +135,46 @@ $products = json_decode(file_get_contents('new-products.json'), true);
 
         <div class="animate-slide-up" data-animate="fade-up" data-delay="0">
             <div>
-                <h6 class="uppercase text-black/50 font-medium text-[14px]">In evidenza</h6>
-                <h1 class="text-black font-medium text-[36px]">Novità dal catalogo</h1>
+                <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['subtitle'] ?></h6>
+                <h1 class="text-black font-medium text-[36px]"><?= $page_translations['title'] ?></h1>
             </div>
-            <p class="text-black/50">Scopri i nostri ultimi sistemi idromassaggio e componenti tecnici, progettati per unire innovazione, design e massima qualità.</p>
+            <p class="text-black/50"><?= $page_translations['description'] ?></p>
         </div>
         <section class="flex flex-col gap-[88px] px-[10px] md:px-[41px] xl:px-[82px]">
             <?php foreach ($products as $index => $product): ?>
                 <?php
                 $reverse = $index % 2 !== 0;
+
+                // Estraggo nome e descrizione in base alla lingua
+                $nome = $product['nome'][$lang];
+                $descrizione = $product['descrizione'][$lang];
+
+                // Estraggo label del bottone in base alla lingua
+                $cta_label = $product['call_to_action']['label'][$lang];
                 ?>
                 <div class="flex flex-col gap-[64px] items-center justify-between <?= $reverse ? 'lg:flex-row-reverse' : 'lg:flex-row' ?>"
                     data-animate="fade-up"
                     data-delay="0">
 
                     <img src="<?= htmlspecialchars($product['immagine']) ?>"
-                        alt="<?= htmlspecialchars($product['nome']) ?>"
+                        alt="<?= htmlspecialchars($nome) ?>"
                         loading="lazy"
                         class="h-[365px] w-full lg:w-[425px] object-cover object-center rounded-md border border-neutral-100">
 
                     <div class="flex flex-col gap-[24px]">
                         <div>
-                            <h2 class="text-[24px] font-medium"><?= htmlspecialchars($product['nome']) ?></h2>
-                            <p class="text-black/50"><?= nl2br(htmlspecialchars($product['descrizione'])) ?></p>
+                            <h2 class="text-[24px] font-medium"><?= htmlspecialchars($nome) ?></h2>
+                            <p class="text-black/50"><?= nl2br(htmlspecialchars($descrizione)) ?></p>
                         </div>
 
                         <a href="<?= htmlspecialchars($product['call_to_action']['url']) ?>"
                             class="py-[4px] px-[26px] bg-primary text-white w-fit rounded-md hover:bg-hover transition-colors">
-                            <?= htmlspecialchars($product['call_to_action']['label']) ?>
+                            <?= htmlspecialchars($cta_label) ?>
                         </a>
                     </div>
                 </div>
             <?php endforeach; ?>
+
         </section>
 
         <section class="flex flex-col lg:flex-row gap-[88px] justify-between mt-[80px]">

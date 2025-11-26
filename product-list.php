@@ -569,7 +569,7 @@ function nameToSlug($name)
                         <div class="h-full w-full">
                             <div class="relative overflow-hidden h-[120px] border border-black/10 <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "whirlpool-system" ? "border-primary text-primary" : "border-black/10 text-black"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] font-medium transition-all duration-200 hover:border-primary cursor-pointer" data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
-                                data-type="air-system"><span class="z-10"><?= $page_translations['whirlpool'] ?></span><img src="image/h-full.svg" alt="" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-30"></div>
+                                data-type="air-system"><span class="z-10"><?= $page_translations['whirlpool'] ?></span><!-- <img src="image/h-full.svg" alt="" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-30"> --></div>
                             <div class="flex flex-col lg:flex-row gap-[20px] w-full h-[70px] mt-[20px]">
                                 <div class="border <?= isset($_GET['type']) && $_GET['type'] == "air-system" ? "border-primary text-primary" : "border-black/10 text-black"  ?> rounded-xl flex justify-center items-center h-full w-full text-[20px] font-medium transition-all duration-200 hover:border-primary cursor-pointer"
                                     data-family="hydromassage"
@@ -582,107 +582,117 @@ function nameToSlug($name)
                             </div>
                         </div>
                         <div class="relative overflow-hidden h-[120px] border <?= isset($_GET['subfamily']) && $_GET['subfamily'] == "shower-system" ?  "border-primary text-primary" : "border-black/10 text-black"  ?> rounded-xl flex justify-center items-end pb-[16px] w-full text-[24px] font-medium transition-all duration-200 hover:border-primary cursor-pointer" data-family="hydromassage"
-                            data-subfamily="shower-system"><span class="z-10"><?= $page_translations['shower'] ?></span><img src="image/s-full.svg" alt="" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-30"></div>
+                            data-subfamily="shower-system"><span class="z-10"><?= $page_translations['shower'] ?></span><!-- <img src="image/s-full.svg" alt="" class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 opacity-30"> --></div>
                     </div>
                 <?php  }  ?>
                 <?php if (!isset($_GET['category']) && isset($_GET['type']) && $_GET['type'] == "air-system" && $_GET['family'] == "hydromassage") {  ?>
                     <div class="flex flex-col gap-[10px] w-full h-full mx-auto">
-                        <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.2">
-                            <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                        <div class="flex flex-col lg:flex-row gap-[10px]">
+                            <div class="font-medium h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="air-system"
                                 data-category="basic-air-kit">Basic Air Kit</div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Air_System/Airjet/Airjet/B_Airjet.jpg)] bg-center bg-cover bg-no-repeat font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="air-system"
                                 data-category="airjet">Airjet</div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Air_System/Blower/Blower/Blower_Silent_400W/B_Blower_Silent_400W.jpg)] bg-center bg-cover bg-no-repeat font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="air-system"
                                 data-category="blower">Blower</div>
                         </div>
-                        <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                        <div class="flex flex-col lg:flex-row gap-[10px]">
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Air_System/Pipes_&_Fittings/Airsystem_Fitting_90%C2%B0/B_Airsystem_Fitting_90%C2%B0.jpg)] bg-center bg-cover bg-no-repeat font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="air-system"
                                 data-category="pipes-and-fittings"><?= $page_translations['pipes_fittings'] ?></div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Air_System/Controls/Pneumatic_Push/Round_Pneumatic_Push/B_Round_Pneumatic_Push.jpg)] bg-center bg-cover bg-no-repeat font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="air-system"
                                 data-category="controls"><?= $page_translations['controls'] ?></div>
-                            <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Air_System/Manifols/Manifolds/Manifold_8_Outlet/B_Manifold_8_Outlet.jpg)] bg-center bg-cover bg-no-repeat font-medium h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="air-system"
-                                data-category="manifolds">Manifolds</div>
+                                data-category="manifolds"><?= $page_translations['manifolds'] ?></div>
                         </div>
                     </div>
                 <?php  }  ?>
                 <?php if (!isset($_GET['category']) && isset($_GET['type']) && $_GET['type'] == "water-system" && $_GET['family'] == "hydromassage") {  ?>
                     <div class="flex flex-col gap-[10px] w-full h-full mx-auto">
-                        <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.2">
+                        <div class="flex flex-col lg:flex-row gap-[10px]">
                             <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="water-system"
                                 data-category="basic-hydro-kit">Basic Hydro Kit</div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Water_System/Controls/Sacitronic/B_Sacitronic.jpg)] bg-center bg-cover bg-no-repeat font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="water-system"
                                 data-category="controls"><?= $page_translations['controls'] ?></div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Water_System/Jets,_Suction_&_Sealings/Jets/Moon_Jet/B_Moon_Jet.png)] bg-center bg-cover font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="water-system"
                                 data-category="jets">Jets</div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+
+                        </div>
+                        <div class="flex flex-col lg:flex-row gap-[10px]">
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Water_System/Jets,_Suction_&_Sealings/Microjets/Microjet_Moon_Bi/B_Microjet_Moon_Bi.png)] bg-center bg-cover  font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="water-system"
                                 data-category="microjets">Microjets</div>
-                        </div>
-                        <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Water_System/Pumps/Pump/Pump.jpg)] bg-center bg-cover  font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="water-system"
                                 data-category="pumps"><?= $page_translations['pumps'] ?></div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="font-medium h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="water-system"
                                 data-category="microjet-kit">Microjet Kit</div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+
+                        </div>
+                        <div class="flex flex-col lg:flex-row gap-[10px]">
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Water_System/Jets,_Suction_&_Sealings/Suctions/Suction_Slim/B_Suction_Slim.jpg)] bg-center bg-cover  font-medium h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="water-system"
                                 data-category="suctions"><?= $page_translations['suctions'] ?></div>
-                            <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Water_System/Pipes,_Fittings_&_Disinfection/Disinfection/Push_Push_Plug_for_Tank/B_Push_Push_Plug_for_Tank.jpg)] bg-center bg-cover  font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="whirlpool-system"
                                 data-type="water-system"
                                 data-category="pipes_fittings-and-disinfection"><?= $page_translations['pipes_fittings_disinfections'] ?></div>
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Water_System/Controls/Sacitronic/B_Sacitronic.jpg)] bg-center bg-cover  font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
+                                data-family="hydromassage"
+                                data-subfamily="whirlpool-system"
+                                data-type="water-system"
+                                data-category="manifolds"><?= $page_translations['manifolds'] ?></div>
                         </div>
+
                     </div>
                 <?php  }  ?>
                 <?php if (!isset($_GET['category']) && isset($_GET['subfamily']) && $_GET['subfamily'] == "shower-system" && $_GET['family'] == "hydromassage") {  ?>
                     <div class="flex flex-col gap-[10px] w-full h-full mx-auto">
-                        <div class="flex flex-col lg:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.2">
-                            <div class="h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                        <div class="flex flex-col lg:flex-row gap-[10px]">
+                            <div class="bg-[url(https://www.sacith.com/public/img/Whirlpool_System/Air_System/Pipes_&_Fittings/Airsystem_Fitting_Straight/B_Airsystem_Fitting_Straight.jpg)] bg-center bg-cover font-medium h-[276px] w-full lg:flex-1 border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="shower-system"
                                 data-category="shower-fittings">Shower Fittings</div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="bg-[url(https://www.sacith.com/public/img/Shower_System/Shower_Jets/Minimal_Shower_Jet/B_Minimal_Shower_Jet.jpg)] bg-center bg-cover font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="shower-system"
                                 data-category="shower-jets">Shower Jets</div>
-                            <div class="h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-center transition-all duration-200 hover:border-primary cursor-pointer category"
+                            <div class="bg-[url(https://www.sacith.com/public/img/Shower_System/Steam_Accessories_&_Fittings/Closed_Cap_Steam_Outlet/B_Closed_Cap_Steam_Outlet.jpg)] bg-center bg-cover font-medium h-[276px] w-full lg:w-[335px] border border-black/10 rounded-xl flex justify-center items-end pb-5 transition-all duration-200 hover:border-primary cursor-pointer category"
                                 data-family="hydromassage"
                                 data-subfamily="shower-system"
                                 data-category="steam_accessories-and-fittings">Steam, Accessories & Fittings</div>
@@ -706,7 +716,7 @@ function nameToSlug($name)
                                 "Hydromassage" => [
                                     "Whirlpool System" => [
                                         "Air System" => ["Airjet", "Basic Air Kit", "Blower", "Controls", "Manifolds", "Pipes & Fittings"],
-                                        "Water System" => ["Basic Hydro Kit", "Controls", "Jets, Suction & Sealings", "Microjet Kit", "Pipes, Fittings & Disinfection", "Pumps"]
+                                        "Water System" => ["Basic Hydro Kit", "Controls", "Jets, Suction & Sealings", "Microjet Kit", "Manifolds", "Pipes, Fittings & Disinfection", "Pumps"]
                                     ],
                                     "Shower System" => [
                                         "Shower Fittings",
@@ -720,7 +730,7 @@ function nameToSlug($name)
                                 "Hydromassage" => [
                                     "Whirlpool System" => [
                                         "Air System" => ["Airjet", "Basic Air Kit", "Blower", "Comandi", "Collettori", "Tubi e Raccordi"],
-                                        "Water System" => ["Basic Hydro Kit", "Comandi", "Bocchette", "Microjet Kit", "Tubi, Raccordi & Disinfezione", "Pompe"]
+                                        "Water System" => ["Basic Hydro Kit", "Comandi", "Bocchette", "Microjet Kit", "Collettori", "Tubi, Raccordi & Disinfezione", "Pompe"]
                                     ],
                                     "Shower System" => [
                                         "Raccordi Doccia",
@@ -792,7 +802,7 @@ function nameToSlug($name)
                                 "Hydromassage" => [
                                     "Whirlpool System" => [
                                         "Air System" => ["Airjet", "Basic Air Kit", "Blower", "Controls", "Manifolds", "Pipes & Fittings"],
-                                        "Water System" => ["Basic Hydro Kit", "Controls", "Jets", "Suctions", "Microjets", "Microjet Kit", "Pipes, Fittings & Disinfection", "Pumps"]
+                                        "Water System" => ["Basic Hydro Kit", "Controls", "Jets", "Suctions", "Microjets", "Microjet Kit", "Manifolds", "Pipes, Fittings & Disinfection", "Pumps"]
                                     ],
                                     "Shower System" => [
                                         "Shower Fittings",
@@ -806,7 +816,7 @@ function nameToSlug($name)
                                 "Hydromassage" => [
                                     "Whirlpool System" => [
                                         "Air System" => ["Airjet", "Basic Air Kit", "Blower", "Comandi", "Collettori", "Tubi e Raccordi"],
-                                        "Water System" => ["Basic Hydro Kit", "Comandi", "Bocchette", "Aspirazioni", "Microjets", "Microjet Kit", "Tubi, Raccordi & Disinfezione", "Pompe"]
+                                        "Water System" => ["Basic Hydro Kit", "Comandi", "Bocchette", "Aspirazioni", "Microjets", "Microjet Kit",  "Collettori", "Tubi, Raccordi & Disinfezione", "Pompe"]
                                     ],
                                     "Shower System" => [
                                         "Raccordi Doccia",
