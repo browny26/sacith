@@ -10,7 +10,7 @@
                     alt="Logo SACITH" />
             </a>
         </div>
-        <div class="hidden lg:flex lg:gap-x-12 uppercase">
+        <div class="hidden lg:flex lg:gap-x-12">
             <a href="/<?= $lang ?>/product" class="text-sm/6 text-white"><?= $lang == "it" ? "Prodotti" : "Product" ?></a>
             <a href="/<?= $lang ?>/contact" class="text-sm/6 text-white"><?= $lang == "it" ? "Contatti" : "Contact" ?></a>
             <a href="/<?= $lang ?>/about" class="text-sm/6 text-white"><?= $lang == "it" ? "Chi Siamo" : "About Us" ?></a>

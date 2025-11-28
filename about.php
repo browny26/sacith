@@ -155,7 +155,7 @@
             <img src="/public/img/about/sacith7.png" alt="immagine azienda" class="w-full h-full object-cover object-center">
             <h1 class="text-[44px] absolute bottom-[20px] md:bottom-[47px] left-[50px] md:left-[115px] text-white"><?= $page_translations['img_title_2'] ?></h1>
         </section>
-        <section class="w-screen container mx-auto mt-20 px-10 flex flex-col gap-[60px]">
+        <section class="w-screen container mx-auto my-20 px-10 flex flex-col gap-[60px]">
             <div class="text-center mb-10 lg:mb-0">
                 <h6 class="uppercase text-black/50 font-medium text-[14px]"><?= $page_translations['fourth_section_title_1'] ?></h6>
                 <h2 class="text-black font-medium  md:text-[36px] text-[24px]"><?= $page_translations['fourth_section_title_2'] ?></h2>
