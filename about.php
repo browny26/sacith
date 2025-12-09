@@ -152,7 +152,7 @@
             </div>
         </section>
         <section class="w-screen overflow-hidden h-[70vh] relative">
-            <img src="/public/img/about/sacith7.png" alt="immagine azienda" class="w-full h-full object-cover object-center">
+            <img src="https://www.sacith.com/public/img/home/values_3.png" alt="immagine azienda" class="w-full h-full object-cover object-center">
             <h1 class="text-[44px] absolute bottom-[20px] md:bottom-[47px] left-[50px] md:left-[115px] text-white"><?= $page_translations['img_title_2'] ?></h1>
         </section>
         <section class="w-screen container mx-auto my-20 px-10 flex flex-col gap-[60px]">
@@ -161,7 +161,7 @@
                 <h2 class="text-black font-medium  md:text-[36px] text-[24px]"><?= $page_translations['fourth_section_title_2'] ?></h2>
             </div>
             <div class="flex flex-col lg:flex-row justify-around items-center gap-[60px] lg:gap-[120px]">
-                <img src="/public/img/about/sacith6.png" width="490" height="400" alt="">
+                <img src="https://www.sacith.com/public/img/home/values_2.png" width="490" height="400" alt="">
                 <article class="text-center lg:text-left max-w-[390px]">
                     <p><?= $page_translations['fourth_section'] ?></p>
                 </article>

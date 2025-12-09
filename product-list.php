@@ -986,8 +986,8 @@ function nameToSlug($name)
                 </div>
                 <p class="text-black/60 text-center" data-animate="fade-up" data-delay="0.2"><?= $page_translations['contact_description'] ?></p>
                 <div class="flex flex-col md:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
-                    <button class="py-[4px] px-[26px] rounded-md bg-primary rounded-full text-white"><?= $page_translations['contact_btn_info'] ?></button>
-                    <button class="py-[4px] px-[26px] rounded-md bg-white text-primary border border-primary rounded-full"><?= $page_translations['contact_btn_catalogues'] ?></button>
+                    <a href="<?= $lang ?>/contact" class="py-[4px] px-[26px] rounded-md bg-primary rounded-full text-white"><?= $page_translations['contact_btn_info'] ?></a>
+                    <a href="<?= $lang ?>/download" class="py-[4px] px-[26px] rounded-md bg-white text-primary border border-primary rounded-full"><?= $page_translations['contact_btn_catalogues'] ?></a>
                 </div>
             </div>
         </div>

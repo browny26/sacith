@@ -141,17 +141,18 @@
 
 
   <main class="flex flex-col overflow-hidden">
-    <section class="relative flex flex-col gap-[43px] items-center justify-end w-full bg-[url(/sacith/image/hero.svg)] h-[100vh] bg-center bg-cover bg-no-repeat">
+    <section class="relative flex flex-col gap-[43px] items-center justify-end w-full bg-[url(https://www.sacith.com/public/img/about/sacith.png)] h-[100vh] bg-center bg-cover bg-no-repeat">
       <div class="absolute z-10 backdrop-blur-0 w-full top-0" style="background-color: transparent !important;"><?php require("navbar-home.php"); ?></div>
 
-      <div class="flex flex-col gap-[24px] max-w-[626px] animate-slide-up">
+      <div class="absolute bottom-0 w-full h-[50%] bg-gradient-to-t from-black to-transparent"></div>
+
+      <div class="flex flex-col gap-[24px] max-w-[626px] animate-slide-up z-10">
         <h1 class="text-[36px] text-white font-medium leading-[50px] text-center"><?= $page_translations['hero_title'] ?></h1>
         <p class="text-white/50 text-center"><?= $page_translations['hero_description'] ?></p>
       </div>
-      <div class="flex gap-[32px] mb-[73px] animate-slide-up">
-        <a class="py-[4px] px-[26px] bg-primary rounded-md text-nowrap text-white" href="/product"><?= $page_translations['hero_btn_product'] ?></a>
-        <a class="py-[4px] px-[26px] bg-white rounded-md text-nowrap text-primary" href="/download"><?= $page_translations['hero_btn_download'] ?></a>
-      </div>
+      <div class="flex gap-[32px] mb-[73px] animate-slide-up z-10">
+        <a class="py-[4px] px-[26px] bg-primary rounded-md text-nowrap text-white" href="<?= $lang ?>/product"><?= $page_translations['hero_btn_product'] ?></a>
+        <a class="py-[4px] px-[26px] bg-white rounded-md text-nowrap text-primary" href="<?= $lang ?>/download"><?= $page_translations['hero_btn_download'] ?></a>
       </div>
     </section>
 
@@ -327,8 +328,8 @@
         </div>
         <p class="text-black/60 text-center" data-animate="fade-up" data-delay="0.2"><?= $page_translations['info_description'] ?></p>
         <div class="flex flex-col md:flex-row gap-[10px]" data-animate="fade-up" data-delay="0.4">
-          <button class="py-[4px] px-[26px] rounded-md text-nowrap bg-primary text-white"><?= $page_translations['info_btn_product'] ?></button>
-          <button class="py-[4px] px-[26px] rounded-md text-nowrap text-primary bg-white"><?= $page_translations['info_btn_download'] ?></button>
+          <a href="<?= $lang ?>/contact" class="py-[4px] px-[26px] rounded-md text-nowrap bg-primary text-white"><?= $page_translations['info_btn_product'] ?></a>
+          <a href="<?= $lang ?>/download" class="py-[4px] px-[26px] rounded-md text-nowrap text-primary bg-white"><?= $page_translations['info_btn_download'] ?></a>
         </div>
       </div>
     </section>
